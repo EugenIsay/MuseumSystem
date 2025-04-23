@@ -2,8 +2,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="MuseumSystem.AuthorizationWindow"
+		Background="#484244"
         Title="AuthorizationWindow">
-  Welcome to Avalonia!
+	<Window.Styles>
+		<Style Selector="TextBlock">
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+		</Style>
+	</Window.Styles>
+	<Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+		<Border Background="#E0CFBD"    Grid.Column="1" Grid.Row="1">
+			<Grid Margin="20" RowDefinitions="*,*,*,*,*">
+				<TextBlock Text="Добропожаловать в систему музея"/>
+				<TextBlock Text="Пожалуйста, авторизуйтесь для продолжения" Grid.Row="1"/>
+				<TextBox Watermark="Логин или почта" Grid.Row="2"/>
+				<TextBox Watermark="Пароль" Grid.Row="3"/>
+				<Button Grid.Row="4" Content="Продолжить"/>
+			</Grid>
+		</Border>
+
+	</Grid>
 </Window>
