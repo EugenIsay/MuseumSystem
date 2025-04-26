@@ -335,3 +335,6 @@ C:\Users\copp\Desktop\d\MuseumSystem\MuseumSystem\obj\Debug\net8.0\refint\Avalon
 C:\Users\copp\Desktop\d\MuseumSystem\MuseumSystem\obj\Debug\net8.0\MuseumSy.C609F91A.Up2Date
 C:\Users\copp\Desktop\d\MuseumSystem\MuseumSystem\obj\Debug\net8.0\MuseumSystem.genruntimeconfig.cache
 C:\Users\copp\Desktop\d\MuseumSystem\MuseumSystem\obj\Debug\net8.0\ref\MuseumSystem.dll
+C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\obj\Debug\net8.0\MuseumSystem.sourcelink.json
+C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\bin\Debug\net8.0\DialogHost.Avalonia.dll
+C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\bin\Debug\net8.0\MsBox.Avalonia.dll

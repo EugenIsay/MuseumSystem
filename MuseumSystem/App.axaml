@@ -3,7 +3,15 @@
              x:Class="MuseumSystem.App"
              RequestedThemeVariant="Light">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
-    <Application.Styles>
+   <!--#484244 dark -->
+	<!--#953C2C brown-->
+	<!--#D77546 orange-->
+	<!--#E8BC75 light yellow-->
+	<!--#E0CFBD white-->
+	<Application.Styles>
         <FluentTheme />
+		<Style Selector="Button">
+			<Setter Property="Background" Value="#D77546"/>
+		</Style>
     </Application.Styles>
 </Application>

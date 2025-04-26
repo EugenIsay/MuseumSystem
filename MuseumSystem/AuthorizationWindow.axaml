@@ -5,22 +5,87 @@
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="MuseumSystem.AuthorizationWindow"
 		Background="#484244"
-        Title="AuthorizationWindow">
+		Title="Окно для входа"
+		>
 	<Window.Styles>
 		<Style Selector="TextBlock">
 			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+		<Style Selector="TextBox">
+			<Setter Property="Margin" Value="0, 5"/>
 		</Style>
 	</Window.Styles>
-	<Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
-		<Border Background="#E0CFBD"    Grid.Column="1" Grid.Row="1">
-			<Grid Margin="20" RowDefinitions="*,*,*,*,*">
-				<TextBlock Text="Добропожаловать в систему музея"/>
-				<TextBlock Text="Пожалуйста, авторизуйтесь для продолжения" Grid.Row="1"/>
-				<TextBox Watermark="Логин или почта" Grid.Row="2"/>
-				<TextBox Watermark="Пароль" Grid.Row="3"/>
-				<Button Grid.Row="4" Content="Продолжить"/>
-			</Grid>
-		</Border>
+	<Grid ColumnDefinitions="*,2*,*" RowDefinitions="*,2*,*">
+		<Grid Grid.Column="1" Grid.Row="1" ColumnDefinitions="*,*">
+			<!--Left side-->
+
+			<Border Background="#E8BC75"    >
+				<Grid Margin="20" RowDefinitions="*,*,*,*,*,*">
+
+					<Viewbox Stretch="Uniform" Grid.Row="1" >
+						<TextBlock Text="Авторизация" Margin="5" />
+					</Viewbox>
+					<TextBox Watermark="Логин или почта" Grid.Row="3" Name="FirstRow"/>
+					<TextBox Watermark="Пароль" Grid.Row="4" Name="Password"/>
+					<Button Click="Login_Click" Grid.Row="5" Content="Продолжить"/>
+				</Grid>
+			</Border>
+			<Border IsVisible="False" Background="#953C2C" Name="LeftTop">
+				<Grid RowDefinitions="2*,*,*" ColumnDefinitions="*,10*,*">
+					<Viewbox Grid.Column="1" Stretch="Uniform" Grid.Row="0" >
+						<TextBlock TextWrapping="Wrap" Text="Добропожаловать в систему музея" FontWeight="Bold" Foreground="White" />
+					</Viewbox>
+					<TextBlock Grid.Column="1" VerticalAlignment="Top" Text="Пожалуйста, зарегестрируйтесь для продолжения, либо если вы уже регестрировали его, то авторизуйтесь" TextWrapping="Wrap" Grid.Row="1" Foreground="White"/>
+					<Button Grid.Column="1" HorizontalAlignment="Center" Click="Change_Click" VerticalAlignment="Center" Grid.Row="2" Content="Авторизация"/>
+				</Grid>
+			</Border>
+			<!--Right side-->
+			<Border Background="#E8BC75" Grid.Column="1">
+				<Grid Margin="20" RowDefinitions="*,*,*,*,*,*,*,*,*">
+
+					<Viewbox Stretch="Uniform" Grid.Row="0" >
+						<TextBlock Text="Регистрация" Margin="5" />
+					</Viewbox>
+					<TextBox Grid.Row="2" Watermark="Логин" Name="Login"/>
+					<Grid ColumnDefinitions="*,*,*" Grid.Row="3">
+						<TextBox Watermark="Имя" Name="FirstName"/>
+						<TextBox Watermark="Фамилия" Name="LastName" Grid.Column="1"/>
+						<TextBox Watermark="Отчество (необяз.)" Name="Patronymic" Grid.Column="2"/>
+					</Grid>
+					<Grid Grid.Row="4" ColumnDefinitions="*,*">
+						<TextBox Watermark="Почта"  Name="Email"/>
+						<MaskedTextBox Grid.Column="1" Mask="+7 (000) 000-00-00"  Name="Phone"/>
+					</Grid>
+					<Grid Grid.Row="5" ColumnDefinitions="2*,*">
+						<CalendarDatePicker Watermark="Дата рождения" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="BDay" Margin="0,5"/>
+						<DockPanel Grid.Column="1" >
+							<TextBlock Text="  Пол:"/>
+							<ComboBox Name="Gender" VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="0,5">
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Name}"/>
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+						</DockPanel>
+					</Grid>
+					<TextBox Watermark="Пароль" Grid.Row="6" Name="RegPassword"/>
+					<TextBox Watermark="Пароль" Grid.Row="7" Name="RegPasswordCheck"/>
+					<Button Click="Register_Click" Grid.Row="8"  Content="Продолжить"/>
+				</Grid>
+			</Border>
+			<Border Name="RightTop"  Grid.Column="1" Background="#953C2C">
+				<Grid RowDefinitions="2*,*,*" ColumnDefinitions="*,10*,*">
+					<Viewbox Grid.Column="1" Stretch="Uniform" Grid.Row="0" >
+						<TextBlock TextWrapping="Wrap" Text="Добропожаловать в систему музея" FontWeight="Bold" Foreground="White" />
+					</Viewbox>
+					<TextBlock Grid.Column="1" VerticalAlignment="Top" Text="Пожалуйста, авторизуйтесь для продолжения, либо если в нашей системе нет вашего аккаунта, то зарегестрируйте его" TextWrapping="Wrap" Grid.Row="1" Foreground="White"/>
+					<Button Grid.Column="1" HorizontalAlignment="Center" Click="Change_Click" VerticalAlignment="Center" Grid.Row="2" Content="Регистрация"/>
+				</Grid>
+			</Border>
+		</Grid>
+
 
 	</Grid>
 </Window>
