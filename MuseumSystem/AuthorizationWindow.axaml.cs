@@ -18,10 +18,18 @@ public partial class AuthorizationWindow : Window
 
     private void Login_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
+        if (string.IsNullOrEmpty(FirstRow.Text) || string.IsNullOrEmpty(Password.Text))
+        {
+            Helper.CallMessageBox("Пожалуйста, заполните данные для входа", this);
+        }
         if (Helper.IsExist(FirstRow.Text, Password.Text))
         {
             new MainWindow().Show();
             this.Close();
+        }
+        else
+        {
+            Helper.CallMessageBox("Что-то пошло не так. Пожалуйста проверьте логин и пароль и попробуйте заново", this);
         }
     }
 
