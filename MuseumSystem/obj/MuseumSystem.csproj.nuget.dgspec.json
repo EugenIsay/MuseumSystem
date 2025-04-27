@@ -69,6 +69,10 @@
               "target": "Package",
               "version": "[11.2.8, )"
             },
+            "LibVLCSharp.Avalonia": {
+              "target": "Package",
+              "version": "[3.9.3, )"
+            },
             "MessageBox.Avalonia": {
               "target": "Package",
               "version": "[3.2.0, )"
@@ -86,6 +90,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[9.0.4, )"
+            },
+            "VideoLAN.LibVLC.Windows": {
+              "target": "Package",
+              "version": "[3.0.21, )"
             }
           },
           "imports": [

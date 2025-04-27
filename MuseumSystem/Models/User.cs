@@ -17,6 +17,11 @@ public partial class User
 
     public string? Patronymic { get; set; }
 
+    public string FullName
+    {
+        get => LastName + " " + FirstName + " " + Patronymic;
+    }
+
     public int GenderId { get; set; }
 
     public int RoleId { get; set; }

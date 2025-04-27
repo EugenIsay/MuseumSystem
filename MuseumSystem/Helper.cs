@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using Microsoft.EntityFrameworkCore;
 using MsBox.Avalonia;
 using MuseumSystem.Context;
 using MuseumSystem.Models;
@@ -21,6 +22,21 @@ namespace MuseumSystem
         public static List<User> Users
         {
             get => DBContext.Users.ToList();
+        }
+
+        public static List<Event> Events
+        {
+            get => DBContext.Events.Include(e => e.Type).Include(e => e.Organizer).Include(e => e.IncludedItems).Include(e => e.EventRegistrations).ToList();
+        }
+
+        public static List<Ticket> Tickets
+        {
+            get => DBContext.Tickets.Where(t => t.UserId == currentUser.Id).Include(t => t.User).Include(t => t.EventRegistrations).Include(t => t.Type).ToList();
+        }
+
+        public static List<Exhibit> Exhibits
+        {
+            get => DBContext.Exhibits.Include(e => e.AtachedMedia).Include(e => e.Category).ToList();
         }
 
         public static bool IsExist(string FirsRow, string Password)

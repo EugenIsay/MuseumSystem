@@ -29,6 +29,11 @@ public partial class Event
 
     public virtual ICollection<EventRegistration> EventRegistrations { get; set; } = new List<EventRegistration>();
 
+    public int RegistrationCount
+    {
+        get => EventRegistrations.Count;
+    }
+
     public virtual ICollection<IncludedItem> IncludedItems { get; set; } = new List<IncludedItem>();
 
     public virtual User? Organizer { get; set; }

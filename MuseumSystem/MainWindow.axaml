@@ -2,19 +2,129 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="MuseumSystem.MainWindow"
         Title="MuseumSystem">
-	<TabControl Margin="5">
-		
-		<TabItem Header="Tab 1">
-			<TextBlock Margin="5">This is tab 1 content</TextBlock>
+
+	<TabControl Background="#E8BC75"  >
+		<TabControl.Styles>
+			<Style Selector="TabItem">
+				<Setter Property="HeaderTemplate">
+					<Setter.Value>
+						<DataTemplate>
+							<TextBlock Text="{Binding}" Foreground="White"/>
+						</DataTemplate>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="Background" Value="#484244"/>
+			</Style>
+			<Style Selector="TabItem:selected">
+				<Setter Property="HeaderTemplate">
+					<Setter.Value>
+						<DataTemplate>
+							<TextBlock Text="{Binding}" Foreground="White"/>
+						</DataTemplate>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="Background" Value="#484244"/>
+			</Style>
+			<Style Selector="TabItem:pointerover">
+				<Setter Property="HeaderTemplate">
+					<Setter.Value>
+						<DataTemplate>
+							<TextBlock Text="{Binding}" Foreground="White"/>
+						</DataTemplate>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="Background" Value="#484244"/>
+			</Style>
+		</TabControl.Styles>
+
+		<TabItem Header="Ближайшие мероприятия">
+			<DockPanel Margin="20">
+				<ListBox Name="EventLB" Background="#E0CFBD" >
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Border BorderBrush="#D77546" BorderThickness="4">
+								<Grid Margin="20" RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,10*,*">
+									<StackPanel Grid.Column="1" Orientation="Horizontal">
+										<TextBlock Text="{Binding Type.Name}"/>
+										<TextBlock Text=": "/>
+										<TextBlock Text="{Binding Title}"/>
+									</StackPanel>
+									<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+										<TextBlock Text="{Binding StartDatetime, StringFormat='С {0} '}"/>
+										<TextBlock Text="{Binding EndDatetime, StringFormat=', по {0} '}"/>
+										<TextBlock Text="{Binding Addres, StringFormat=' в {0}'}"/>
+									</StackPanel>
+									<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Organizer.FullName, StringFormat='Отсвественое лицо: {0}'}"/>
+									<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+										<TextBlock Text="{Binding MaxAttendees, StringFormat='Мероприятие запланировано на {0} мест '}"/>
+										<TextBlock Text="{Binding RegistrationCount, StringFormat='({0} занято) '}"/>
+										<TextBlock Text="{Binding Price, StringFormat='по цене {0} руб. за человека'}"/>
+									</StackPanel>
+									<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Description, StringFormat='Описание: {0}'}"/>
+								</Grid>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</DockPanel>
 		</TabItem>
-		<TabItem Header="Tab 2">
-			<TextBlock Margin="5">This is tab 2 content</TextBlock>
+		<TabItem Header="Билеты">
+			<DockPanel>
+				<ListBox Name="TicketLB" Background="#E0CFBD">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Border BorderBrush="#D77546" BorderThickness="4">
+								<Grid Margin="20" RowDefinitions="*,*,*" ColumnDefinitions="*,10*,*">
+									<TextBlock Grid.ColumnSpan="10" VerticalAlignment="Center" Text="{Binding Number}"/>
+									<TextBlock Grid.Column="1" Text="{Binding Type.Name}"/>
+									<StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+										<TextBlock Text="{Binding PurchaseDate, StringFormat='Куплен {0}'}"/>
+										<TextBlock Text="{Binding Price, StringFormat=', по цене {0}'}"/>
+									</StackPanel>
+									<StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+										<TextBlock Text="{Binding ValidFrom, StringFormat='Доступен с {0} '}"/>
+										<TextBlock Text="{Binding ValidTo, StringFormat='до {0}'}"/>	
+									</StackPanel>
+								</Grid>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</DockPanel>
+
 		</TabItem>
-		<TabItem Header="Tab 3">
-			<TextBlock Margin="5">This is tab 3 content</TextBlock>
+		<TabItem Header="Экспонаты">
+			<DockPanel>
+				<ListBox Name="ExhibitLB" Background="#E0CFBD">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Border BorderBrush="#D77546" BorderThickness="4">
+								<Grid Margin="20" RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,10*,*">
+									<TextBlock Grid.ColumnSpan="10" VerticalAlignment="Center" Text="{Binding InventoryNumber}"/>
+									<StackPanel Grid.Column="1" Orientation="Horizontal">
+										<TextBlock Text="{Binding Category.Name}"/>
+										<TextBlock Text=": "/>
+										<TextBlock Text="{Binding Name}"/>
+									</StackPanel>
+									<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ApproximateCost, StringFormat='Предположительная цена: {0}'}"/>
+									<StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+										<TextBlock Text="{Binding AddDate, StringFormat='Добавлен в коллекцию: {0} '}"/>
+										<TextBlock Text="{Binding Condition, StringFormat=', находится в {0} состоянии'}"/>
+										<TextBlock Text="{Binding PermanentlyLocated, StringFormat=', в помещении: {0}'}"/>
+									</StackPanel>
+									<TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Description, StringFormat='Описание: {0}'}"/>
+								</Grid>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</DockPanel>
+		</TabItem>
+		<TabItem Header="Личный аккаунт">
+			<Button Content="SoundTest" Click="Button_Click"/>
 		</TabItem>
 	</TabControl>
 </Window>

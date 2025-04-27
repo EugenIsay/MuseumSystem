@@ -20,7 +20,8 @@ public partial class AuthorizationWindow : Window
     {
         if (Helper.IsExist(FirstRow.Text, Password.Text))
         {
-            
+            new MainWindow().Show();
+            this.Close();
         }
     }
 
