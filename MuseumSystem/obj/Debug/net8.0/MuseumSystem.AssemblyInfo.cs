@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MuseumSystem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+643e968abc818d103585f9bf1218ffc87a53a003")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8a197ab16ddf51fd9726134af170940968a6001")]
 [assembly: System.Reflection.AssemblyProductAttribute("MuseumSystem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MuseumSystem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -55,7 +55,8 @@ public partial class AuthorizationWindow : Window
             RoleId = 3
         }, this))
         {
-
+            new MainWindow().Show();
+            this.Close();
         }
     }
 }
