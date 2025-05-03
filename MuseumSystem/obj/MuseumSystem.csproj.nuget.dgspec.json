@@ -91,6 +91,10 @@
               "target": "Package",
               "version": "[9.0.4, )"
             },
+            "QRCoder": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
             "VideoLAN.LibVLC.Windows": {
               "target": "Package",
               "version": "[3.0.21, )"

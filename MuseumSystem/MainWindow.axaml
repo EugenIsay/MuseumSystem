@@ -4,7 +4,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="MuseumSystem.MainWindow"
-        Title="MuseumSystem">
+		xmlns:local="clr-namespace:MuseumSystem"
+        Title="Система музея">
+	<Window.Styles>
+		<Style Selector="TabControl WrapPanel">
+			<Setter Property="Background" Value="#484244"/>
+		</Style>
+	</Window.Styles>
 
 	<TabControl Background="#E8BC75"  >
 		<TabControl.Styles>
@@ -28,18 +34,11 @@
 				</Setter>
 				<Setter Property="Background" Value="#484244"/>
 			</Style>
-			<Style Selector="TabItem:pointerover">
-				<Setter Property="HeaderTemplate">
-					<Setter.Value>
-						<DataTemplate>
-							<TextBlock Text="{Binding}" Foreground="White"/>
-						</DataTemplate>
-					</Setter.Value>
-				</Setter>
-				<Setter Property="Background" Value="#484244"/>
-			</Style>
+
 		</TabControl.Styles>
 
+		
+		<!--Вкладка содержащие Ближайшие мероприятия-->
 		<TabItem Header="Ближайшие мероприятия">
 			<DockPanel Margin="20">
 				<ListBox Name="EventLB" Background="#E0CFBD" >
@@ -71,8 +70,12 @@
 				</ListBox>
 			</DockPanel>
 		</TabItem>
+
+
+		<!--Вкладка содержащие Билеты пользователя-->
 		<TabItem Header="Билеты">
 			<DockPanel>
+				<Button Content="Купить билет" Click="TicketButton_Click"/>
 				<ListBox Name="TicketLB" Background="#E0CFBD">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
@@ -86,7 +89,7 @@
 									</StackPanel>
 									<StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
 										<TextBlock Text="{Binding ValidFrom, StringFormat='Доступен с {0} '}"/>
-										<TextBlock Text="{Binding ValidTo, StringFormat='до {0}'}"/>	
+										<TextBlock Text="{Binding ValidTo, StringFormat='до {0}'}"/>
 									</StackPanel>
 								</Grid>
 							</Border>
@@ -94,15 +97,18 @@
 					</ListBox.ItemTemplate>
 				</ListBox>
 			</DockPanel>
-
 		</TabItem>
+
+
+		<!--Вкладка содержащие Экспонаты-->
 		<TabItem Header="Экспонаты">
 			<DockPanel>
+				<Button Click="AddExhibitionButton_Click" DockPanel.Dock="Bottom" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 				<ListBox Name="ExhibitLB" Background="#E0CFBD">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
-							<Border BorderBrush="#D77546" BorderThickness="4">
-								<Grid Margin="20" RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,10*,*">
+							<Border Background="#E0CFBD" DoubleTapped="Border_DoubleTapped" BorderBrush="#D77546" BorderThickness="4">
+								<Grid Margin="20" RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,10*,2*">
 									<TextBlock Grid.ColumnSpan="10" VerticalAlignment="Center" Text="{Binding InventoryNumber}"/>
 									<StackPanel Grid.Column="1" Orientation="Horizontal">
 										<TextBlock Text="{Binding Category.Name}"/>
@@ -112,10 +118,12 @@
 									<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ApproximateCost, StringFormat='Предположительная цена: {0}'}"/>
 									<StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
 										<TextBlock Text="{Binding AddDate, StringFormat='Добавлен в коллекцию: {0} '}"/>
-										<TextBlock Text="{Binding Condition, StringFormat=', находится в {0} состоянии'}"/>
-										<TextBlock Text="{Binding PermanentlyLocated, StringFormat=', в помещении: {0}'}"/>
+										<TextBlock Text="{Binding PermanentlyLocated, StringFormat=',находится в помещении: {0}'}"/>
 									</StackPanel>
 									<TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Description, StringFormat='Описание: {0}'}"/>
+									<Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*" Grid.Column="2" Grid.RowSpan="5">
+										<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Source="{Binding MainImageBitmap}"/>
+									</Grid>
 								</Grid>
 							</Border>
 						</DataTemplate>
@@ -123,8 +131,12 @@
 				</ListBox>
 			</DockPanel>
 		</TabItem>
+
+		<!--Вкладка содержащие личные данные пользователя-->
 		<TabItem Header="Личный аккаунт">
-			<Button Content="SoundTest" Click="Button_Click"/>
+			<Grid>
+				
+			</Grid>
 		</TabItem>
 	</TabControl>
 </Window>

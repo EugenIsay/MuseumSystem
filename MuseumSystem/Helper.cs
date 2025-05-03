@@ -14,7 +14,7 @@ namespace MuseumSystem
     public static class Helper
     {
         static User3Context DBContext = new User3Context();
-        static User currentUser = null;
+        public static User currentUser = null;
         public static List<Gender> Genders
         {
             get => DBContext.Genders.ToList();
@@ -31,7 +31,11 @@ namespace MuseumSystem
 
         public static List<Ticket> Tickets
         {
-            get => DBContext.Tickets.Where(t => t.UserId == currentUser.Id).Include(t => t.User).Include(t => t.EventRegistrations).Include(t => t.Type).ToList();
+            get => DBContext.Tickets.Where(t => t.UserId == currentUser.Id).Include(t => t.User).Include(t => t.EventRegistrations).ThenInclude(t => t.Event).Include(t => t.Type).ToList();
+        }
+        public static List<TicketType> TicketTypes
+        {
+            get => DBContext.TicketTypes.ToList();
         }
 
         public static List<Exhibit> Exhibits
@@ -41,8 +45,47 @@ namespace MuseumSystem
 
         public static bool IsExist(string FirsRow, string Password)
         {
-            currentUser = DBContext.Users.FirstOrDefault(u => (u.Login == FirsRow || u.Email == FirsRow) && u.Password == Password);
+            currentUser = DBContext.Users.FirstOrDefault(u => (u.Login == FirsRow || u.Email == FirsRow) && u.Password == Password)!;
             return currentUser != null;
+        }
+
+        public static List<Category> Categories
+        {
+            get => DBContext.Categories.ToList();
+        }
+
+        public static bool AddTickets(Ticket Ticket)
+        {
+            Ticket.Id = DBContext.Tickets.OrderBy(s => s.Id).Last().Id + 1;
+            DBContext.Add(Ticket);
+            try
+            {
+                return DBContext.SaveChanges() > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool EditExhibits(Exhibit Exhibit)
+        {
+            if (Exhibit.Id == 0)
+            {
+                Exhibit.Id = Helper.Exhibits.OrderBy(s => s.Id).Last().Id + 1;
+                DBContext.Add(Exhibit);
+            }
+            else
+            {
+                DBContext.Update(Exhibit);
+            }
+            try
+            {
+                return DBContext.SaveChanges() > 0;
+            }
+            catch
+            {
+                return false;
+            }
         }
         public static bool CanRegister(User User, AuthorizationWindow Window)
         {

@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using MuseumSystem.Models;
 
 namespace MuseumSystem
 {
@@ -12,9 +13,21 @@ namespace MuseumSystem
             ExhibitLB.ItemsSource= Helper.Exhibits;
         }
 
-        private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        private void AddExhibitionButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             new ExhibitWindow().Show();
+            this.Close();
+        }
+
+        private void Border_DoubleTapped(object? sender, Avalonia.Input.TappedEventArgs e)
+        {
+            new ExhibitWindow(ExhibitLB.SelectedItem as Exhibit).Show();
+            this.Close();
+        }
+
+        private void TicketButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            new TicketWindow().Show();
             this.Close();
         }
     }

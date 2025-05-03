@@ -1184,3 +1184,4 @@ C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\bin\Debug\net8.0\l
 C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\bin\Debug\net8.0\libvlc\win-x86\plugins\visualization\libprojectm_plugin.dll
 C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\bin\Debug\net8.0\libvlc\win-x86\plugins\visualization\libvisual_plugin.dll
 C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\bin\Debug\net8.0\LibVLCSharp.Avalonia.dll
+C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\bin\Debug\net8.0\QRCoder.dll

@@ -1,0 +1,84 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MuseumSystem.TicketWindow"
+		xmlns:local="clr-namespace:MuseumSystem"
+        Title="TicketWindow">
+	<Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*">
+		<ComboBox Name="UserCB" IsEnabled="{x:Static local:Helper.IsEmployee}">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding FullName}"/>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<TextBlock Grid.Row="1" Text="Номер (автоматически генерируется)"/>
+		<TextBlock Grid.Row="2" Name="Number"/>
+		<TextBlock Grid.Row="3" Text="Выберите тип билета"/>
+		<ComboBox SelectionChanged="ComboBox_SelectionChanged" Grid.Row="4" Name="TypeCB">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Spacing="5" Orientation="Horizontal">
+						<TextBlock Text="{Binding Name}"/>
+						<TextBlock Text="{Binding Price}"/>
+						<ToolTip.Tip>
+							<TextBlock Text="{Binding Description}"/>
+						</ToolTip.Tip>
+					</StackPanel>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+		<StackPanel Grid.Row="5" Spacing="5" Orientation="Horizontal">
+			<TextBlock Text="Дата начала:"/>
+			<DatePicker Name="StartDate" SelectedDateChanged="DatePicker_SelectedDateChanged" DayFormat="ddd dd"/>
+		</StackPanel>
+		<StackPanel Grid.Row="6" IsEnabled="False" Spacing="5" Orientation="Horizontal">
+			<TextBlock Text="Конца:"/>
+			<DatePicker Name="EndDate" DayFormat="ddd dd"/>
+		</StackPanel>
+		<TextBlock Grid.Row="7" Text="Выберите мероприятия на которые хотите получить доступ"/>
+		<ListBox Grid.Row="8" Grid.RowSpan="2" Name="EventLB" SelectionMode="Multiple" SelectionChanged="ListBox_SelectionChanged_1">
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<VirtualizingStackPanel Orientation="Horizontal" />
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border BorderBrush="#D77546" BorderThickness="4">
+						<Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*,*">
+							<StackPanel Grid.Column="1" Orientation="Horizontal">
+								<TextBlock Text="{Binding Type.Name}"/>
+								<TextBlock Text=": "/>
+								<TextBlock Text="{Binding Title}"/>
+							</StackPanel>
+							<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+								<TextBlock Text="{Binding StartDatetime, StringFormat='С {0} '}"/>
+								<TextBlock Text="{Binding EndDatetime, StringFormat=', по {0} '}"/>
+								<TextBlock Text="{Binding Addres, StringFormat=' в {0}'}"/>
+							</StackPanel>
+							<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Organizer.FullName, StringFormat='Отсвественое лицо: {0}'}"/>
+							<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+								<TextBlock Text="{Binding MaxAttendees, StringFormat='Мероприятие запланировано на {0} мест '}"/>
+								<TextBlock Text="{Binding RegistrationCount, StringFormat='({0} занято) '}"/>
+								<TextBlock Text="{Binding Price, StringFormat='по цене {0} руб. за человека'}"/>
+							</StackPanel>
+							<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Description, StringFormat='Описание: {0}'}"/>
+						</Grid>
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<StackPanel Grid.Row="10" Orientation="Horizontal" Spacing="5">
+			<TextBlock Text="Итоговая цена:"/>
+			<TextBlock Name="Price"/>
+		</StackPanel>
+		<StackPanel Orientation="Horizontal" Spacing="5">
+			
+			<Button Content="Готово" Click="ComfirmButton_Click"/>
+			<Button Content="Отмена" Click="BackButton_Click"/>
+		</StackPanel>
+	</Grid>
+</Window>

@@ -2,25 +2,111 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="MuseumSystem.ExhibitWindow"
-        Title="ExhibitWindow">
-	<StackPanel
-		Orientation="Vertical"
-		HorizontalAlignment="Center"
-		VerticalAlignment="Center">
+		xmlns:local="clr-namespace:MuseumSystem"
+		Background="#E8BC75"
+        Title="Экспонат">
+	<Window.Styles>
+		<Style Selector="TextBlock.Title">
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+		</Style>
+	</Window.Styles>
+	<Grid ColumnDefinitions="*,*">
+		<Grid Margin="20" Name="InfoGrid" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
+			<TextBlock Grid.Row="0" Classes="Title" Text="Название"/>
+			<TextBox Grid.Row="1" Name="EditName"/>
+			<TextBlock Grid.Row="1" Name="ShowName"/>
 
-		<Button
-			Content="Play"
-			HorizontalAlignment="Center"
-			VerticalAlignment="Center"
-			Click="ClickHandler" />
+			<TextBlock Grid.Row="2" Classes="Title" Text="Инвентарный номер"/>
+			<TextBox Grid.Row="3" Name="EditIN"/>
+			<TextBlock Grid.Row="3" Name="ShowIN"/>
 
-		<TextBlock
-			x:Name="PlaybackStatus"
-			HorizontalAlignment="Center"
-			VerticalAlignment="Center"
-			Text="-" />
+			<TextBlock Grid.Row="4" Classes="Title" Text="Категория"/>
+			<ComboBox Grid.Row="5" Name="EditCategoryCB">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock HorizontalAlignment="Stretch" Text="{Binding Name}">
+							<ToolTip.Tip>
+								<TextBlock Text="{Binding Description}"/>
+							</ToolTip.Tip>
+						</TextBlock>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<TextBlock Grid.Row="5" Name="ShowCategory"/>
 
-	</StackPanel>
+			<TextBlock Grid.Row="6" Classes="Title" Text="Предположительная цена"/>
+			<NumericUpDown Grid.Row="7" Name="EditCost" Minimum="0" ShowButtonSpinner="False"/>
+			<TextBlock Grid.Row="7" Name="ShowCost"/>
+
+			<TextBlock Grid.Row="8" Classes="Title" Text="Местоположение"/>
+			<TextBox Grid.Row="9" Name="EditLocation"/>
+			<TextBlock Grid.Row="9" Name="ShowLocation"/>
+
+			<TextBlock Grid.Row="10" Classes="Title" Text="Состояние"/>
+			<TextBox Grid.Row="11" Grid.RowSpan="2" AcceptsReturn="True" Name="EditConditin"/>
+			<TextBlock Grid.Row="11" Grid.RowSpan="2" Name="ShowConditin"/>
+
+			<TextBlock Grid.Row="13" Classes="Title" TextWrapping="Wrap" Text="Описание"/>
+			<TextBox Grid.Row="14" Grid.RowSpan="2" AcceptsReturn="True" Name="EditDescription"/>
+			<TextBlock Grid.Row="14" Grid.RowSpan="2" Name="ShowDescription"/>
+
+			<Grid Grid.Row="16" ColumnDefinitions="*,*,*">
+				<Button Grid.Column="0" Content="Готово" Name="ReadyButton" Click="ReadyButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+				<Button Grid.Column="1" Content="Назад" Click="BackButton_Click"/>
+				<Button Grid.Column="2" HorizontalAlignment="Right" Content="Редактировать" Click="RedactButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+			</Grid>
+		</Grid>
+		<Grid Grid.Column="1" RowDefinitions="3*,*,*,*">
+			<Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
+				<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Name="ImageShow"/>
+			</Grid>
+			<Button Grid.Row="1" HorizontalAlignment="Center" Content="Добавить/Изменить основную картинку" Click="PhotoButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+			<DockPanel Grid.Row="2">
+				<TextBlock DockPanel.Dock="Top" Text="Дополнительные картинки"/>
+				<Button Content="+" IsVisible="{x:Static local:Helper.IsEmployee}" Click="ExtraPhotoButton_Click"/>
+				<ListBox Name="PhotoList">
+					<ListBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<VirtualizingStackPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ListBox.ItemsPanel>
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<DockPanel>
+								<Button DockPanel.Dock="Bottom" Content="-" Tag="{Binding Id}"/>
+								<Image/>
+								<ToolTip.Tip>
+									<TextBlock Text="{Binding Description}"/>
+								</ToolTip.Tip>
+							</DockPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</DockPanel>
+			<DockPanel Grid.Row="3">
+				<TextBlock DockPanel.Dock="Top" Text="Связанные аудиофайлы"/>
+				<Button Content="+" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+				<ListBox Name="AudioList">
+					<ListBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<VirtualizingStackPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ListBox.ItemsPanel>
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<DockPanel>
+								<Button DockPanel.Dock="Bottom" Content="-" Tag="{Binding Id}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+								<Button Content="Play" Tag="{Binding Id}" Click="PlayButton_Click" />
+								<ToolTip.Tip>
+									<TextBlock Text="{Binding Description}"/>
+								</ToolTip.Tip>
+							</DockPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</DockPanel>
+		</Grid>
+	</Grid>
 </Window>

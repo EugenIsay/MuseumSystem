@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qlydWBLZbZIPnV0HrD+cX7kfvHveH/gaZeVhKt+G0u+AyBQhU2wwIJR9ozqVTcjKF2uFy/CxiOnYyUUmUKYnTQ==",
+  "dgSpecHash": "xrqXDBKJ2xCB6uYinWQLOJbQeYNUhSL5oviMggxvh8wJSrrwNn2kykpkTmN8h+1inbDOrJXqkwEx+KTBVQIdkA==",
   "success": true,
   "projectFilePath": "C:\\Users\\zheka\\Desktop\\Диплом\\MuseumSystem\\MuseumSystem\\MuseumSystem.csproj",
   "expectedPackageFiles": [
@@ -60,6 +60,7 @@
     "C:\\Users\\zheka\\.nuget\\packages\\mono.texttemplating\\3.0.0\\mono.texttemplating.3.0.0.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\npgsql\\9.0.3\\npgsql.9.0.3.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\9.0.4\\npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512",
+    "C:\\Users\\zheka\\.nuget\\packages\\qrcoder\\1.6.0\\qrcoder.1.6.0.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
