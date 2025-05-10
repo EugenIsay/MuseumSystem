@@ -1,0 +1,73 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+        x:Class="MuseumSystem.EventWindow"
+		Background="#E8BC75"
+        Title="Мероприятие">
+	<Window.Styles>
+		<Style Selector="TextBlock">
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+		</Style>
+		<Style Selector="DatePicker">
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+		</Style>
+		<Style Selector="TimePicker">
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+		</Style>
+	</Window.Styles>
+	<Grid RowDefinitions="*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,*" Margin="20">
+		<TextBlock Grid.Row="0" Text="Название"/>
+		<TextBox Grid.Row="1" Name="Title"/>
+		
+		<TextBlock Grid.Row="2" Text="Тип"/>
+		<ComboBox Grid.Row="3" Name="TypeCB">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Name}"/>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+
+		<TextBlock Grid.Row="4" Text="Организатор"/>
+		<ComboBox Grid.Row="5" Name="OrgCB">
+			<ComboBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding FullName}"/>
+				</DataTemplate>
+			</ComboBox.ItemTemplate>
+		</ComboBox>
+
+		<Grid ColumnDefinitions="*,*" RowDefinitions="*,*" Grid.Row="6" HorizontalAlignment="Stretch" Grid.RowSpan="2">
+			<TextBlock Grid.Row="0"  Text="Начало мероприятия"/>
+			<StackPanel Grid.Row="1" Orientation="Horizontal">
+				<DatePicker Name="StartDate"/>
+				<TimePicker Name="StartTime"/>
+			</StackPanel>
+			<TextBlock Grid.Row="0" Grid.Column="1" Text="Конец мероприятия"/>
+			<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+				<DatePicker Name="EndDate"/>
+				<TimePicker Name="EndTime"/>
+			</StackPanel>
+		</Grid>
+
+		
+		<TextBlock Grid.Row="10" Text="Место провидения мероприятия"/>
+		<TextBox Grid.Row="11" Name="Addres"/>
+
+		<TextBlock Grid.Row="12" Text="Максимум людей"/>
+		<NumericUpDown Grid.Row="13" Name="Attendance" Minimum="1" ShowButtonSpinner="False" FormatString="0"/>
+
+		<TextBlock Grid.Row="14" Text="Цена на человека"/>
+		<NumericUpDown Grid.Row="15" Name="Price" Minimum="1" ShowButtonSpinner="False" />
+
+		<TextBlock Grid.Row="16" Text="Описание"/>
+		<TextBox Grid.Row="17" Name="Description" Grid.RowSpan="2"/>
+
+		<StackPanel Grid.Row="19" Orientation="Horizontal">
+			<Button Content="Готово" Click="ComfirmButton_Click"/>
+			<Button Content="Отмена" Click="BackButton_Click"/>
+		</StackPanel>
+	</Grid>
+</Window>

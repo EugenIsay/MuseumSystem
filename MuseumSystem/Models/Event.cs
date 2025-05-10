@@ -34,6 +34,21 @@ public partial class Event
         get => EventRegistrations.Count;
     }
 
+    public bool IsOld
+    {
+        get => StartDatetime < DateTime.Now.Date;
+    }
+    public string Color
+    {
+        get
+        {
+            if (IsOld)
+                return "#c19f7b";
+            else
+                return "#E0CFBD";
+        }
+    }
+
     public virtual ICollection<IncludedItem> IncludedItems { get; set; } = new List<IncludedItem>();
 
     public virtual User? Organizer { get; set; }

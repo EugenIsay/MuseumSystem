@@ -14,6 +14,7 @@ public partial class AuthorizationWindow : Window
         InitializeComponent();
         BDay.DisplayDateEnd = System.DateTime.Now.AddYears(-12);
         Gender.ItemsSource = Helper.Genders;
+        Gender.SelectedIndex = 2;
     }
 
     private void Login_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

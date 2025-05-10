@@ -1,11 +1,13 @@
 ﻿using Avalonia.Controls;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using MsBox.Avalonia;
 using MuseumSystem.Context;
 using MuseumSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,21 +16,36 @@ namespace MuseumSystem
     public static class Helper
     {
         static User3Context DBContext = new User3Context();
+
+        //Глобальное отслеживание польователя
         public static User currentUser = null;
+
+        //Таблицы с связаные с пользователями
         public static List<Gender> Genders
         {
             get => DBContext.Genders.ToList();
         }
         public static List<User> Users
         {
-            get => DBContext.Users.ToList();
+            get => DBContext.Users.Include(u => u.Gender).ToList();
         }
 
+
+        //Таблицы связаные с мероприятиями
         public static List<Event> Events
         {
             get => DBContext.Events.Include(e => e.Type).Include(e => e.Organizer).Include(e => e.IncludedItems).Include(e => e.EventRegistrations).ToList();
         }
+        public static List<Event> ShownEvents
+        {
+            get => Events.Where(e => !e.IsOld).OrderBy(e => e.StartDatetime).Concat(Events.Where(e => e.IsOld).OrderBy(e => e.StartDatetime)).ToList();
+        }
+        public static List<EventType> EventTypes
+        {
+            get => DBContext.EventTypes.ToList();
+        }
 
+        // Таблицы связаные с билетами
         public static List<Ticket> Tickets
         {
             get => DBContext.Tickets.Where(t => t.UserId == currentUser.Id).Include(t => t.User).Include(t => t.EventRegistrations).ThenInclude(t => t.Event).Include(t => t.Type).ToList();
@@ -38,22 +55,26 @@ namespace MuseumSystem
             get => DBContext.TicketTypes.ToList();
         }
 
+        // Таблицы связаные экспонатами
         public static List<Exhibit> Exhibits
         {
             get => DBContext.Exhibits.Include(e => e.AtachedMedia).Include(e => e.Category).ToList();
         }
-
-        public static bool IsExist(string FirsRow, string Password)
-        {
-            currentUser = DBContext.Users.FirstOrDefault(u => (u.Login == FirsRow || u.Email == FirsRow) && u.Password == Password)!;
-            return currentUser != null;
-        }
-
         public static List<Category> Categories
         {
             get => DBContext.Categories.ToList();
         }
 
+        // Метод для проверки при входе
+        public static bool IsExist(string FirsRow, string Password)
+        {
+            currentUser = Users.FirstOrDefault(u => (u.Login == FirsRow || u.Email == FirsRow) && u.Password == Password)!;
+            return currentUser != null;
+        }
+
+        
+
+        // Метод для добавления билета
         public static bool AddTickets(Ticket Ticket)
         {
             Ticket.Id = DBContext.Tickets.OrderBy(s => s.Id).Last().Id + 1;
@@ -67,6 +88,8 @@ namespace MuseumSystem
                 return false;
             }
         }
+
+        // Метод для редактирования экспонатов
         public static bool EditExhibits(Exhibit Exhibit)
         {
             if (Exhibit.Id == 0)
@@ -87,7 +110,83 @@ namespace MuseumSystem
                 return false;
             }
         }
-        public static bool CanRegister(User User, AuthorizationWindow Window)
+
+
+        public static bool EventEdit(Event @event, Window Window)
+        {
+            if (string.IsNullOrEmpty(@event.Title))
+            {
+                CallMessageBox("Введите название меропртиятия", Window);
+                return false;
+            }
+            if (string.IsNullOrEmpty(@event.Addres))
+            {
+                CallMessageBox("Введите место проведения мероприятия", Window);
+                return false;
+            }
+            if (@event.OrganizerId < 1)
+            {
+                CallMessageBox("Укажите организатора", Window);
+                return false;
+            }
+            if (@event.TypeId < 1)
+            {
+                CallMessageBox("Укажите тип мероприятия", Window);
+                return false;
+            }
+            if (@event.TypeId < 1)
+            {
+                CallMessageBox("Укажите тип мероприятия", Window);
+                return false;
+            }
+            if (@event.StartDatetime == DateTime.MinValue)
+            {
+                CallMessageBox("Укажите начальную дату", Window);
+                return false;
+            }
+            else
+            {
+                if (@event.EndDatetime != DateTime.MinValue && @event.StartDatetime < @event.EndDatetime)
+                {
+                    CallMessageBox("Начальная дата не может быть позже конечной", Window);
+                    return false;
+                }
+            }
+            if (@event.MaxAttendees <= 0)
+            {
+                CallMessageBox("Укажите максимум посетителей", Window);
+                return false;
+            }
+            if (@event.Price < 0)
+            {
+                CallMessageBox("Укажите цену", Window);
+                return false;
+            }
+            if (@event.Id == 0)
+            {
+                @event.Id = Events.Select(e => e.Id).Order().Last() + 1;
+                DBContext.Events.Add(@event);
+            }
+            else
+            {
+                DBContext.Events.Update(@event);
+            }
+            try
+            {
+
+                return DBContext.SaveChanges() > 0;
+            }
+            catch
+            {
+                CallMessageBox("Что-то пошло не так, пожалуйста поождите", Window);
+                return false;
+            }
+
+        }
+
+
+
+        public static bool CanRegister(User User, Window Window)
         {
             if (string.IsNullOrEmpty(User.Login))
             {

@@ -21,6 +21,7 @@ using System.Linq;
 using System.Threading;
 using MsBox.Avalonia;
 using Tmds.DBus.Protocol;
+using System.Collections.Generic;
 
 namespace MuseumSystem;
 
@@ -31,6 +32,8 @@ public partial class ExhibitWindow : Window
 
     private Exhibit exhibit { get; set; }
 
+    List<AtachedMedium> Media = new List<AtachedMedium>();
+
     private bool isEdit = Helper.IsEmployee;
     public ExhibitWindow()
     {
@@ -40,6 +43,7 @@ public partial class ExhibitWindow : Window
     public ExhibitWindow(Exhibit Exhibit)
     {
         exhibit = Exhibit;
+        Media = (List<AtachedMedium>)Exhibit.AtachedMedia;
         InitializeComponent();
         EditCategoryCB.ItemsSource = Helper.Categories;
         ShowExhibit();
@@ -176,7 +180,7 @@ public partial class ExhibitWindow : Window
     }
     string _imageName = "";
     string _imagePath = "";
-    private async void ExtraPhotoButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    private async void MediaButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         //var topLevel = TopLevel.GetTopLevel(this);
         //var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions { Title = "Âûבבונטעו פמעמדנאפט‏" });

@@ -58,14 +58,19 @@
 				<Button Grid.Column="2" HorizontalAlignment="Right" Content="Редактировать" Click="RedactButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 			</Grid>
 		</Grid>
-		<Grid Grid.Column="1" RowDefinitions="3*,*,*,*">
-			<Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
+		<Grid Margin="10" Grid.Column="1" ColumnDefinitions="*,7*" RowDefinitions="3*,*,*,*">
+			<Grid Grid.Column="0" Grid.ColumnSpan="2" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
 				<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Name="ImageShow"/>
 			</Grid>
-			<Button Grid.Row="1" HorizontalAlignment="Center" Content="Добавить/Изменить основную картинку" Click="PhotoButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
-			<DockPanel Grid.Row="2">
+			<Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center" Content="Добавить/Изменить основную картинку" Click="PhotoButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+			<Button Margin="0,12,5,0" Grid.Row="2" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Stretch" Click="MediaButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}">
+				<Button.Content>
+					<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="+"/>
+				</Button.Content>
+			</Button>
+
+			<DockPanel Grid.Row="2" Grid.Column="1">
 				<TextBlock DockPanel.Dock="Top" Text="Дополнительные картинки"/>
-				<Button Content="+" IsVisible="{x:Static local:Helper.IsEmployee}" Click="ExtraPhotoButton_Click"/>
 				<ListBox Name="PhotoList">
 					<ListBox.ItemsPanel>
 						<ItemsPanelTemplate>
@@ -76,7 +81,7 @@
 						<DataTemplate>
 							<DockPanel>
 								<Button DockPanel.Dock="Bottom" Content="-" Tag="{Binding Id}"/>
-								<Image/>
+								<Image Source="{Binding ImageBitmap}"/>
 								<ToolTip.Tip>
 									<TextBlock Text="{Binding Description}"/>
 								</ToolTip.Tip>
@@ -85,9 +90,8 @@
 					</ListBox.ItemTemplate>
 				</ListBox>
 			</DockPanel>
-			<DockPanel Grid.Row="3">
+			<DockPanel Grid.Row="3" Grid.Column="1"> 
 				<TextBlock DockPanel.Dock="Top" Text="Связанные аудиофайлы"/>
-				<Button Content="+" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 				<ListBox Name="AudioList">
 					<ListBox.ItemsPanel>
 						<ItemsPanelTemplate>
@@ -96,13 +100,16 @@
 					</ListBox.ItemsPanel>
 					<ListBox.ItemTemplate>
 						<DataTemplate>
-							<DockPanel>
-								<Button DockPanel.Dock="Bottom" Content="-" Tag="{Binding Id}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
-								<Button Content="Play" Tag="{Binding Id}" Click="PlayButton_Click" />
+							<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
+								<DockPanel>
+									<Button  DockPanel.Dock="Bottom" Content="-" Tag="{Binding Id}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+									<Button Content="Play" Tag="{Binding Id}" Click="PlayButton_Click" />
+								</DockPanel>
 								<ToolTip.Tip>
 									<TextBlock Text="{Binding Description}"/>
 								</ToolTip.Tip>
-							</DockPanel>
+							</Border>
+
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
