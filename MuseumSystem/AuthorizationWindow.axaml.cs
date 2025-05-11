@@ -47,7 +47,8 @@ public partial class AuthorizationWindow : Window
         {
             Helper.CallMessageBox("Проверьте правильность пароля и попробуйте заново" ,this);
         }
-        if (!DateOnly.TryParse(BDay.Text, out DateOnly result))
+
+        if (!DateOnly.TryParse(BDay.Text, out _))
         {
             Helper.CallMessageBox("Укажите дату рождения в формате день месяц год через точки", this);
             return;

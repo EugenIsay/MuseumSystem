@@ -16,7 +16,7 @@ public partial class TicketWindow : Window
     public TicketWindow()
     {
         InitializeComponent();
-        EventLB.ItemsSource = Helper.Events.Where(e => e.StartDatetime > DateTime.Now && e.EventRegistrations.Count() < e.MaxAttendees);
+        EventLB.ItemsSource = Helper.Events.Where(e => e.StartDatetime > DateTime.Now && e.EventRegistrations.Count < e.MaxAttendees);
         TypeCB.ItemsSource = Helper.TicketTypes;
         StartDate.MinYear = DateTime.Now;
         Number.Text = Guid.NewGuid().ToString();

@@ -14,6 +14,8 @@ public partial class AtachedMedium
 
     public string Path { get; set; } = null!;
 
+    public string? TempPath;
+
     public Bitmap ImageBitmap
     {
         get
@@ -22,7 +24,10 @@ public partial class AtachedMedium
             {
                 try
                 {
-                    return new Bitmap(Environment.CurrentDirectory + "/Pictures/" + Path);
+                    if (TempPath == null)
+                        return new Bitmap(Environment.CurrentDirectory + "/Pictures/" + Path);
+                    else
+                        return new Bitmap(TempPath);
                 }
                 catch
                 {
@@ -35,6 +40,11 @@ public partial class AtachedMedium
     }
 
     public string? Description { get; set; }
+
+    public bool HasDescription
+    {
+        get => !string.IsNullOrEmpty(Description);
+    }
 
     public virtual Exhibit Exhibit { get; set; } = null!;
 

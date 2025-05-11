@@ -58,7 +58,7 @@
 				<Button Grid.Column="2" HorizontalAlignment="Right" Content="Редактировать" Click="RedactButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 			</Grid>
 		</Grid>
-		<Grid Margin="10" Grid.Column="1" ColumnDefinitions="*,7*" RowDefinitions="3*,*,*,*">
+		<Grid Margin="10" Grid.Column="1" ColumnDefinitions="*,7*" RowDefinitions="3*,*,2*,*">
 			<Grid Grid.Column="0" Grid.ColumnSpan="2" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
 				<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Name="ImageShow"/>
 			</Grid>
@@ -79,18 +79,22 @@
 					</ListBox.ItemsPanel>
 					<ListBox.ItemTemplate>
 						<DataTemplate>
-							<DockPanel>
-								<Button DockPanel.Dock="Bottom" Content="-" Tag="{Binding Id}"/>
-								<Image Source="{Binding ImageBitmap}"/>
+							<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
+								<Grid RowDefinitions="3*,*">
+									<Grid MaxHeight="200" MaxWidth="200" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
+										<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Source="{Binding ImageBitmap}"/>
+									</Grid>
+									<Button DockPanel.Dock="Bottom" Grid.Row="1" Content="-" Click="DeleteButton_Click" Tag="{Binding Id}"/>
+								</Grid>
 								<ToolTip.Tip>
 									<TextBlock Text="{Binding Description}"/>
 								</ToolTip.Tip>
-							</DockPanel>
+							</Border>
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
 			</DockPanel>
-			<DockPanel Grid.Row="3" Grid.Column="1"> 
+			<DockPanel Grid.Row="3" Grid.Column="1">
 				<TextBlock DockPanel.Dock="Top" Text="Связанные аудиофайлы"/>
 				<ListBox Name="AudioList">
 					<ListBox.ItemsPanel>
@@ -102,14 +106,13 @@
 						<DataTemplate>
 							<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
 								<DockPanel>
-									<Button  DockPanel.Dock="Bottom" Content="-" Tag="{Binding Id}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+									<Button  DockPanel.Dock="Bottom" Content="-" Click="DeleteButton_Click" Tag="{Binding Id}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 									<Button Content="Play" Tag="{Binding Id}" Click="PlayButton_Click" />
 								</DockPanel>
-								<ToolTip.Tip>
-									<TextBlock Text="{Binding Description}"/>
-								</ToolTip.Tip>
+									<ToolTip.Tip>
+										<TextBlock  Text="{Binding Description}"/>
+									</ToolTip.Tip>
 							</Border>
-
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>

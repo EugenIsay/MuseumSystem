@@ -12,7 +12,7 @@
 		</Style>
 	</Window.Styles>
 
-	<TabControl Background="#E8BC75"  >
+	<TabControl SelectionChanged="TabControl_SelectionChanged" Name="MainTab" Background="#E8BC75"  >
 		<TabControl.Styles>
 			<Style Selector="TabItem">
 				<Setter Property="HeaderTemplate">
@@ -135,9 +135,24 @@
 
 		<!--Вкладка пользователей для амдинистратора-->
 		<TabItem Header="Список пользователей" IsVisible="{x:Static local:Helper.IsAdmin}">
-			<Grid>
-
-			</Grid>
+			<DockPanel>
+				<ListBox Name="UserLB">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<DockPanel LastChildFill="False">
+								<TextBlock DockPanel.Dock="Top" Text="{Binding FullName}"/>
+								<TextBlock DockPanel.Dock="Top" Text="{Binding Gender.Name}"/>
+								<TextBlock DockPanel.Dock="Top" Text="{Binding Login}"/>
+								<TextBlock DockPanel.Dock="Top" Text="{Binding PhoneNumber}"/>
+								<TextBlock DockPanel.Dock="Top" Text="{Binding Email}"/>
+								<TextBlock DockPanel.Dock="Top" Text="{Binding Birthday, StringFormat='Дата рождения {0}'}"/>
+								<TextBlock DockPanel.Dock="Top" Text="{Binding RegistrationDate, StringFormat='Дата регистрации {0}'}"/>
+								<TextBlock DockPanel.Dock="Top" Text="{Binding Role.Name}"/>
+							</DockPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</DockPanel>
 		</TabItem>
 		
 		<!--Вкладка содержащие личные данные пользователя-->
@@ -152,27 +167,29 @@
 						<Setter Property="VerticalAlignment" Value="Center"/>
 					</Style>
 				</Grid.Styles>
+				<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2" Grid.ColumnSpan="2">
+					<TextBlock HorizontalAlignment="Center" Text="Информация о вашем личном аккаунте:"/>
+				</Border>
 				
-				<TextBlock Grid.ColumnSpan="2" Text="Информация о вашем личном аккаунте:"/>
-				<TextBlock Text="Логин" Grid.Row="1" />
+				<TextBlock Text="Логин: " Grid.Row="1" />
 				<TextBox TextChanged="TextBox_TextChanged" Grid.Row="1" Grid.Column="1" Watermark="Логин" Name="Login"/>
-				<TextBlock Text="ФИО" Grid.Row="2" Grid.Column="0"/>
+				<TextBlock Text="ФИО: " Grid.Row="2" Grid.Column="0"/>
 				<Grid ColumnDefinitions="*,*,*" Grid.Row="2" Grid.Column="1">
 					<TextBox TextChanged="TextBox_TextChanged" Watermark="Имя" Name="FirstName"/>
 					<TextBox TextChanged="TextBox_TextChanged" Watermark="Фамилия" Name="LastName" Grid.Column="1"/>
 					<TextBox TextChanged="TextBox_TextChanged" Watermark="Отчество (необяз.)" Name="Patronymic" Grid.Column="2"/>
 				</Grid>
-				<TextBlock Text="Контактные данные" Grid.Row="3" Grid.Column="0"/>
+				<TextBlock Text="Контактные данные: " Grid.Row="3" Grid.Column="0"/>
 				<Grid Grid.Row="3" Grid.Column="1" ColumnDefinitions="*,*">
 					<TextBox TextChanged="TextBox_TextChanged" Watermark="Почта"  Name="Email"/>
 					<MaskedTextBox Grid.Column="1" Mask="+7 (000) 000-00-00"  Name="Phone"/>
 				</Grid>
 
-				<TextBlock Text="Личные данные" Grid.Row="4" Grid.Column="0"/>
+				<TextBlock Text="День рождения: " Grid.Row="4" Grid.Column="0"/>
 				<Grid Grid.Row="4" Grid.Column="1" ColumnDefinitions="2*,*">
 					<CalendarDatePicker Watermark="Дата рождения" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="BDay" Margin="0,5"/>
 					<DockPanel Grid.Column="1" >
-						<TextBlock VerticalAlignment="Center" Text="  Пол:"/>
+						<TextBlock VerticalAlignment="Center" Text="  Пол: "/>
 						<ComboBox SelectionChanged="ComboBox_SelectionChanged" Name="Gender" VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="0,5">
 							<ComboBox.ItemTemplate>
 								<DataTemplate>
@@ -183,10 +200,9 @@
 					</DockPanel>
 				</Grid>
 
-				<TextBlock Text="Личные данные" Grid.Row="5" Grid.Column="0"/>
+				<TextBlock Text="Пароль: " Grid.Row="5" Grid.Column="0"/>
 				<TextBox TextChanged="TextBox_TextChanged" Watermark="Пароль" Grid.Row="5" Grid.Column="1" PasswordChar="*" Name="Password"/>
-				<Grid Grid.Row="6" Grid.ColumnSpan="2">
-
+				<Grid Grid.Row="6" Grid.ColumnSpan="2" ColumnDefinitions="*,*">
 					<Button HorizontalAlignment="Center"  Content="Готово" Name="ReadyButton" IsVisible="False" Click="ComfirmButton_Click"/>
 					<Button Grid.Column="1" HorizontalAlignment="Center"  Content="Выйти" Click="ExitButton_Click"/>
 				</Grid>

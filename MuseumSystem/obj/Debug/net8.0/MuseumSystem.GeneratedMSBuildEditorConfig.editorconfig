@@ -42,5 +42,8 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/zheka/Desktop/Диплом/MuseumSystem/MuseumSystem/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/zheka/Desktop/Диплом/MuseumSystem/MuseumSystem/MediaWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/zheka/Desktop/Диплом/MuseumSystem/MuseumSystem/TicketWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

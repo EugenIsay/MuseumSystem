@@ -16,6 +16,7 @@ namespace MuseumSystem
             ExhibitLB.ItemsSource= Helper.Exhibits;
             BDay.DisplayDateEnd = System.DateTime.Now.AddYears(-12);
             Gender.ItemsSource = Helper.Genders;
+            UserLB.ItemsSource = Helper.Users;
 
             Login.Text = Helper.currentUser.Login;
             FirstName.Text = Helper.currentUser.FirstName;
@@ -26,6 +27,8 @@ namespace MuseumSystem
             BDay.SelectedDate = Helper.currentUser.Birthday.ToDateTime(new TimeOnly());
             Gender.SelectedItem = Helper.currentUser.Gender;
             Password.Text = Helper.currentUser.Password;
+            ReadyButton.IsVisible = false;
+            MainTab.SelectedIndex = Helper.Page;
         }
 
         private void AddExhibitionButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -90,6 +93,7 @@ namespace MuseumSystem
         {
             new AuthorizationWindow().Show();
             Helper.currentUser = null;
+            Helper.Page = 0;
             this.Close();
         }
 
@@ -101,6 +105,12 @@ namespace MuseumSystem
         private void ComboBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
         {
             ReadyButton.IsVisible = true;
+        }
+
+        private void TabControl_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+        {
+            if (MainTab != null)
+            Helper.Page = MainTab.SelectedIndex;
         }
     }
 }

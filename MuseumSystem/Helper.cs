@@ -15,6 +15,8 @@ namespace MuseumSystem
 {
     public static class Helper
     {
+        public static int Page = 0;
+
         static User3Context DBContext = new User3Context();
 
         //Глобальное отслеживание польователя
@@ -27,7 +29,7 @@ namespace MuseumSystem
         }
         public static List<User> Users
         {
-            get => DBContext.Users.Include(u => u.Gender).ToList();
+            get => DBContext.Users.Include(u => u.Gender).Include(u => u.Role).ToList();
         }
 
 
@@ -111,6 +113,32 @@ namespace MuseumSystem
             }
         }
 
+        public static void AddMedia(AtachedMedium medium)
+        {
+            try
+            {
+                DBContext.Add(medium);
+                DBContext.SaveChanges();
+            }
+            catch
+            {
+
+            }
+
+        }
+        public static void RemoveMedia(AtachedMedium medium)
+        {
+            try
+            {
+                DBContext.Remove(medium);
+                DBContext.SaveChanges();
+            }
+            catch
+            {
+
+            }
+
+        }
 
         public static bool EventEdit(Event @event, Window Window)
         {
@@ -146,7 +174,7 @@ namespace MuseumSystem
             }
             else
             {
-                if (@event.EndDatetime != DateTime.MinValue && @event.StartDatetime < @event.EndDatetime)
+                if (@event.EndDatetime != DateTime.MinValue && @event.StartDatetime > @event.EndDatetime)
                 {
                     CallMessageBox("Начальная дата не может быть позже конечной", Window);
                     return false;

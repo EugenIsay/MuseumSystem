@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MuseumSystem.MediaWindow"
+		Width="800"
+		Background="#E8BC75"
+		Height="450"
+        Title="Медиа">
+	<Grid Margin="10" RowDefinitions="5*,*,5*,*">
+		<Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*,*">
+			<Image IsVisible="False" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Name="ShownImage"/>
+			<Button IsVisible="False" Content="Проиграть" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Name="PlayButton" Click="PlayButton_Click"/>
+		</Grid>
+		<Button Grid.Row="1" Margin="5,0" Content="Добавить медиа файл" Click="AddButton_Click"/>
+		<TextBox Name="Description" Grid.Row="2" Margin="5" Watermark="Описание"/>
+		<Button Margin="5,0" Grid.Row="3" HorizontalAlignment="Stretch" Content="Готово" Click="ReadyButton_Click"/>
+	</Grid>
+</Window>

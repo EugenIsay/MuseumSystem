@@ -10,7 +10,7 @@ namespace MuseumSystem;
 
 public partial class EventWindow : Window
 {
-    Event @event = new Event();
+    readonly Event @event = new();
     public EventWindow()
     {
         InitializeComponent();
@@ -53,7 +53,7 @@ public partial class EventWindow : Window
     {
 
 
-        @event.Title = Title.Name; 
+        @event.Title = Title.Text; 
         @event.Description = Description.Name;
         @event.Addres = Addres.Text;
         @event.MaxAttendees = (int?)Attendance.Value;
