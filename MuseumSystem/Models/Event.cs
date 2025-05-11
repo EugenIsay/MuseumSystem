@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MuseumSystem.Models;
 
@@ -50,6 +51,11 @@ public partial class Event
     }
 
     public virtual ICollection<IncludedItem> IncludedItems { get; set; } = new List<IncludedItem>();
+
+    public List<int> IncludedExhibits
+    {
+        get => IncludedItems.Select(e => e.ExhibitId).ToList();
+    }
 
     public virtual User? Organizer { get; set; }
 

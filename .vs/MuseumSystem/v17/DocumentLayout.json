@@ -3,32 +3,72 @@
   "WorkspaceRootPath": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\eventwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\eventwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\eventwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\eventwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\exhibitwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\exhibitwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\exhibitwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\exhibitwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\exhibit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\exhibit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\atachedmedium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\atachedmedium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\includeditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\includeditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\eventtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\eventtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\mediawindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\mediawindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\mediawindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
       "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\mediawindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\exhibitwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\exhibitwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\ticketwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\ticketwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,40 +79,8 @@
       "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\authorizationwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\atachedmedium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\atachedmedium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\eventwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\eventwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\eventwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\eventwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\eventtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\eventtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\exhibit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\exhibit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\mediawindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\mediawindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\ticketwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\ticketwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\authorizationwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -85,10 +93,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\ticketwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\ticketwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
@@ -110,11 +114,11 @@
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
-      "VerticalTabListWidth": 171,
+      "VerticalTabListWidth": 170,
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 27,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -130,18 +134,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
+              "Title": "IncludedItem.cs",
+              "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\IncludedItem.cs",
+              "RelativeDocumentMoniker": "MuseumSystem\\Models\\IncludedItem.cs",
+              "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\IncludedItem.cs",
+              "RelativeToolTip": "MuseumSystem\\Models\\IncludedItem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T20:01:38.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "MediaWindow.axaml",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\MediaWindow.axaml",
               "RelativeDocumentMoniker": "MuseumSystem\\MediaWindow.axaml",
               "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\MediaWindow.axaml",
               "RelativeToolTip": "MuseumSystem\\MediaWindow.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-11T14:39:53.541Z"
+              "WhenOpened": "2025-05-11T14:39:53.541Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 12,
               "Title": "MediaWindow.axaml.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\MediaWindow.axaml.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\MediaWindow.axaml.cs",
@@ -149,23 +167,25 @@
               "RelativeToolTip": "MuseumSystem\\MediaWindow.axaml.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAAAxwCwAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T14:39:53.431Z"
+              "WhenOpened": "2025-05-11T14:39:53.431Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 7,
               "Title": "AtachedMedium.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\AtachedMedium.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\Models\\AtachedMedium.cs",
               "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\AtachedMedium.cs",
               "RelativeToolTip": "MuseumSystem\\Models\\AtachedMedium.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAwwCsAAAAeAAAA",
+              "ViewState": "AQIAAA4AAAAAAAAAAAA9wCsAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T18:11:50.582Z"
+              "WhenOpened": "2025-05-10T18:11:50.582Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "app.manifest",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\app.manifest",
               "RelativeDocumentMoniker": "MuseumSystem\\app.manifest",
@@ -177,7 +197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 10,
               "Title": "EventType.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\EventType.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\Models\\EventType.cs",
@@ -185,34 +205,37 @@
               "RelativeToolTip": "MuseumSystem\\Models\\EventType.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T16:48:47.909Z"
+              "WhenOpened": "2025-05-09T16:48:47.909Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 0,
               "Title": "EventWindow.axaml",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\EventWindow.axaml",
               "RelativeDocumentMoniker": "MuseumSystem\\EventWindow.axaml",
               "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\EventWindow.axaml",
               "RelativeToolTip": "MuseumSystem\\EventWindow.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-09T15:10:40.193Z"
+              "WhenOpened": "2025-05-09T15:10:40.193Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 1,
               "Title": "EventWindow.axaml.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\EventWindow.axaml.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\EventWindow.axaml.cs",
               "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\EventWindow.axaml.cs",
               "RelativeToolTip": "MuseumSystem\\EventWindow.axaml.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAEwDIAAAAFAAAA",
+              "ViewState": "AQIAACgAAAAAAAAAAAAqwEwAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T15:10:39.988Z"
+              "WhenOpened": "2025-05-09T15:10:39.988Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Program.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\Program.cs",
@@ -224,18 +247,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 14,
               "Title": "TicketWindow.axaml",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\TicketWindow.axaml",
               "RelativeDocumentMoniker": "MuseumSystem\\TicketWindow.axaml",
               "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\TicketWindow.axaml",
               "RelativeToolTip": "MuseumSystem\\TicketWindow.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-02T14:42:08.386Z"
+              "WhenOpened": "2025-05-02T14:42:08.386Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "TicketWindow.axaml.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\TicketWindow.axaml.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\TicketWindow.axaml.cs",
@@ -247,7 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "Category.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\Category.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\Models\\Category.cs",
@@ -259,14 +283,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "ExhibitWindow.axaml",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\ExhibitWindow.axaml",
               "RelativeDocumentMoniker": "MuseumSystem\\ExhibitWindow.axaml",
               "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\ExhibitWindow.axaml",
               "RelativeToolTip": "MuseumSystem\\ExhibitWindow.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-27T17:58:49.666Z"
+              "WhenOpened": "2025-04-27T17:58:49.666Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -276,26 +301,27 @@
               "RelativeDocumentMoniker": "MuseumSystem\\ExhibitWindow.axaml.cs",
               "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\ExhibitWindow.axaml.cs",
               "RelativeToolTip": "MuseumSystem\\ExhibitWindow.axaml.cs",
-              "ViewState": "AQIAAJgAAAAAAAAAAAAswMEAAAANAAAA",
+              "ViewState": "AQIAAK0AAAAAAAAAAAAswLwAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-27T17:58:49.542Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 6,
               "Title": "Exhibit.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\Exhibit.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\Models\\Exhibit.cs",
               "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\Exhibit.cs",
               "RelativeToolTip": "MuseumSystem\\Models\\Exhibit.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAAAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAqwDAAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:00:35.1Z"
+              "WhenOpened": "2025-04-27T17:00:35.1Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 16,
               "Title": "Ticket.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\Ticket.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\Models\\Ticket.cs",
@@ -303,12 +329,11 @@
               "RelativeToolTip": "MuseumSystem\\Models\\Ticket.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAIA3wCMAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:47:02.615Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T16:47:02.615Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "TicketType.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\TicketType.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\Models\\TicketType.cs",
@@ -320,7 +345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "AuthorizationWindow.axaml.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\AuthorizationWindow.axaml.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\AuthorizationWindow.axaml.cs",
@@ -332,19 +357,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
               "Title": "Event.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\Event.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\Models\\Event.cs",
               "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\Event.cs",
               "RelativeToolTip": "MuseumSystem\\Models\\Event.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAeAAAA",
+              "ViewState": "AQIAABQAAAAAAAAAAAA8wDYAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:03:04.426Z"
+              "WhenOpened": "2025-04-27T16:03:04.426Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "MuseumSystem.csproj",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\MuseumSystem.csproj",
               "RelativeDocumentMoniker": "MuseumSystem\\MuseumSystem.csproj",
@@ -357,7 +383,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 17,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Models\\User.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\Models\\User.cs",
@@ -369,30 +395,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 15,
               "Title": "App.axaml",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\App.axaml",
               "RelativeDocumentMoniker": "MuseumSystem\\App.axaml",
               "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\App.axaml",
               "RelativeToolTip": "MuseumSystem\\App.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-26T13:26:24.541Z"
+              "WhenOpened": "2025-04-26T13:26:24.541Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Helper.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Helper.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\Helper.cs",
               "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\Helper.cs",
               "RelativeToolTip": "MuseumSystem\\Helper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAABNAAAA",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAowDQAAABdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T11:19:12.362Z"
+              "WhenOpened": "2025-04-26T11:19:12.362Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "App.axaml.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\App.axaml.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\App.axaml.cs",
@@ -404,7 +432,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 18,
               "Title": "AuthorizationWindow.axaml",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\AuthorizationWindow.axaml",
               "RelativeDocumentMoniker": "MuseumSystem\\AuthorizationWindow.axaml",
@@ -415,7 +443,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 11,
               "Title": "MainWindow.axaml",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\MainWindow.axaml",
               "RelativeDocumentMoniker": "MuseumSystem\\MainWindow.axaml",
@@ -427,7 +455,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "MainWindow.axaml.cs",
               "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\MainWindow.axaml.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\MainWindow.axaml.cs",
@@ -435,7 +463,8 @@
               "RelativeToolTip": "MuseumSystem\\MainWindow.axaml.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T19:27:38.819Z"
+              "WhenOpened": "2025-04-22T19:27:38.819Z",
+              "EditorCaption": ""
             }
           ]
         }

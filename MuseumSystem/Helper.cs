@@ -36,7 +36,7 @@ namespace MuseumSystem
         //Таблицы связаные с мероприятиями
         public static List<Event> Events
         {
-            get => DBContext.Events.Include(e => e.Type).Include(e => e.Organizer).Include(e => e.IncludedItems).Include(e => e.EventRegistrations).ToList();
+            get => DBContext.Events.Include(e => e.Type).Include(e => e.Organizer).Include(e => e.IncludedItems).ThenInclude(i => i.Exhibit).Include(e => e.EventRegistrations).ToList();
         }
         public static List<Event> ShownEvents
         {
@@ -212,6 +212,14 @@ namespace MuseumSystem
 
         }
 
+        public static void AddEventEhibits(IncludedItem includedItem)
+        {
+            DBContext.IncludedItems.Add(includedItem);
+        }
+        public static void RemoveEventEhibits(IncludedItem includedItem)
+        {
+            DBContext.IncludedItems.Remove(includedItem);
+        }
 
 
         public static bool CanRegister(User User, Window Window)

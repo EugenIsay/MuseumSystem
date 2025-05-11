@@ -17,7 +17,15 @@
 			<Setter Property="VerticalAlignment" Value="Stretch"/>
 		</Style>
 	</Window.Styles>
-	<Grid RowDefinitions="*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,*" Margin="20">
+	<Grid RowDefinitions="*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,*" ColumnDefinitions="*,*" Margin="20">
+		<Grid.Styles>
+			<Style Selector="Grid > TextBox">
+				<Setter Property="Grid.ColumnSpan" Value="2" />
+			</Style>
+			<Style Selector="Grid > ComboBox">
+				<Setter Property="Grid.ColumnSpan" Value="2" />
+			</Style>
+		</Grid.Styles>
 		<TextBlock Grid.Row="0" Text="Название"/>
 		<TextBox Grid.Row="1" Name="Title"/>
 		
@@ -39,22 +47,49 @@
 			</ComboBox.ItemTemplate>
 		</ComboBox>
 
-		<Grid ColumnDefinitions="*,*" RowDefinitions="*,*" Grid.Row="6" HorizontalAlignment="Stretch" Grid.RowSpan="2">
-			<TextBlock Grid.Row="0"  Text="Начало мероприятия"/>
-			<StackPanel Grid.Row="1" Orientation="Horizontal">
+
+			<TextBlock Grid.Row="6"  Text="Начало мероприятия"/>
+			<StackPanel Grid.Row="7"  Orientation="Horizontal">
 				<DatePicker Name="StartDate"/>
 				<TimePicker Name="StartTime"/>
 			</StackPanel>
-			<TextBlock Grid.Row="0" Grid.Column="1" Text="Конец мероприятия"/>
-			<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+			<TextBlock Grid.Row="8"  Text="Конец мероприятия"/>
+			<StackPanel Grid.Row="9"  Orientation="Horizontal">
 				<DatePicker Name="EndDate"/>
 				<TimePicker Name="EndTime"/>
 			</StackPanel>
-		</Grid>
+		<Border Grid.Column="1" Grid.Row="7"  Grid.RowSpan="9" CornerRadius="2" BorderBrush="#953C2C" Margin="10,0" BorderThickness="5" >
+
+			<ListBox SelectionMode="Multiple" Name="ExhibitLB" Background="#E0CFBD">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Border Background="#E0CFBD" BorderBrush="#D77546" BorderThickness="4">
+							<Grid Margin="20" RowDefinitions="*,*,*,*,*" ColumnDefinitions="2*,8*,2*">
+								<TextBlock Grid.ColumnSpan="10" VerticalAlignment="Center" Text="{Binding InventoryNumber}"/>
+								<StackPanel Grid.Column="1" Orientation="Horizontal">
+									<TextBlock Text="{Binding Category.Name}"/>
+									<TextBlock Text=": "/>
+									<TextBlock Text="{Binding Name}"/>
+								</StackPanel>
+								<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ApproximateCost, StringFormat='Предположительная цена: {0}'}"/>
+								<StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+									<TextBlock Text="{Binding AddDate, StringFormat='Добавлен в коллекцию: {0} '}"/>
+									<TextBlock Text="{Binding PermanentlyLocated, StringFormat=',находится в помещении: {0}'}"/>
+								</StackPanel>
+								<TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Description, StringFormat='Описание: {0}'}"/>
+								<Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*" Grid.Column="2" Grid.RowSpan="5">
+									<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Source="{Binding MainImageBitmap}"/>
+								</Grid>
+							</Grid>
+						</Border>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Border>
 
 		
-		<TextBlock Grid.Row="10" Text="Место провидения мероприятия"/>
-		<TextBox Grid.Row="11" Name="Addres"/>
+		<TextBlock Grid.Row="10" Text="Место провидения мероприятия" />
+		<TextBox Grid.Row="11" Name="Addres" Grid.ColumnSpan="1"/>
 
 		<TextBlock Grid.Row="12" Text="Максимум людей"/>
 		<NumericUpDown Grid.Row="13" Name="Attendance" Minimum="1" ShowButtonSpinner="False" FormatString="0"/>
