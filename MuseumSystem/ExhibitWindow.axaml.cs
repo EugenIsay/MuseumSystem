@@ -245,6 +245,10 @@ public partial class ExhibitWindow : Window
         try
         {
             result = await window.ShowDialog<AtachedMedium>(this);
+            if (result == null)
+            {
+                return;
+            }
             result.Id = Media.Select(m => m.Id).Order().Last() + 1;
             Media.Add(result);
             PhotoList.ItemsSource = PhotoMedia;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avalonia.Controls.Documents;
+using System;
 using System.Collections.Generic;
 
 namespace MuseumSystem.Models;
@@ -21,7 +22,16 @@ public partial class User
     {
         get => LastName + " " + FirstName + " " + Patronymic;
     }
-
+    public string Color
+    {
+        get
+        {
+            if ((bool)IsActive)
+                return "#c19f7b";
+            else
+                return "#E0CFBD";
+        }
+    }
     public int GenderId { get; set; }
 
     public int RoleId { get; set; }

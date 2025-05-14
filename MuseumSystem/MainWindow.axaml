@@ -46,7 +46,7 @@
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<Border DoubleTapped="Border_DoubleTapped_1" BorderBrush="#D77546" Background="{Binding Color}" BorderThickness="4">
-								<Grid Margin="20" RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,10*,*">
+								<Grid Margin="20" RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*,10*,*">
 									<StackPanel Grid.Column="1" Orientation="Horizontal">
 										<TextBlock Text="{Binding Type.Name}"/>
 										<TextBlock Text=": "/>
@@ -64,6 +64,20 @@
 										<TextBlock Text="{Binding Price, StringFormat='по цене {0} руб. за человека'}"/>
 									</StackPanel>
 									<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Description, StringFormat='Описание: {0}'}"/>
+									<ListBox Grid.Row="5" Grid.Column="1" Background="Transparent" ItemsSource="{Binding IncludedItems}">
+										<ListBox.ItemsPanel>
+											<ItemsPanelTemplate>
+												<VirtualizingStackPanel Orientation="Horizontal" />
+											</ItemsPanelTemplate>
+										</ListBox.ItemsPanel>
+										<ListBox.ItemTemplate>
+											<DataTemplate>
+												<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
+													<TextBlock Text="{Binding Exhibit.Name}"/>
+												</Border>
+											</DataTemplate>
+										</ListBox.ItemTemplate>
+									</ListBox>
 								</Grid>
 							</Border>
 						</DataTemplate>
@@ -136,22 +150,34 @@
 			</DockPanel>
 		</TabItem>
 
+		<TabItem IsVisible="{x:Static local:Helper.IsAdmin}" Header="Отчётность">
+			<Grid>
+				<DockPanel>
+					<TextBlock/>
+				</DockPanel>
+			</Grid>
+		</TabItem>
+
 		<!--Вкладка пользователей для амдинистратора-->
 		<TabItem Header="Список пользователей" IsVisible="{x:Static local:Helper.IsAdmin}">
-			<DockPanel>
-				<ListBox Name="UserLB">
+			<DockPanel Margin="5">
+				<Button DockPanel.Dock="Bottom" Content="Заблокировать/разблокировать" Name="BlockButton" IsVisible="False" Click="BlockButton_Click"/>
+				<ListBox SelectionMode="Multiple" SelectionChanged="UserLB_SelectionChanged" Margin="0,5" Name="UserLB">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
-							<DockPanel LastChildFill="False">
-								<TextBlock DockPanel.Dock="Top" Text="{Binding FullName}"/>
-								<TextBlock DockPanel.Dock="Top" Text="{Binding Gender.Name}"/>
-								<TextBlock DockPanel.Dock="Top" Text="{Binding Login}"/>
-								<TextBlock DockPanel.Dock="Top" Text="{Binding PhoneNumber}"/>
-								<TextBlock DockPanel.Dock="Top" Text="{Binding Email}"/>
-								<TextBlock DockPanel.Dock="Top" Text="{Binding Birthday, StringFormat='Дата рождения {0}'}"/>
-								<TextBlock DockPanel.Dock="Top" Text="{Binding RegistrationDate, StringFormat='Дата регистрации {0}'}"/>
-								<TextBlock DockPanel.Dock="Top" Text="{Binding Role.Name}"/>
-							</DockPanel>
+							<Border BorderBrush="#D77546" Background="{Binding Color}" BorderThickness="4">
+								<DockPanel LastChildFill="False">
+									<TextBlock DockPanel.Dock="Top" Text="{Binding FullName}"/>
+									<TextBlock DockPanel.Dock="Top" Text="{Binding Gender.Name}"/>
+									<TextBlock DockPanel.Dock="Top" Text="{Binding Login}"/>
+									<TextBlock DockPanel.Dock="Top" Text="{Binding PhoneNumber}"/>
+									<TextBlock DockPanel.Dock="Top" Text="{Binding Email}"/>
+									<TextBlock DockPanel.Dock="Top" Text="{Binding Birthday, StringFormat='Дата рождения {0}'}"/>
+									<TextBlock DockPanel.Dock="Top" Text="{Binding RegistrationDate, StringFormat='Дата регистрации {0}'}"/>
+									<TextBlock DockPanel.Dock="Top" Text="{Binding Role.Name}"/>
+								</DockPanel>
+							</Border>
+
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
@@ -211,6 +237,8 @@
 				</Grid>
 			</Grid>
 		</TabItem>
+
+
 
 	</TabControl>
 </Window>

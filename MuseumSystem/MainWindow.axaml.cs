@@ -1,7 +1,10 @@
 using Avalonia.Controls;
 using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 using MuseumSystem.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Tmds.DBus.Protocol;
 
 namespace MuseumSystem
@@ -16,7 +19,7 @@ namespace MuseumSystem
             ExhibitLB.ItemsSource= Helper.Exhibits;
             BDay.DisplayDateEnd = System.DateTime.Now.AddYears(-12);
             Gender.ItemsSource = Helper.Genders;
-            UserLB.ItemsSource = Helper.Users;
+            UserLB.ItemsSource = Helper.Users.Where(u => u.RoleId != 1);
 
             Login.Text = Helper.currentUser.Login;
             FirstName.Text = Helper.currentUser.FirstName;
@@ -27,8 +30,8 @@ namespace MuseumSystem
             BDay.SelectedDate = Helper.currentUser.Birthday.ToDateTime(new TimeOnly());
             Gender.SelectedItem = Helper.currentUser.Gender;
             Password.Text = Helper.currentUser.Password;
-            ReadyButton.IsVisible = false;
             MainTab.SelectedIndex = Helper.Page;
+            ReadyButton.IsVisible = false;
         }
 
         private void AddExhibitionButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -59,6 +62,10 @@ namespace MuseumSystem
         {
             if (Helper.IsEmployee)
             {
+                if (EventLB.SelectedItem as Event == null)
+                {
+                    return;
+                }
                 new EventWindow(EventLB.SelectedItem as Event).Show();
                 this.Close();
             }    
@@ -110,7 +117,34 @@ namespace MuseumSystem
         private void TabControl_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
         {
             if (MainTab != null)
-            Helper.Page = MainTab.SelectedIndex;
+            {
+                Helper.Page = MainTab.SelectedIndex;
+                ReadyButton.IsVisible = false;
+            }
+        }
+
+        private void UserLB_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+        {
+            if (UserLB.SelectedItems.Count > 0)
+                BlockButton.IsVisible = true;
+            else
+                BlockButton.IsVisible = false;
+        }
+
+        private async void BlockButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var box = MessageBoxManager
+            .GetMessageBoxStandard("ѕредосторежение", "¬ы точно хотите разблокировать/заблокировать данных пользователей?",
+                ButtonEnum.YesNo);
+            var result = await box.ShowAsync();
+            if (result.Equals(ButtonResult.Yes))
+            {
+                var Users = UserLB.SelectedItems;
+                foreach (var user in Users)
+                {
+                    Helper.ChangeUserBool(user as User);
+                }
+            }
         }
     }
 }

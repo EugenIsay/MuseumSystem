@@ -70,16 +70,36 @@ namespace MuseumSystem
         // Метод для проверки при входе
         public static bool IsExist(string FirsRow, string Password)
         {
-            currentUser = Users.FirstOrDefault(u => (u.Login == FirsRow || u.Email == FirsRow) && u.Password == Password)!;
+            currentUser = Users.FirstOrDefault(u => (u.Login == FirsRow || u.Email == FirsRow) && u.Password == Password && u.IsActive == true)!;
             return currentUser != null;
         }
 
-        
+
+        public static decimal HowMuchMoney
+        {
+            get => DBContext.Tickets.Where(t => t.PurchaseDate.Value.Year == DateTime.Now.Year).Select(s => s.Price).Sum();
+        }
+        public static int HowManyUsers
+        {
+            get => DBContext.Users.Where(u => u.RegistrationDate.Value.Year == DateTime.Now.Year).Count();
+        }
+
+        public static int HowManyEhxibitions
+        {
+            get => DBContext.Exhibits.Where(u => u.AddDate.Value.Year == DateTime.Now.Year).Count();
+        }
+
+        public static void ChangeUserBool(User User)
+        {
+            User.IsActive = !User.IsActive;
+            DBContext.Users.Update(User);
+            DBContext.SaveChanges();
+        }
 
         // Метод для добавления билета
         public static bool AddTickets(Ticket Ticket)
         {
-            Ticket.Id = DBContext.Tickets.OrderBy(s => s.Id).Last().Id + 1;
+            Ticket.Id = (int)(DBContext.Tickets.OrderBy(s => s.Id).Last().Id + 1);
             DBContext.Add(Ticket);
             try
             {
@@ -215,10 +235,14 @@ namespace MuseumSystem
         public static void AddEventEhibits(IncludedItem includedItem)
         {
             DBContext.IncludedItems.Add(includedItem);
+            DBContext.SaveChanges();
         }
         public static void RemoveEventEhibits(IncludedItem includedItem)
         {
+            includedItem = DBContext.IncludedItems.FirstOrDefault(i => i.EventId == includedItem.EventId && includedItem.ExhibitId == includedItem.ExhibitId)!;
             DBContext.IncludedItems.Remove(includedItem);
+
+            DBContext.SaveChanges();
         }
 
 

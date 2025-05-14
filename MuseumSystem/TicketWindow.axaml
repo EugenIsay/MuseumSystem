@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="MuseumSystem.TicketWindow"
+		Background="#E8BC75"
 		xmlns:local="clr-namespace:MuseumSystem"
         Title="TicketWindow">
 	<Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*">
@@ -75,7 +76,7 @@
 			<TextBlock Text="Итоговая цена:"/>
 			<TextBlock Name="Price"/>
 		</StackPanel>
-		<StackPanel Orientation="Horizontal" Spacing="5">
+		<StackPanel Grid.Row="11" Orientation="Horizontal" Spacing="5">
 			
 			<Button Content="Готово" Click="ComfirmButton_Click"/>
 			<Button Content="Отмена" Click="BackButton_Click"/>

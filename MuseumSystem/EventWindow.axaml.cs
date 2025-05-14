@@ -75,7 +75,7 @@ public partial class EventWindow : Window
             {
                 @event.Id = Helper.Events.Select(e => e.Id).Order().Last() + 1;
             }
-            var selectedItems = (ExhibitLB.SelectedItems as List<Exhibit>);
+            var selectedItems = new List<Exhibit>(ExhibitLB.SelectedItems as List<Exhibit>);
             var wasItems = @event.IncludedItems.Select(e => e.Exhibit);
             var addedItems = selectedItems.Except(wasItems).ToList();
             var removedItems = wasItems.Except(selectedItems).ToList();

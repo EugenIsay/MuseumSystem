@@ -26,8 +26,8 @@ public partial class TicketWindow : Window
 
     private void ComboBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
     {
-        FullPrice[0] = (decimal)(sender as TicketType).Price!;
-        TicketLasts = (int)(sender as TicketType).ValidityDays!;
+        FullPrice[0] = (decimal)((sender as ComboBox).SelectedItem as TicketType).Price!;
+        TicketLasts = (int)((sender as ComboBox).SelectedItem as TicketType).ValidityDays!;
         Check();
     }
 
@@ -74,7 +74,7 @@ public partial class TicketWindow : Window
         {
             Helper.CallMessageBox("¬ыберите меропри€ти€ которые хотите посетить", this);
         }
-        if (Helper.AddTickets(new Ticket { Number = Number.Text, TypeId = (TypeCB.SelectedItem as TicketType).Id, ValidFrom = DateOnly.FromDateTime(StartDate.SelectedDate.Value.Date), ValidTo = DateOnly.FromDateTime(EndDate.SelectedDate.Value.Date), Price = FullPrice.Sum() }))
+        if (Helper.AddTickets(new Ticket { Number = Number.Text, UserId = (UserCB.SelectedItem as User)!.Id, TypeId = (TypeCB.SelectedItem as TicketType).Id, ValidFrom = DateOnly.FromDateTime(StartDate.SelectedDate.Value.Date), ValidTo = DateOnly.FromDateTime(EndDate.SelectedDate.Value.Date), Price = FullPrice.Sum() }))
         {
             new MainWindow().Show();
             this.Close();
