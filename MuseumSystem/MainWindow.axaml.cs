@@ -16,7 +16,7 @@ namespace MuseumSystem
             InitializeComponent();
             EventLB.ItemsSource = Helper.ShownEvents;
             TicketLB.ItemsSource = Helper.Tickets;
-            ExhibitLB.ItemsSource= Helper.Exhibits;
+            ExhibitLB.ItemsSource = Helper.Exhibits;
             BDay.DisplayDateEnd = System.DateTime.Now.AddYears(-12);
             Gender.ItemsSource = Helper.Genders;
             UserLB.ItemsSource = Helper.Users.Where(u => u.RoleId != 1);
@@ -68,15 +68,24 @@ namespace MuseumSystem
                 }
                 new EventWindow(EventLB.SelectedItem as Event).Show();
                 this.Close();
-            }    
+            }
         }
 
-        private void ComfirmButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        private async void ComfirmButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            if (!DateOnly.TryParse(BDay.Text, out DateOnly result))
+            if (!DateOnly.TryParse(BDay.Text, out DateOnly _))
             {
                 Helper.CallMessageBox("Укажите дату рождения в формате день месяц год через точки", this);
                 return;
+            }
+            if (Password.Text != Helper.currentUser.Password)
+            {
+                var box = MessageBoxManager.GetMessageBoxStandard("Предосторежение", "Вы точно хотите изменить пароль?", ButtonEnum.YesNo);
+                var result = await box.ShowAsync();
+                if (!result.Equals(ButtonResult.Yes))
+                {
+                    return;
+                }
             }
             if (Helper.CanRegister(new User()
             {
@@ -125,7 +134,7 @@ namespace MuseumSystem
 
         private void UserLB_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
         {
-            if (UserLB.SelectedItems.Count > 0)
+            if (UserLB.SelectedItems!.Count > 0)
                 BlockButton.IsVisible = true;
             else
                 BlockButton.IsVisible = false;
@@ -143,8 +152,53 @@ namespace MuseumSystem
                 foreach (var user in Users)
                 {
                     Helper.ChangeUserBool(user as User);
+                    UserLB.ItemsSource = Helper.Users.Where(u => u.RoleId != 1); ;
                 }
             }
+        }
+
+        DateTime startDate = new DateTime();
+        DateTime endDate = new DateTime();
+        private void ReportCB_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+        {
+            DateSelector.IsVisible = false;
+            switch ((sender as ComboBox).SelectedIndex)
+            {
+                case 0:
+                    startDate = DateTime.Now.AddDays(-DateTime.Now.Day);
+                    endDate = DateTime.Now.AddDays(-DateTime.Now.Day).AddMonths(1);
+                    break;
+                case 1:
+                    startDate = DateTime.Now.AddMonths(-DateTime.Now.Month);
+                    endDate = DateTime.Now.AddMonths(-DateTime.Now.Month).AddYears(1);
+                    break;
+                case 2:
+                    DateSelector.IsVisible = true;
+                    break;
+                default: 
+                    return;
+
+            }
+        }
+
+        private void MakeReportButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            if (ReportCB.SelectedIndex == -1)
+            {
+                Helper.CallMessageBox("Выберите период отчёта", this);
+                return;
+            }
+            else if (ReportCB.SelectedIndex == 2)
+            {
+                if (StartDate.SelectedDate == null || StartDate.SelectedDate == null || StartDate.SelectedDate < EndDate.SelectedDate)
+                {
+                    Helper.CallMessageBox("Выберите корректный период отчёта", this);
+                    return;
+                }
+                startDate = StartDate.SelectedDate.Value.DateTime;
+                endDate = EndDate.SelectedDate.Value.DateTime;
+            }
+
         }
     }
 }

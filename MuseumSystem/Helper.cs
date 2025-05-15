@@ -88,7 +88,10 @@ namespace MuseumSystem
         {
             get => DBContext.Exhibits.Where(u => u.AddDate.Value.Year == DateTime.Now.Year).Count();
         }
-
+        public static int HowManyEvents
+        {
+            get => DBContext.Exhibits.Where(u => u.AddDate.Value.Year == DateTime.Now.Year).Count();
+        }
         public static void ChangeUserBool(User User)
         {
             User.IsActive = !User.IsActive;

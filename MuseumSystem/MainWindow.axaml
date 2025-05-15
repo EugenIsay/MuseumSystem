@@ -150,12 +150,30 @@
 			</DockPanel>
 		</TabItem>
 
+		<!--Вкладка для отчётов-->
 		<TabItem IsVisible="{x:Static local:Helper.IsAdmin}" Header="Отчётность">
 			<Grid>
-				<DockPanel>
-					<TextBlock/>
-				</DockPanel>
+				<Grid Name="StartReportGrid" RowDefinitions="*,*,*,*" >
+					<TextBlock Grid.Row="0" VerticalAlignment="Center" Text="Выберите за какой период времени вы хотите получить отчёт"/>
+					<ComboBox Name="ReportCB" Grid.Row="1" SelectionChanged="ReportCB_SelectionChanged">
+						<ComboBoxItem>За месяц</ComboBoxItem>
+						<ComboBoxItem>За год</ComboBoxItem>
+						<ComboBoxItem>За определённый промежуток времени</ComboBoxItem>
+					</ComboBox>
+					<StackPanel Name="DateSelector" Grid.Row="2" Spacing="10" Orientation="Horizontal">
+						<TextBlock VerticalAlignment="Center" Text="С"/>
+						<DatePicker Name="StartDate"></DatePicker>
+						<TextBlock VerticalAlignment="Center" Text="по"/>
+						<DatePicker Name="EndDate"></DatePicker>
+					</StackPanel >
+					<Button Grid.Row="3" Content="Сформировать отчёт" Click="MakeReportButton_Click"/>
+				</Grid>
+				<Grid Name="ReportGrid" IsVisible="False">
+					
+				</Grid>
 			</Grid>
+
+			
 		</TabItem>
 
 		<!--Вкладка пользователей для амдинистратора-->
@@ -177,7 +195,6 @@
 									<TextBlock DockPanel.Dock="Top" Text="{Binding Role.Name}"/>
 								</DockPanel>
 							</Border>
-
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
@@ -228,7 +245,6 @@
 						</ComboBox>
 					</DockPanel>
 				</Grid>
-
 				<TextBlock Text="Пароль: " Grid.Row="5" Grid.Column="0"/>
 				<TextBox TextChanged="TextBox_TextChanged" Watermark="Пароль" Grid.Row="5" Grid.Column="1" PasswordChar="*" Name="Password"/>
 				<Grid Grid.Row="6" Grid.ColumnSpan="2" ColumnDefinitions="*,*">
@@ -237,8 +253,5 @@
 				</Grid>
 			</Grid>
 		</TabItem>
-
-
-
 	</TabControl>
 </Window>

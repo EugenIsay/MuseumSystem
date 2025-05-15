@@ -7,9 +7,18 @@
 		xmlns:local="clr-namespace:MuseumSystem"
 		Background="#E8BC75"
         Title="Экспонат">
+	<Window.Resources>
+		<TextDecorationCollection x:Key="CustomUnderline">
+			<TextDecoration Location="Underline" Stroke="#484244" StrokeLineCap="Round" StrokeThickness="10" />
+		</TextDecorationCollection>
+	</Window.Resources>
 	<Window.Styles>
 		<Style Selector="TextBlock.Title">
 			<Setter Property="VerticalAlignment" Value="Bottom"/>
+			<Setter Property="FontSize" Value="20"/>
+			<Setter Property="TextDecorations" Value="{StaticResource CustomUnderline}"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="Background" Value="Transparent"/>
 		</Style>
 	</Window.Styles>
 	<Grid ColumnDefinitions="*,*">
@@ -26,7 +35,7 @@
 			<ComboBox Grid.Row="5" Name="EditCategoryCB">
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
-						<TextBlock HorizontalAlignment="Stretch" Text="{Binding Name}">
+						<TextBlock Background="Transparent" HorizontalAlignment="Stretch" Text="{Binding Name}">
 							<ToolTip.Tip>
 								<TextBlock Text="{Binding Description}"/>
 							</ToolTip.Tip>
@@ -52,14 +61,14 @@
 			<TextBox Grid.Row="14" Grid.RowSpan="2" AcceptsReturn="True" Name="EditDescription"/>
 			<TextBlock Grid.Row="14" Grid.RowSpan="2" Name="ShowDescription"/>
 
-			<Grid Grid.Row="16" ColumnDefinitions="*,*,*">
+			<Grid Grid.Row="16" Grid.RowSpan="2" ColumnDefinitions="*,*,*">
 				<Button Grid.Column="0" Content="Готово" Name="ReadyButton" Click="ReadyButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 				<Button Grid.Column="1" Content="Назад" Click="BackButton_Click"/>
 				<Button Grid.Column="2" HorizontalAlignment="Right" Content="Редактировать" Click="RedactButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 			</Grid>
 		</Grid>
 		<Grid Margin="10" Grid.Column="1" ColumnDefinitions="*,7*" RowDefinitions="3*,*,2*,*">
-			<Grid Grid.Column="0" Grid.ColumnSpan="2" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
+			<Grid Grid.Column="0" Grid.ColumnSpan="2" ColumnDefinitions="*,2*,2*,*" RowDefinitions="*,2*,2*,*">
 				<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Name="ImageShow"/>
 			</Grid>
 			<Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center" Content="Добавить/Изменить основную картинку" Click="PhotoButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>

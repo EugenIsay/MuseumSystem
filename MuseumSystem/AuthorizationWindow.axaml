@@ -5,6 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="MuseumSystem.AuthorizationWindow"
 		Background="#484244"
+		SizeChanged="Window_SizeChanged"
 		Title="Окно для входа"
 		>
 	<Window.Styles>
@@ -21,7 +22,7 @@
 			<!--Left side-->
 
 			<Border Background="#E8BC75"    >
-				<Grid Margin="20" RowDefinitions="*,*,*,*,*,*">
+				<Grid Name="Auth" Margin="20" RowDefinitions="*,*,*,*,*,*">
 
 					<Viewbox Stretch="Uniform" Grid.Row="1" >
 						<TextBlock Text="Авторизация" Margin="5" />
@@ -36,13 +37,13 @@
 					<Viewbox Grid.Column="1" Stretch="Uniform" Grid.Row="0" >
 						<TextBlock TextWrapping="Wrap" Text="Добропожаловать в систему музея" FontWeight="Bold" Foreground="White" />
 					</Viewbox>
-					<TextBlock Grid.Column="1" VerticalAlignment="Top" Text="Пожалуйста, зарегестрируйтесь для продолжения, либо если вы уже регестрировали его, то авторизуйтесь" TextWrapping="Wrap" Grid.Row="1" Foreground="White"/>
+					<TextBlock Name="MainText1" Grid.Column="1" VerticalAlignment="Top" Text="Пожалуйста, зарегестрируйтесь для продолжения, либо если вы уже регестрировали его, то авторизуйтесь" TextWrapping="Wrap" Grid.Row="1" Foreground="White"/>
 					<Button Grid.Column="1" HorizontalAlignment="Center" Click="Change_Click" VerticalAlignment="Center" Grid.Row="2" Content="Авторизация"/>
 				</Grid>
 			</Border>
 			<!--Right side-->
 			<Border Background="#E8BC75" Grid.Column="1">
-				<Grid Margin="20" RowDefinitions="*,*,*,*,*,*,*,*,*">
+				<Grid Name="Reg" IsVisible="False" Margin="20" RowDefinitions="*,*,*,*,*,*,*,*,*">
 
 					<Viewbox Stretch="Uniform" Grid.Row="0" >
 						<TextBlock Text="Регистрация" Margin="5" />
@@ -80,7 +81,7 @@
 					<Viewbox Grid.Column="1" Stretch="Uniform" Grid.Row="0" >
 						<TextBlock TextWrapping="Wrap" Text="Добропожаловать в систему музея" FontWeight="Bold" Foreground="White" />
 					</Viewbox>
-					<TextBlock Grid.Column="1" VerticalAlignment="Top" Text="Пожалуйста, авторизуйтесь для продолжения, либо если в нашей системе нет вашего аккаунта, то зарегестрируйте его" TextWrapping="Wrap" Grid.Row="1" Foreground="White"/>
+					<TextBlock Name="MainText2"  Grid.Column="1" VerticalAlignment="Top" Text="Пожалуйста, авторизуйтесь для продолжения, либо если в нашей системе нет вашего аккаунта, то зарегестрируйте его" TextWrapping="Wrap" Grid.Row="1" Foreground="White"/>
 					<Button Grid.Column="1" HorizontalAlignment="Center" Click="Change_Click" VerticalAlignment="Center" Grid.Row="2" Content="Регистрация"/>
 				</Grid>
 			</Border>
