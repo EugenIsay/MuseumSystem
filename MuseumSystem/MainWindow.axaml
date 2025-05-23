@@ -95,18 +95,18 @@
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<Border BorderBrush="#D77546" BorderThickness="4">
-								<Grid Margin="20" RowDefinitions="*,*,*" ColumnDefinitions="*,10*,3*">
-									<TextBlock Grid.ColumnSpan="10" VerticalAlignment="Center" Text="{Binding Number}"/>
-									<TextBlock Grid.Column="1" Text="{Binding Type.Name}"/>
-									<StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+								<Grid Margin="20" RowDefinitions="*,*,*,*" ColumnDefinitions="*,10*,3*">
+									<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding Number}"/>
+									<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Type.Name}"/>
+									<StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
 										<TextBlock Text="{Binding PurchaseDate, StringFormat='Куплен {0}'}"/>
 										<TextBlock Text="{Binding Price, StringFormat=', по цене {0}'}"/>
 									</StackPanel>
-									<StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+									<StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
 										<TextBlock Text="{Binding ValidFrom, StringFormat='Доступен с {0} '}"/>
 										<TextBlock Text="{Binding ValidTo, StringFormat='до {0}'}"/>
 									</StackPanel>
-									<Grid Grid.Column="2" Grid.RowSpan="3" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
+									<Grid Grid.Column="2" Grid.RowSpan="4" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
 										<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Source="{Binding qrBitmap}"/>
 									</Grid>
 								</Grid>
@@ -180,7 +180,7 @@
 		<TabItem Header="Список пользователей" IsVisible="{x:Static local:Helper.IsAdmin}">
 			<DockPanel Margin="5">
 				<Button DockPanel.Dock="Bottom" Content="Заблокировать/разблокировать" Name="BlockButton" IsVisible="False" Click="BlockButton_Click"/>
-				<ListBox SelectionMode="Multiple" SelectionChanged="UserLB_SelectionChanged" Margin="0,5" Name="UserLB">
+				<ListBox Background="#E0CFBD" SelectionMode="Multiple" SelectionChanged="UserLB_SelectionChanged" Margin="0,5" Name="UserLB">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<Border BorderBrush="#D77546" Background="{Binding Color}" BorderThickness="4">

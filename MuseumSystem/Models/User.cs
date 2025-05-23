@@ -26,10 +26,10 @@ public partial class User
     {
         get
         {
-            if ((bool)IsActive)
-                return "#c19f7b";
-            else
+            if ((bool)IsActive || IsActive == null)
                 return "#E0CFBD";
+            else
+                return "#c19f7b";
         }
     }
     public int GenderId { get; set; }

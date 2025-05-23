@@ -16,7 +16,7 @@ public partial class TicketWindow : Window
     public TicketWindow()
     {
         InitializeComponent();
-        EventLB.ItemsSource = Helper.Events.Where(e => e.StartDatetime > DateTime.Now && e.EventRegistrations.Count < e.MaxAttendees);
+        
         TypeCB.ItemsSource = Helper.TicketTypes;
         StartDate.MinYear = DateTime.Now;
         Number.Text = Guid.NewGuid().ToString();
@@ -28,19 +28,25 @@ public partial class TicketWindow : Window
     {
         FullPrice[0] = (decimal)((sender as ComboBox).SelectedItem as TicketType).Price!;
         TicketLasts = (int)((sender as ComboBox).SelectedItem as TicketType).ValidityDays!;
+        EventLB.SelectedItems = null;
         Check();
     }
 
     private void DatePicker_SelectedDateChanged(object? sender, Avalonia.Controls.DatePickerSelectedValueChangedEventArgs e)
     {
         Start = (DateTimeOffset)StartDate.SelectedDate;
+        EventLB.SelectedItems = null;
         Check();
     }
     public void Check()
     {
-        if (TicketLasts != 0 && Start != null)
+        if (TicketLasts != 0 && Start != DateTimeOffset.MinValue)
         {
             EndDate.SelectedDate = Start.AddDays(TicketLasts);
+            EventLB.IsVisible = true;
+            Massage.IsVisible = false;
+            if (EventLB.SelectedItems.Count == 0)
+                EventLB.ItemsSource = Helper.Events.Where(e => e.StartDatetime > DateTime.Now && e.EventRegistrations.Count < e.MaxAttendees && StartDate.SelectedDate < e.EndDatetime && EndDate.SelectedDate > e.StartDatetime);
         }
         Price.Text = FullPrice.Sum().ToString();
     }
