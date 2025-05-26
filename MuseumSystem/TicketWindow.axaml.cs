@@ -1,8 +1,10 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Microsoft.EntityFrameworkCore;
 using MuseumSystem.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MuseumSystem;
@@ -22,6 +24,7 @@ public partial class TicketWindow : Window
         Number.Text = Guid.NewGuid().ToString();
         UserCB.ItemsSource = Helper.Users;
         UserCB.SelectedItem = Helper.currentUser;
+
     }
 
     private void ComboBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
@@ -46,7 +49,10 @@ public partial class TicketWindow : Window
             EventLB.IsVisible = true;
             Massage.IsVisible = false;
             if (EventLB.SelectedItems.Count == 0)
+            {
                 EventLB.ItemsSource = Helper.Events.Where(e => e.StartDatetime > DateTime.Now && e.EventRegistrations.Count < e.MaxAttendees && StartDate.SelectedDate < e.EndDatetime && EndDate.SelectedDate > e.StartDatetime);
+                EventLB.SelectedItems = new List<Event>();
+            }
         }
         Price.Text = FullPrice.Sum().ToString();
     }
@@ -68,6 +74,8 @@ public partial class TicketWindow : Window
 
     private void ComfirmButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
+
+        int newId = (int)(Helper.AllTickets.Select(s => s.Id).Last() + 1);
         if (TypeCB.SelectedIndex == -1)
         {
             Helper.CallMessageBox("Выберите тип билета", this);
@@ -80,8 +88,13 @@ public partial class TicketWindow : Window
         {
             Helper.CallMessageBox("Выберите мероприятия которые хотите посетить", this);
         }
-        if (Helper.AddTickets(new Ticket { Number = Number.Text, UserId = (UserCB.SelectedItem as User)!.Id, TypeId = (TypeCB.SelectedItem as TicketType).Id, ValidFrom = DateOnly.FromDateTime(StartDate.SelectedDate.Value.Date), ValidTo = DateOnly.FromDateTime(EndDate.SelectedDate.Value.Date), Price = FullPrice.Sum() }))
+        if (Helper.AddTickets(new Ticket {Id = newId, Number = Number.Text, UserId = (UserCB.SelectedItem as User)!.Id, TypeId = (TypeCB.SelectedItem as TicketType).Id, ValidFrom = DateOnly.FromDateTime(StartDate.SelectedDate.Value.Date), ValidTo = DateOnly.FromDateTime(EndDate.SelectedDate.Value.Date), Price = FullPrice.Sum() }))
         {
+            var RegList = new List<Event>(EventLB.SelectedItems as List<Event>);
+            foreach(var reg in RegList)
+            {
+                Helper.AddEventReg(new EventRegistration { EventId = reg.Id, TicketId = newId });
+            }
             new MainWindow().Show();
             this.Close();
         }

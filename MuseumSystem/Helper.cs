@@ -48,6 +48,10 @@ namespace MuseumSystem
         }
 
         // Таблицы связаные с билетами
+        public static List<Ticket> AllTickets
+        {
+            get => DBContext.Tickets.Include(t => t.User).Include(t => t.EventRegistrations).ThenInclude(t => t.Event).Include(t => t.Type).ToList();
+        }
         public static List<Ticket> Tickets
         {
             get => DBContext.Tickets.Where(t => t.UserId == currentUser.Id).Include(t => t.User).Include(t => t.EventRegistrations).ThenInclude(t => t.Event).Include(t => t.Type).ToList();
@@ -102,7 +106,6 @@ namespace MuseumSystem
         // Метод для добавления билета
         public static bool AddTickets(Ticket Ticket)
         {
-            Ticket.Id = (int)(DBContext.Tickets.OrderBy(s => s.Id).Last().Id + 1);
             DBContext.Add(Ticket);
             try
             {
@@ -242,12 +245,17 @@ namespace MuseumSystem
         }
         public static void RemoveEventEhibits(IncludedItem includedItem)
         {
-            includedItem = DBContext.IncludedItems.FirstOrDefault(i => i.EventId == includedItem.EventId && includedItem.ExhibitId == includedItem.ExhibitId)!;
+            includedItem = DBContext.IncludedItems.FirstOrDefault(i => i.EventId == includedItem.EventId && i.ExhibitId == includedItem.ExhibitId)!;
             DBContext.IncludedItems.Remove(includedItem);
 
             DBContext.SaveChanges();
         }
 
+        public static void AddEventReg(EventRegistration registration)
+        {
+            DBContext.EventRegistrations.Add(registration);
+            DBContext.SaveChanges();
+        }
 
         public static bool CanRegister(User User, Window Window)
         {

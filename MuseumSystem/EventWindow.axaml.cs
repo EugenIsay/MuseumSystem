@@ -22,6 +22,7 @@ public partial class EventWindow : Window
         TypeCB.ItemsSource = Helper.EventTypes;
         StartDate.MinYear = DateTime.Now;
         EndDate.MinYear= DateTime.Now;
+        ExhibitLB.SelectedItems = new List<Exhibit>();
     }
     public EventWindow(Event @event)
     {
