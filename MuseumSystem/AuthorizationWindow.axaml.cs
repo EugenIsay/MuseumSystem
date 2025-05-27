@@ -4,8 +4,12 @@ using Avalonia.Markup.Xaml;
 using Avalonia.VisualTree;
 using Microsoft.EntityFrameworkCore;
 using MsBox.Avalonia;
+using SkiaSharp;
 using System;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace MuseumSystem;
 
@@ -17,6 +21,10 @@ public partial class AuthorizationWindow : Window
         BDay.DisplayDateEnd = System.DateTime.Now.AddYears(-12);
         Gender.ItemsSource = Helper.Genders;
         Gender.SelectedIndex = 2;
+        //Helper.DBContext.MediaTypes.Add(new Models.MediaType() { Id = 3, Name = "Видео"});
+        //Helper.DBContext.SaveChanges();
+        //Helper.DBContext.AtachedMedia.Add(new Models.AtachedMedium() { Id = 3, ExhibitId = 1, Path = "sample-5s.mp4", Description="aaa", TypeId = 3 });
+        //Helper.DBContext.SaveChanges();
     }
     // Действия при авторизации
     private void Login_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -44,7 +52,7 @@ public partial class AuthorizationWindow : Window
         Reg.IsVisible = !Reg.IsVisible;
     }
     // Действия при регистрации
-    private void Register_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    private async void Register_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         if (RegPassword.Text != RegPasswordCheck.Text)
         {
@@ -56,7 +64,9 @@ public partial class AuthorizationWindow : Window
             Helper.CallMessageBox("Укажите дату рождения в формате день месяц год через точки", this);
             return;
         }
-        if (Helper.CanRegister(new Models.User() { FirstName = FirstName.Text,
+        var result = await Helper.CanRegister(new Models.User()
+        {
+            FirstName = FirstName.Text,
             LastName = LastName.Text,
             Patronymic = Patronymic.Text,
             Email = Email.Text,
@@ -64,9 +74,10 @@ public partial class AuthorizationWindow : Window
             PhoneNumber = Phone.Text,
             GenderId = (Gender.SelectedItem as Models.Gender).Id,
             Birthday = DateOnly.Parse(BDay.Text),
-            Password = Password.Text,
+            Password = RegPassword.Text,
             RoleId = 3
-        }, this))
+        }, this);
+        if (result)
         {
             new MainWindow().Show();
             this.Close();
@@ -87,4 +98,7 @@ public partial class AuthorizationWindow : Window
             MainText2.Text = "Пожалуйста, авторизуйтесь для продолжения, либо если в нашей системе нет вашего аккаунта, то зарегестрируйте его";
         }
     }
+
+
+
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avalonia.Media.Imaging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -50,6 +51,22 @@ public partial class Event
         }
     }
 
+    public string? ImageName { get; set; }
+    public Bitmap MainImageBitmap
+    {
+        get
+        {
+            try
+            {
+                return new Bitmap(Environment.CurrentDirectory + "/Pictures/" + ImageName);
+            }
+            catch
+            {
+                return new Bitmap(Environment.CurrentDirectory + "/no_image_available.jpg");
+            }
+        }
+    }
+
     public virtual ICollection<IncludedItem> IncludedItems { get; set; } = new List<IncludedItem>();
 
     public List<int> IncludedExhibits
@@ -60,4 +77,6 @@ public partial class Event
     public virtual User? Organizer { get; set; }
 
     public virtual EventType? Type { get; set; }
+
+    public virtual ICollection<EventReview> EventReviews { get; set; } = new List<EventReview>();
 }

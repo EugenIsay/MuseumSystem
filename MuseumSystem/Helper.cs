@@ -2,11 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using MsBox.Avalonia;
+using MsBox.Avalonia.Dto;
+using MsBox.Avalonia.Models;
 using MuseumSystem.Context;
 using MuseumSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +23,9 @@ namespace MuseumSystem
     {
         public static int Page = 0;
 
-        static User3Context DBContext = new User3Context();
+        static Random random = new Random();
+
+        public static User3Context DBContext = new User3Context();
 
         //Глобальное отслеживание польователя
         public static User currentUser = null;
@@ -238,6 +246,7 @@ namespace MuseumSystem
 
         }
 
+
         public static void AddEventEhibits(IncludedItem includedItem)
         {
             DBContext.IncludedItems.Add(includedItem);
@@ -257,7 +266,7 @@ namespace MuseumSystem
             DBContext.SaveChanges();
         }
 
-        public static bool CanRegister(User User, Window Window)
+        public static async Task<bool> CanRegister(User User, Window Window)
         {
             if (string.IsNullOrEmpty(User.Login))
             {
@@ -301,6 +310,12 @@ namespace MuseumSystem
             }
             try
             {
+                var result = await EmailTask(User.Email, Window);
+                if (!result)
+                {
+                    CallMessageBox("Вы не прошли проверку кода. Попробуте ещё раз", Window);
+                    return false;
+                }
                 if (User.Id == 0)
                 {
                     User.Id = DBContext.Users.Select(s => s.Id).Order().Last() + 1;
@@ -318,6 +333,53 @@ namespace MuseumSystem
             {
                 return false;
             }
+        }
+        private static async Task<bool> EmailTask(string email, Window window)
+        {
+            string code = $"{random.Next(100000, 999999)}";
+            // с какого аккаунта будет отправленно письмо
+            MailAddress from = new MailAddress("museum.system.00@gmail.com", "Код для регистрации");
+            // кому отправляем
+            MailAddress to = new MailAddress($"{email}");
+            // создаем объект сообщения
+            MailMessage m = new MailMessage(from, to);
+            // тема письма
+            m.Subject = "Пароль для потвердждения регистрации!";
+            // текст письма
+            string mail = $"<h2>{code}</h2>\r\n";
+            m.Body = mail;
+            // письмо представляет код html
+            m.IsBodyHtml = true;
+            // адрес smtp-сервера и порт, с которого будем отправлять письмо (если почта с которой ты отправляешь gmail, то оставляй так)
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            // логин и пароль
+            smtp.Credentials = new NetworkCredential("museum.system.00@gmail.com", "vtoy zmwb iiob zqkn");
+            smtp.EnableSsl = true;
+            await smtp.SendMailAsync(m);
+
+            var box = MsBox.Avalonia.MessageBoxManager.GetMessageBoxCustom(
+                new MessageBoxCustomParams()
+                {
+                    ContentTitle = "Вам на почвту отправленно сообщение",
+                    Width = 400,
+                    Height = 120,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                    ButtonDefinitions = new List<ButtonDefinition>
+                    {
+                        new ButtonDefinition { Name = "Потвердить", }
+                    },
+                    ContentMessage = "введите сюда код из сообщения",
+                    InputParams = new InputParams()
+                    {
+                        Label = "код",
+                    }
+                });
+            await box.ShowWindowDialogAsync(window);
+            if (code == box.InputValue)
+                return true;
+            else
+                return false;
+
         }
         static bool IsValidEmail(string email)
         {

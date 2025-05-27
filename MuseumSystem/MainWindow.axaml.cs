@@ -1,4 +1,11 @@
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Documents;
+using Avalonia.Controls.Primitives;
+using Avalonia.LogicalTree;
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.VisualTree;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 using MuseumSystem.Models;
@@ -20,7 +27,17 @@ namespace MuseumSystem
             BDay.DisplayDateEnd = System.DateTime.Now.AddYears(-12);
             Gender.ItemsSource = Helper.Genders;
             UserLB.ItemsSource = Helper.Users.Where(u => u.RoleId != 1);
+            ExibitTypeCB.ItemsSource = Helper.Categories.Concat( new List<Category>() { new Category() { Id = 0, Name="Все категории" } }).OrderBy(c => c.Id);
+            MainTab.SelectedIndex = Helper.Page;
+            ReadyButton.IsVisible = false;
+            MainImage.Source = new Bitmap(Environment.CurrentDirectory + "/autum.jpg");
+            HelloMessage.Text = $"Добропожаловать, {Helper.currentUser.FullName}!";
+            HappEventLB.ItemsSource = Helper.Events.Where(s => s.StartDatetime > DateTime.Now).OrderByDescending(e => e.StartDatetime).Take(3);
+            NearlyEventLB.ItemsSource = Helper.Events.Where(s => s.StartDatetime < DateTime.Now).OrderBy(e => e.EndDatetime).Take(3);
+        }
 
+        public void FillForm()
+        {
             Login.Text = Helper.currentUser.Login;
             FirstName.Text = Helper.currentUser.FirstName;
             LastName.Text = Helper.currentUser.LastName;
@@ -30,10 +47,7 @@ namespace MuseumSystem
             BDay.SelectedDate = Helper.currentUser.Birthday.ToDateTime(new TimeOnly());
             Gender.SelectedItem = Helper.currentUser.Gender;
             Password.Text = Helper.currentUser.Password;
-            MainTab.SelectedIndex = Helper.Page;
-            ReadyButton.IsVisible = false;
         }
-
         private void AddExhibitionButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             new ExhibitWindow().Show();
@@ -87,7 +101,7 @@ namespace MuseumSystem
                     return;
                 }
             }
-            if (Helper.CanRegister(new User()
+            var resultReg = await Helper.CanRegister(new User()
             {
                 FirstName = FirstName.Text,
                 LastName = LastName.Text,
@@ -99,9 +113,10 @@ namespace MuseumSystem
                 Birthday = DateOnly.Parse(BDay.Text),
                 Password = Password.Text,
                 RoleId = 3
-            }, this))
+            }, this);
+            if (resultReg)
             {
-                MessageBoxManager.GetMessageBoxStandard("Готвоо", "Пользователь успешно сохранён").ShowWindowDialogAsync(this);
+                MessageBoxManager.GetMessageBoxStandard("Готво", "Пользователь успешно сохранён").ShowWindowDialogAsync(this);
             }
         }
 
@@ -129,6 +144,7 @@ namespace MuseumSystem
             {
                 Helper.Page = MainTab.SelectedIndex;
                 ReadyButton.IsVisible = false;
+                FillForm();
             }
         }
 
@@ -199,6 +215,79 @@ namespace MuseumSystem
                 endDate = EndDate.SelectedDate.Value.DateTime;
             }
 
+        }
+
+        private void ExibiyHeader_PointerEntered(object? sender, Avalonia.Input.PointerEventArgs e)
+        {
+            var ctl = sender as Control;
+            if (ctl != null)
+            {
+                FlyoutBase.ShowAttachedFlyout(ctl);
+                var a = FlyoutBase.GetAttachedFlyout(ctl);
+            }
+        }
+
+        private void TextBlock_PointerEntered(object? sender, Avalonia.Input.PointerEventArgs e)
+        {
+            (sender as TextBlock).TextDecorations = TextDecorations.Underline;
+
+        }
+
+        private void TextBlock_PointerExited(object? sender, Avalonia.Input.PointerEventArgs e)
+        {
+            (sender as TextBlock).TextDecorations = null;
+        }
+
+        private void CategoriesLB_Changed(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+        {
+            Helper.Page = 3;
+            var fly = (sender as ListBox).FindAncestorOfType<FlyoutPresenter>();
+            var brd = fly.Parent.Parent;
+            var ctl = FlyoutBase.GetAttachedFlyout(brd as Border);
+            ctl.Hide();
+            if ((ExibitTypeCB.SelectedItem as Category).Id == 0)
+            {
+                ExhibitLB.ItemsSource = Helper.Exhibits;
+                ExhibitSelectedText.Text = "Экспонаты";
+            }
+            else
+            {
+                ExhibitLB.ItemsSource = Helper.Exhibits.Where(e => e.Id == (ExibitTypeCB.SelectedItem as Category).Id);
+                ExhibitSelectedText.Text = Helper.Categories.FirstOrDefault(c => c.Id == (ExibitTypeCB.SelectedItem as Category).Id).Name;
+            }
+
+            MainTab.SelectedIndex = Helper.Page;
+        }
+
+        private void Window_SizeChanged(object? sender, Avalonia.Controls.SizeChangedEventArgs e)
+        {
+            if (ExhibitLB.ItemsPanelRoot as UniformGrid != null)
+            {
+                if ((int)Math.Ceiling((sender as Window).Width / 600) > 1)
+                {
+                    (ExhibitLB.ItemsPanelRoot as UniformGrid).Columns = (int)Math.Ceiling( ((sender as Window).Width / 480));
+                }
+                else
+                {
+                    (ExhibitLB.ItemsPanelRoot as UniformGrid).Columns = 1;
+                }
+            }
+            if (BigList != null)
+            {
+                if ((sender as Window).Width <= 800)
+                {
+                    BigList.Columns = 1;
+                }
+                else
+                {
+                    BigList.Columns = 2;
+                }
+            }
+            if (MainGrid != null)
+            {
+                MainGrid.Width = (sender as Window).Width;
+                MainGrid.Height = (sender as Window).Height - 200;
+            }
         }
     }
 }

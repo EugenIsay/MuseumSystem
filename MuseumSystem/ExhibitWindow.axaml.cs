@@ -50,7 +50,13 @@ public partial class ExhibitWindow : Window
             return Media.Where(m => m.TypeId == 1).ToList();
         }
     }
-
+    public List<AtachedMedium> VideoMedia
+    {
+        get
+        {
+            return Media.Where(m => m.TypeId == 3).ToList();
+        }
+    }
     private bool isEdit = Helper.IsEmployee;
     public ExhibitWindow()
     {
@@ -68,6 +74,7 @@ public partial class ExhibitWindow : Window
         ImageShow.Source = exhibit.MainImageBitmap;
         PhotoList.ItemsSource = PhotoMedia;
         AudioList.ItemsSource = AudioMedia;
+        VideoButton.ItemsSource = VideoMedia;
         InitMediaPlayer();
     }
     public void ShowExhibit()
@@ -119,6 +126,14 @@ public partial class ExhibitWindow : Window
     {
         MainLibVLC = new(enableDebugLogs: true);
         MainMediaPlayer = new(MainLibVLC);
+
+        Control mediaPlayerControl = App.AppNativeVideoPlayerService.CreateControl();
+
+        mediaPlayerControl.Width = 400;
+        mediaPlayerControl.Height = 300;
+
+        VideoContainer.Children.Clear();
+        VideoContainer.Children.Add(mediaPlayerControl);
     }
     public void PlayButton_Click(object sender, RoutedEventArgs args)
     {
@@ -287,5 +302,10 @@ public partial class ExhibitWindow : Window
         Media.Remove(Media.FirstOrDefault(m => m.Id == int.Parse((sender as Button).Tag.ToString())));
         PhotoList.ItemsSource = PhotoMedia;
         AudioList.ItemsSource = AudioMedia;
+    }
+
+    private void VideoButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        App.AppNativeVideoPlayerService.Play($"{Environment.CurrentDirectory + "/" + (sender as AtachedMedium).Path}");
     }
 }

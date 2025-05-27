@@ -5,6 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="MuseumSystem.MainWindow"
 		xmlns:local="clr-namespace:MuseumSystem"
+		SizeChanged="Window_SizeChanged"
         Title="Система музея">
 	<Window.Styles>
 		<Style Selector="TabControl WrapPanel">
@@ -13,82 +14,147 @@
 	</Window.Styles>
 
 	<TabControl SelectionChanged="TabControl_SelectionChanged" Name="MainTab" Background="#E8BC75"  >
-		<TabControl.Styles>
-			<Style Selector="TabItem">
-				<Setter Property="HeaderTemplate">
-					<Setter.Value>
-						<DataTemplate>
-							<TextBlock Text="{Binding}" Foreground="White"/>
-						</DataTemplate>
-					</Setter.Value>
-				</Setter>
-				<Setter Property="Background" Value="#484244"/>
-			</Style>
-			<Style Selector="TabItem:selected">
-				<Setter Property="HeaderTemplate">
-					<Setter.Value>
-						<DataTemplate>
-							<TextBlock Text="{Binding}" Foreground="White"/>
-						</DataTemplate>
-					</Setter.Value>
-				</Setter>
-				<Setter Property="Background" Value="#484244"/>
-			</Style>
 
-		</TabControl.Styles>
+		<!--Вкладка содержащие мероприятия-->
+		<TabItem IsVisible="True" Header="a">
+			<TabItem.Header>
+				<TextBlock Text="Главное окно" Foreground="White"/>
+			</TabItem.Header>
+			<ScrollViewer>
+				<Grid RowDefinitions="*,*,*">
+					<Grid Name="MainGrid">
+						<Image Stretch="UniformToFill" Name="MainImage"/>
+						<Grid RowDefinitions="*,*,*" ColumnDefinitions="*,2*,*">
+							<Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Fill="#484244" Opacity="0,5"  />
+							<Viewbox Stretch="Uniform" Grid.Column="1" Grid.Row="1">
+								<TextBlock  TextWrapping="Wrap" Name="HelloMessage" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Viewbox>
+						</Grid>
 
+					</Grid>
+					<Border Grid.Row="1">
+						<ListBox >
 
-		<!--Вкладка содержащие Ближайшие мероприятия-->
-		<TabItem Header="Ближайшие мероприятия">
-			<DockPanel Margin="20">
-				<Button DockPanel.Dock="Bottom" Click="EventButton_Click" Content="Добавить мероприятия" IsVisible="{x:Static local:Helper.IsEmployee}"/>
-				<ListBox Name="EventLB" Background="#E0CFBD" >
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<Border DoubleTapped="Border_DoubleTapped_1" BorderBrush="#D77546" Background="{Binding Color}" BorderThickness="4">
-								<Grid Margin="20" RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*,10*,*">
-									<StackPanel Grid.Column="1" Orientation="Horizontal">
-										<TextBlock Text="{Binding Type.Name}"/>
-										<TextBlock Text=": "/>
-										<TextBlock Text="{Binding Title}"/>
-									</StackPanel>
-									<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-										<TextBlock Text="{Binding StartDatetime, StringFormat='С {0} '}"/>
-										<TextBlock Text="{Binding EndDatetime, StringFormat=', по {0} '}"/>
-										<TextBlock Text="{Binding Addres, StringFormat=' в {0}'}"/>
-									</StackPanel>
-									<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Organizer.FullName, StringFormat='Отсвественое лицо: {0}'}"/>
-									<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-										<TextBlock Text="{Binding MaxAttendees, StringFormat='Мероприятие запланировано на {0} мест '}"/>
-										<TextBlock Text="{Binding RegistrationCount, StringFormat='({0} занято) '}"/>
-										<TextBlock Text="{Binding Price, StringFormat='по цене {0} руб. за человека'}"/>
-									</StackPanel>
-									<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Description, StringFormat='Описание: {0}'}"/>
-									<ListBox Grid.Row="5" Grid.Column="1" Background="Transparent" ItemsSource="{Binding IncludedItems}">
-										<ListBox.ItemsPanel>
-											<ItemsPanelTemplate>
-												<VirtualizingStackPanel Orientation="Horizontal" />
-											</ItemsPanelTemplate>
-										</ListBox.ItemsPanel>
-										<ListBox.ItemTemplate>
-											<DataTemplate>
-												<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
-													<TextBlock Text="{Binding Exhibit.Name}"/>
-												</Border>
-											</DataTemplate>
-										</ListBox.ItemTemplate>
-									</ListBox>
-								</Grid>
-							</Border>
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-				</ListBox>
+						</ListBox>
+					</Border>
+					<Border Grid.Row="2">
+						<ListBox Background="Black" >
+
+						</ListBox>
+					</Border>
+				</Grid>
+			</ScrollViewer>
+		</TabItem>
+
+		<!--Вкладка содержащие мероприятия-->
+		<TabItem>
+			<TabItem.Header>
+				<TextBlock Text="Мероприятия" Foreground="White"/>
+			</TabItem.Header>
+			<DockPanel Margin="10">
+				<Button Foreground="White" DockPanel.Dock="Bottom" Click="EventButton_Click" Content="Добавить мероприятия" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+				<ScrollViewer>
+					<UniformGrid Name="BigList">
+						<ListBox Grid.Column="0" Name="EventLB" Background="#E0CFBD" >
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<Border DoubleTapped="Border_DoubleTapped_1" BorderBrush="#D77546" Background="{Binding Color}" BorderThickness="4">
+										<Grid Margin="20" RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*,10*,*">
+											<StackPanel Grid.Column="1" Orientation="Horizontal">
+												<TextBlock Text="{Binding Type.Name}"/>
+												<TextBlock Text=": "/>
+												<TextBlock Text="{Binding Title}"/>
+											</StackPanel>
+											<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+												<TextBlock Text="{Binding StartDatetime, StringFormat='С {0} '}"/>
+												<TextBlock Text="{Binding EndDatetime, StringFormat=', по {0} '}"/>
+												<TextBlock Text="{Binding Addres, StringFormat=' в {0}'}"/>
+											</StackPanel>
+											<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Organizer.FullName, StringFormat='Отсвественое лицо: {0}'}"/>
+											<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+												<TextBlock Text="{Binding MaxAttendees, StringFormat='Мероприятие запланировано на {0} мест '}"/>
+												<TextBlock Text="{Binding RegistrationCount, StringFormat='({0} занято) '}"/>
+												<TextBlock Text="{Binding Price, StringFormat='по цене {0} руб. за человека'}"/>
+											</StackPanel>
+											<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Description, StringFormat='Описание: {0}'}"/>
+											<ListBox Grid.Row="5" Grid.Column="1" Background="Transparent" ItemsSource="{Binding IncludedItems}">
+												<ListBox.ItemsPanel>
+													<ItemsPanelTemplate>
+														<VirtualizingStackPanel Orientation="Horizontal" />
+													</ItemsPanelTemplate>
+												</ListBox.ItemsPanel>
+												<ListBox.ItemTemplate>
+													<DataTemplate>
+														<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
+															<TextBlock Text="{Binding Exhibit.Name}"/>
+														</Border>
+													</DataTemplate>
+												</ListBox.ItemTemplate>
+											</ListBox>
+										</Grid>
+									</Border>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
+						<Grid VerticalAlignment="Top" RowDefinitions="*,10*,10*,*" Name="ExtraEventGrid" Grid.Column="1"> 
+							<TextBlock Text="Предстоящие события" VerticalAlignment="Bottom"/>
+							<ListBox Grid.Row="1" Name="HappEventLB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+								<ListBox.ItemsPanel>
+									<ItemsPanelTemplate>
+										<UniformGrid Columns="3" />
+									</ItemsPanelTemplate>
+								</ListBox.ItemsPanel>
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<Grid RowDefinitions="3*, *">
+											<Image Grid.Row="0" Stretch="UniformToFill" Source="{Binding MainImageBitmap}"/>
+											<StackPanel Grid.Row="1">
+												<TextBlock Text="{Binding Type.Name}"/>
+												<TextBlock Text="{Binding Title}"/>
+												<TextBlock Text="{Binding StartDatetime}"/>
+											</StackPanel>
+											<ToolTip.Tip>
+												<TextBlock Text="{Binding Description}"/>
+											</ToolTip.Tip>
+										</Grid>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+							<TextBlock Grid.Row="2" Text="Минвушие события" VerticalAlignment="Bottom"/>
+							<ListBox Grid.Row="3" Name="NearlyEventLB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+								<ListBox.ItemsPanel>
+									<ItemsPanelTemplate>
+										<UniformGrid Columns="3" />
+									</ItemsPanelTemplate>
+								</ListBox.ItemsPanel>
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<Grid RowDefinitions="3*, *">
+											<Image Grid.Row="0" Stretch="UniformToFill" Source="{Binding MainImageBitmap}" />
+											<StackPanel Grid.Row="1">
+												<TextBlock Text="{Binding Type.Name}"/>
+												<TextBlock Text="{Binding Title}"/>
+												<TextBlock Text="{Binding EndDatetime}"/>
+											</StackPanel>
+											<ToolTip.Tip>
+												<TextBlock Text="{Binding Description}"/>
+											</ToolTip.Tip>
+										</Grid>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</Grid>
+					</UniformGrid>
+				</ScrollViewer>
 			</DockPanel>
 		</TabItem>
 
 
 		<!--Вкладка содержащие Билеты пользователя-->
-		<TabItem Header="Билеты">
+		<TabItem>
+			<TabItem.Header>
+				<TextBlock Text="Билеты" Foreground="White"/>
+			</TabItem.Header>
 			<DockPanel>
 				<Button Content="Купить билет" DockPanel.Dock="Bottom" Click="TicketButton_Click"/>
 				<ListBox Name="TicketLB" Background="#E0CFBD">
@@ -119,39 +185,75 @@
 
 
 		<!--Вкладка содержащие Экспонаты-->
-		<TabItem Header="Экспонаты">
-			<DockPanel>
-				<Button Click="AddExhibitionButton_Click" DockPanel.Dock="Bottom" Content="Добавить экспонат" IsVisible="{x:Static local:Helper.IsEmployee}"/>
-				<ListBox Name="ExhibitLB" Background="#E0CFBD">
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<Border Background="#E0CFBD" DoubleTapped="Border_DoubleTapped" BorderBrush="#D77546" BorderThickness="4">
-								<Grid Margin="20" RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,10*,2*">
-									<TextBlock Grid.ColumnSpan="10" VerticalAlignment="Center" Text="{Binding InventoryNumber}"/>
-									<StackPanel Grid.Column="1" Orientation="Horizontal">
-										<TextBlock Text="{Binding Category.Name}"/>
-										<TextBlock Text=": "/>
-										<TextBlock Text="{Binding Name}"/>
-									</StackPanel>
-									<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ApproximateCost, StringFormat='Предположительная цена: {0}'}"/>
-									<StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
-										<TextBlock Text="{Binding AddDate, StringFormat='Добавлен в коллекцию: {0} '}"/>
-										<TextBlock Text="{Binding PermanentlyLocated, StringFormat=',находится в помещении: {0}'}"/>
-									</StackPanel>
-									<TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Description, StringFormat='Описание: {0}'}"/>
-									<Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*" Grid.Column="2" Grid.RowSpan="5">
-										<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Source="{Binding MainImageBitmap}"/>
+		<TabItem >
+			<TabItem.Header>
+				<Border PointerEntered="ExibiyHeader_PointerEntered" Background="Transparent">
+					<TextBlock Foreground="White" Text="Экспонаты"/>
+					<FlyoutBase.AttachedFlyout>
+						<Flyout Placement="Bottom">
+							<ListBox  Name="ExibitTypeCB" SelectionChanged="CategoriesLB_Changed">
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<Border Background="Transparent">
+											<TextBlock Background="Transparent" PointerEntered="TextBlock_PointerEntered" PointerExited="TextBlock_PointerExited" Text="{Binding Name}"/>
+										</Border>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</Flyout>
+					</FlyoutBase.AttachedFlyout>
+				</Border>
+			</TabItem.Header>
+			<ScrollViewer>
+				<DockPanel>
+					<ComboBox DockPanel.Dock="Top"/>
+					<Grid DockPanel.Dock="Top" ColumnDefinitions="2*,*,2*">
+						<Viewbox Stretch="Uniform" Grid.Column="1" >
+							<TextBlock Name="ExhibitSelectedText" HorizontalAlignment="Center" Text="Экспонаты" />
+						</Viewbox>
+					</Grid>
+
+					<Button Click="AddExhibitionButton_Click" DockPanel.Dock="Bottom" Content="Добавить экспонат" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+					<ListBox ScrollViewer.IsScrollInertiaEnabled="False" Name="ExhibitLB">
+						<ListBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<UniformGrid Columns="2" />
+							</ItemsPanelTemplate>
+						</ListBox.ItemsPanel>
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Border MaxHeight="480" Tag="1" Background="#E0CFBD" DoubleTapped="Border_DoubleTapped" BorderBrush="#D77546" BorderThickness="4">
+									<Grid Margin="10" RowDefinitions="3*,*" >
+										<Grid.Styles>
+											<Style Selector="TextBlock">
+												<Setter Property="HorizontalAlignment" Value="Center"/>
+											</Style>
+										</Grid.Styles>
+										<Image Stretch="UniformToFill" Source="{Binding MainImageBitmap}"/>
+										<StackPanel Grid.Row="1">
+											<TextBlock Text="{Binding Category.Name}"/>
+											<TextBlock Text="{Binding Name}"/>
+											<TextBlock Text="{Binding AddDate, StringFormat='Добавлен: {0} '}"/>
+										</StackPanel>
+
 									</Grid>
-								</Grid>
-							</Border>
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-				</ListBox>
-			</DockPanel>
+									<ToolTip.Tip >
+										<TextBlock Text="{Binding Description}"/>
+									</ToolTip.Tip>
+								</Border>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</ScrollViewer>
+
 		</TabItem>
 
 		<!--Вкладка для отчётов-->
-		<TabItem IsVisible="{x:Static local:Helper.IsAdmin}" Header="Отчётность">
+		<TabItem IsVisible="{x:Static local:Helper.IsAdmin}" >
+			<TabItem.Header>
+				<TextBlock Text="Отчётность" Foreground="White"/>
+			</TabItem.Header>
 			<Grid>
 				<Grid Name="StartReportGrid" RowDefinitions="*,*,*,*" >
 					<TextBlock Grid.Row="0" VerticalAlignment="Center" Text="Выберите за какой период времени вы хотите получить отчёт"/>
@@ -169,15 +271,18 @@
 					<Button Grid.Row="3" Content="Сформировать отчёт" Click="MakeReportButton_Click"/>
 				</Grid>
 				<Grid Name="ReportGrid" IsVisible="False">
-					
+
 				</Grid>
 			</Grid>
 
-			
+
 		</TabItem>
 
 		<!--Вкладка пользователей для амдинистратора-->
-		<TabItem Header="Список пользователей" IsVisible="{x:Static local:Helper.IsAdmin}">
+		<TabItem IsVisible="{x:Static local:Helper.IsAdmin}">
+			<TabItem.Header>
+				<TextBlock Text="Список пользователей" Foreground="White"/>
+			</TabItem.Header>
 			<DockPanel Margin="5">
 				<Button DockPanel.Dock="Bottom" Content="Заблокировать/разблокировать" Name="BlockButton" IsVisible="False" Click="BlockButton_Click"/>
 				<ListBox Background="#E0CFBD" SelectionMode="Multiple" SelectionChanged="UserLB_SelectionChanged" Margin="0,5" Name="UserLB">
@@ -202,7 +307,10 @@
 		</TabItem>
 
 		<!--Вкладка содержащие личные данные пользователя-->
-		<TabItem Header="Личный аккаунт">
+		<TabItem >
+			<TabItem.Header>
+				<TextBlock Text="Личный аккаунт" Foreground="White"/>
+			</TabItem.Header>
 			<Grid Margin="20" RowDefinitions="*,*,*,*,*,*,*" ColumnDefinitions="*,2*">
 				<Grid.Styles>
 					<Style Selector="TextBox">

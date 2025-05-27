@@ -44,7 +44,7 @@ public partial class User3Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=192.168.7.159;Port=5432;Database=user024;Username=user024;password=12345");
+        => optionsBuilder.UseNpgsql("Host=45.67.56.214;Port=5666;Database=user3;Username=user3;password=VOTfZ8PQ");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -106,6 +106,7 @@ public partial class User3Context : DbContext
             entity.Property(e => e.MaxAttendees).HasColumnName("max_attendees");
             entity.Property(e => e.OrganizerId).HasColumnName("organizer_id");
             entity.Property(e => e.Price).HasColumnName("price");
+            entity.Property(e => e.ImageName).HasColumnName("image_name");
             entity.Property(e => e.StartDatetime)
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("start_datetime");
@@ -352,6 +353,48 @@ public partial class User3Context : DbContext
                 .HasForeignKey(d => d.RoleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("users_roles_fk");
+        });
+
+        modelBuilder.Entity<ExhibitReview>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("exhibit_reviews_pk");
+
+            entity.ToTable("exhibit_reviews", "museum_schema");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Review).HasColumnName("review");
+            entity.Property(e => e.Raiting).HasColumnName("raiting");
+
+            entity.HasOne(d => d.User).WithMany(p => p.ExhibitReviews)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("exhibit_reviews_users_fk");
+
+            entity.HasOne(d => d.Exhibit).WithMany(p => p.ExhibitReviews)
+                .HasForeignKey(d => d.ExhibitId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("exhibit_reviews_exhibits_fk");
+        });
+
+        modelBuilder.Entity<EventReview>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("event_reviews_pk");
+
+            entity.ToTable("event_reviews", "museum_schema");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Review).HasColumnName("review");
+            entity.Property(e => e.Raiting).HasColumnName("raiting");
+
+            entity.HasOne(d => d.User).WithMany(p => p.EventReviews)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("event_reviews_users_fk");
+
+            entity.HasOne(d => d.Event).WithMany(p => p.EventReviews)
+                .HasForeignKey(d => d.EventId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("event_reviews_events_fk");
         });
 
         OnModelCreatingPartial(modelBuilder);

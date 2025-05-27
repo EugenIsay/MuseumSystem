@@ -52,4 +52,5 @@ public partial class Exhibit
     public virtual Category? Category { get; set; }
 
     public virtual ICollection<IncludedItem> IncludedItems { get; set; } = new List<IncludedItem>();
+    public virtual ICollection<ExhibitReview> ExhibitReviews { get; set; } = new List<ExhibitReview>();
 }
