@@ -58,6 +58,16 @@ public partial class ExhibitWindow : Window
         }
     }
     private bool isEdit = Helper.IsEmployee;
+
+    public bool HasComment
+    {
+        get => Helper.currentUser.ExhibitReviews.Where(r => r.ExhibitId == exhibit.Id).Count() > 0;
+    }
+
+    public List<ExhibitReview> reviews
+    {
+        get => exhibit.ExhibitReviews.Where(r => r.UserId != Helper.currentUser.Id).ToList();
+    }
     public ExhibitWindow()
     {
         InitializeComponent();
@@ -74,7 +84,15 @@ public partial class ExhibitWindow : Window
         ImageShow.Source = exhibit.MainImageBitmap;
         PhotoList.ItemsSource = PhotoMedia;
         AudioList.ItemsSource = AudioMedia;
-        VideoButton.ItemsSource = VideoMedia;
+        VideoList.ItemsSource = VideoMedia;
+        if (reviews.Count() > 3)
+        {
+            ReviewLB.ItemsSource = RandomComments(reviews.Count).Select(c => reviews[c]).ToList();
+        }
+        else
+        {
+            ReviewLB.ItemsSource = reviews;
+        }
         InitMediaPlayer();
     }
     public void ShowExhibit()
@@ -219,8 +237,10 @@ public partial class ExhibitWindow : Window
                 media.ExhibitId = EditedExhibit.Id;
                 if (media.TypeId == 1)
                     File.Copy(media.TempPath, Environment.CurrentDirectory + "/Pictures/" + media.Path);
-                else
+                else if (media.TypeId == 2)
                     File.Copy(media.TempPath, Environment.CurrentDirectory + "/Audio/" + media.Path);
+                else if (media.TypeId == 3)
+                    File.Copy(media.TempPath, Environment.CurrentDirectory + "/Video/" + media.Path);
                 media.TempPath = null;
                 Helper.AddMedia(media);
             }
@@ -228,8 +248,10 @@ public partial class ExhibitWindow : Window
             {
                 if (media.TypeId == 1)
                     File.Delete(Environment.CurrentDirectory + "/Pictures/" + media.Path);
-                else
+                else if (media.TypeId == 2)
                     File.Delete(Environment.CurrentDirectory + "/Audio/" + media.Path);
+                else if (media.TypeId == 3)
+                    File.Delete(Environment.CurrentDirectory + "/Video/" + media.Path);
                 Helper.RemoveMedia(media);
             }
             MessageBoxManager.GetMessageBoxStandard("Успех", "Всё прошло хорошо").ShowWindowDialogAsync(this);
@@ -268,6 +290,7 @@ public partial class ExhibitWindow : Window
             Media.Add(result);
             PhotoList.ItemsSource = PhotoMedia;
             AudioList.ItemsSource = AudioMedia;
+            VideoList.ItemsSource = VideoMedia;
         }
         catch
         {
@@ -302,10 +325,43 @@ public partial class ExhibitWindow : Window
         Media.Remove(Media.FirstOrDefault(m => m.Id == int.Parse((sender as Button).Tag.ToString())));
         PhotoList.ItemsSource = PhotoMedia;
         AudioList.ItemsSource = AudioMedia;
+        VideoList.ItemsSource = VideoMedia;
     }
 
     private void VideoButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        App.AppNativeVideoPlayerService.Play($"{Environment.CurrentDirectory + "/" + (sender as AtachedMedium).Path}");
+        AtachedMedium medium = VideoMedia.FirstOrDefault(media => media.Id == int.Parse((sender as Button)!.Tag!.ToString()!))!;
+        Media media;
+        if (medium.TempPath == null)
+        {
+
+            App.AppNativeVideoPlayerService.Play($"{Environment.CurrentDirectory + "/Video/" + medium.Path}");
+        }
+        else
+        {
+
+            App.AppNativeVideoPlayerService.Play($"{medium.TempPath}");
+        }
     }
+
+    private void Window_SizeChanged(object? sender, Avalonia.Controls.SizeChangedEventArgs e)
+    {
+        if ((sender as Window).Width < 960)
+        {
+            UGrid.Columns = 1;
+        }
+        else
+        {
+            UGrid.Columns = 2;
+        }
+    }
+    public List<int> RandomComments(int maxValue)
+    {
+        Random random = new Random();
+        return Enumerable.Range(0, maxValue + 1)
+                        .OrderBy(x => random.Next())
+                        .Take(3)
+                        .ToList();
+    }
+
 }

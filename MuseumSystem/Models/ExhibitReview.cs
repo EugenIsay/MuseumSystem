@@ -21,5 +21,14 @@ namespace MuseumSystem.Models
         public virtual User User { get; set; } = null!;
 
         public virtual Exhibit Exhibit { get; set; } = null!;
+
+        public string GoodReviews
+        {
+            get => new string('★', (int)Raiting);
+        }
+        public string BadReview
+        {
+            get => new string('★', 5 - (int)Raiting);
+        }
     }
 }

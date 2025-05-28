@@ -18,6 +18,7 @@ namespace MuseumSystem
 {
     public partial class MainWindow : Window
     {
+        int HEpage = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,6 +35,11 @@ namespace MuseumSystem
             HelloMessage.Text = $"Добропожаловать, {Helper.currentUser.FullName}!";
             HappEventLB.ItemsSource = Helper.Events.Where(s => s.StartDatetime > DateTime.Now).OrderByDescending(e => e.StartDatetime).Take(3);
             NearlyEventLB.ItemsSource = Helper.Events.Where(s => s.StartDatetime < DateTime.Now).OrderBy(e => e.EndDatetime).Take(3);
+            UsersEvents.ItemsSource = Helper.UsersEvents.Take(3);
+            if (UsersEvents.ItemCount == 0)
+            {
+                MessageHas.IsVisible = true;
+            }
         }
 
         public void FillForm()
@@ -123,7 +129,6 @@ namespace MuseumSystem
         private void ExitButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             new AuthorizationWindow().Show();
-            Helper.currentUser = null;
             Helper.Page = 0;
             this.Close();
         }
@@ -288,6 +293,49 @@ namespace MuseumSystem
                 MainGrid.Width = (sender as Window).Width;
                 MainGrid.Height = (sender as Window).Height - 200;
             }
+        }
+
+        private void Rectangle_PointerEntered(object? sender, Avalonia.Input.PointerEventArgs e)
+        {
+            if ((sender as Border).Child.Name == "LeftHE" && Helper.UsersEvents.Count() > 3)
+            {
+                LeftHE.IsVisible = true;
+            }
+            else 
+            {
+                RightHE.IsVisible = true;
+            }
+        }
+
+        private void Rectangle_PointerExited(object? sender, Avalonia.Input.PointerEventArgs e)
+        {
+            if ((sender as Border).Child.Name == "LeftHE" )
+            {
+                LeftHE.IsVisible = false;
+            }
+            else
+            {
+                RightHE.IsVisible = false;
+            }
+        }
+
+        private void HEButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            if ((sender as Button).Name == "BackHE")
+            {
+                if (HEpage == 0)
+                    HEpage = (int)Math.Ceiling(Helper.UsersEvents.Count() / 3.00);
+                else
+                    HEpage--;
+            }
+            else
+            {
+                if ((HEpage + 1) * 3 >= Helper.UsersEvents.Count())
+                    HEpage = 0;
+                else
+                    HEpage++;
+            }
+            UsersEvents.ItemsSource = Helper.UsersEvents.Skip(HEpage * 3).Take(3);
         }
     }
 }

@@ -61,6 +61,9 @@ public partial class User3Context : DbContext
                 .HasColumnType("character varying")
                 .HasColumnName("path");
             entity.Property(e => e.TypeId).HasColumnName("type_id");
+            entity.Property(e => e.Name)
+            .HasColumnType("character varying")
+            .HasColumnName("name");
 
             entity.HasOne(d => d.Exhibit).WithMany(p => p.AtachedMedia)
                 .HasForeignKey(d => d.ExhibitId)
@@ -364,6 +367,8 @@ public partial class User3Context : DbContext
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Review).HasColumnName("review");
             entity.Property(e => e.Raiting).HasColumnName("raiting");
+            entity.Property(e => e.ExhibitId).HasColumnName("exibit_id");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
 
             entity.HasOne(d => d.User).WithMany(p => p.ExhibitReviews)
                 .HasForeignKey(d => d.UserId)
@@ -385,6 +390,8 @@ public partial class User3Context : DbContext
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Review).HasColumnName("review");
             entity.Property(e => e.Raiting).HasColumnName("raiting");
+            entity.Property(e => e.EventId).HasColumnName("event_id");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
 
             entity.HasOne(d => d.User).WithMany(p => p.EventReviews)
                 .HasForeignKey(d => d.UserId)

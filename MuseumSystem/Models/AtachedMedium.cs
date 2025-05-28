@@ -7,7 +7,7 @@ namespace MuseumSystem.Models;
 public partial class AtachedMedium
 {
     public int Id { get; set; }
-
+    public string Name { get; set; } = null!;
     public int TypeId { get; set; }
 
     public int ExhibitId { get; set; }

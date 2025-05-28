@@ -53,4 +53,28 @@ public partial class Exhibit
 
     public virtual ICollection<IncludedItem> IncludedItems { get; set; } = new List<IncludedItem>();
     public virtual ICollection<ExhibitReview> ExhibitReviews { get; set; } = new List<ExhibitReview>();
+
+
+    public int AvgRaiting
+    {
+        get
+        {
+            if (ExhibitReviews.Select(s => s.Raiting).Count() == 0)
+                return 0;
+            else
+                return (int)ExhibitReviews.Select(s => s.Raiting).Average();
+        }
+    }
+    public bool HasRaiting
+    {
+        get => AvgRaiting > 0;
+    }
+    public string GoodReviews
+    {
+        get => new string('★', (int)AvgRaiting);
+    }
+    public string BadReview
+    {
+        get => new string('★', 5 - (int)AvgRaiting);
+    }
 }

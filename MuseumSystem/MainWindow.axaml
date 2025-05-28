@@ -6,6 +6,7 @@
         x:Class="MuseumSystem.MainWindow"
 		xmlns:local="clr-namespace:MuseumSystem"
 		SizeChanged="Window_SizeChanged"
+		Name="MainW"
         Title="Система музея">
 	<Window.Styles>
 		<Style Selector="TabControl WrapPanel">
@@ -15,13 +16,13 @@
 
 	<TabControl SelectionChanged="TabControl_SelectionChanged" Name="MainTab" Background="#E8BC75"  >
 
-		<!--Вкладка содержащие мероприятия-->
+		<!--Вкладка главного окна-->
 		<TabItem IsVisible="True" Header="a">
 			<TabItem.Header>
 				<TextBlock Text="Главное окно" Foreground="White"/>
 			</TabItem.Header>
 			<ScrollViewer>
-				<Grid RowDefinitions="*,*,*">
+				<Grid RowDefinitions="2*,*,*">
 					<Grid Name="MainGrid">
 						<Image Stretch="UniformToFill" Name="MainImage"/>
 						<Grid RowDefinitions="*,*,*" ColumnDefinitions="*,2*,*">
@@ -30,14 +31,67 @@
 								<TextBlock  TextWrapping="Wrap" Name="HelloMessage" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 							</Viewbox>
 						</Grid>
-
 					</Grid>
-					<Border Grid.Row="1">
-						<ListBox >
-
-						</ListBox>
+					<Border Margin="0, 20" Grid.Row="1">
+						<DockPanel>
+							<TextBlock Text="Мероприятия на которые вы записаны" DockPanel.Dock="Top"/>
+							<Grid>
+								<TextBlock Name="MessageHas" IsVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Вы не записаны ни на какие мерориятия. Чтобы записаться перейдите во вкладку билеті" TextWrapping="Wrap"/>
+								<ListBox Background="#E8BC75" Margin="50,0" Name="UsersEvents" HorizontalAlignment="Stretch">
+									<ListBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<UniformGrid Columns="3" />
+										</ItemsPanelTemplate>
+									</ListBox.ItemsPanel>
+									<ListBox.ItemTemplate>
+										<DataTemplate>
+											<Grid Margin="10" RowDefinitions="3*, *">
+												<Image Grid.Row="0" Stretch="UniformToFill" Source="{Binding MainImageBitmap}"/>
+												<StackPanel Grid.Row="1">
+													<TextBlock Text="{Binding Type.Name}"/>
+													<TextBlock Text="{Binding Title}"/>
+													<TextBlock Text="{Binding StartDatetime}"/>
+												</StackPanel>
+												<ToolTip.Tip>
+													<TextBlock Text="{Binding Description}"/>
+												</ToolTip.Tip>
+											</Grid>
+										</DataTemplate>
+									</ListBox.ItemTemplate>
+								</ListBox>
+								
+								<Border Width="50" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="Transparent" PointerEntered="Rectangle_PointerEntered" PointerExited="Rectangle_PointerExited">
+									<Grid Name="LeftHE" IsVisible="False">
+										<Rectangle HorizontalAlignment="Left"  VerticalAlignment="Stretch" Width="100" >
+											<Rectangle.Fill>
+												<LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
+													<GradientStop Offset="0" Color="White"/>
+													<GradientStop Offset="1" Color="Transparent"/>
+												</LinearGradientBrush>
+											</Rectangle.Fill>
+										</Rectangle>
+										<Button HorizontalAlignment="Left" VerticalAlignment="Center" Name="BackHE" Content="Назад" Click="HEButton_Click"/>
+									</Grid>
+								</Border>
+								
+								<Border Width="100" VerticalAlignment="Stretch" HorizontalAlignment="Right" Background="Transparent" PointerEntered="Rectangle_PointerEntered" PointerExited="Rectangle_PointerExited" >
+									<Grid Name="RightHE" IsVisible="False">
+										<Rectangle HorizontalAlignment="Right"  VerticalAlignment="Stretch" Width="100" >
+											<Rectangle.Fill>
+												<LinearGradientBrush StartPoint="100%,0%" EndPoint="0%,0%">
+													<GradientStop Offset="0" Color="White"/>
+													<GradientStop Offset="1" Color="Transparent"/>
+												</LinearGradientBrush>
+											</Rectangle.Fill>
+										</Rectangle>
+										<Button HorizontalAlignment="Right" VerticalAlignment="Center" Name="ForvardHE" Content="Вперёд" Click="HEButton_Click"/>
+									</Grid>
+								</Border>
+								
+							</Grid>
+						</DockPanel>
 					</Border>
-					<Border Grid.Row="2">
+					<Border Margin="10, 20" Grid.Row="2">
 						<ListBox Background="Black" >
 
 						</ListBox>
@@ -55,7 +109,7 @@
 				<Button Foreground="White" DockPanel.Dock="Bottom" Click="EventButton_Click" Content="Добавить мероприятия" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 				<ScrollViewer>
 					<UniformGrid Name="BigList">
-						<ListBox Grid.Column="0" Name="EventLB" Background="#E0CFBD" >
+						<ListBox Margin="0,5" Grid.Column="0" Name="EventLB" Background="#E0CFBD" >
 							<ListBox.ItemTemplate>
 								<DataTemplate>
 									<Border DoubleTapped="Border_DoubleTapped_1" BorderBrush="#D77546" Background="{Binding Color}" BorderThickness="4">
@@ -96,9 +150,9 @@
 								</DataTemplate>
 							</ListBox.ItemTemplate>
 						</ListBox>
-						<Grid VerticalAlignment="Top" RowDefinitions="*,10*,10*,*" Name="ExtraEventGrid" Grid.Column="1"> 
+						<Grid VerticalAlignment="Top" RowDefinitions="*,10*,*,*,10*" Name="ExtraEventGrid" Grid.Column="1">
 							<TextBlock Text="Предстоящие события" VerticalAlignment="Bottom"/>
-							<ListBox Grid.Row="1" Name="HappEventLB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+							<ListBox  Grid.Row="1" Name="HappEventLB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 								<ListBox.ItemsPanel>
 									<ItemsPanelTemplate>
 										<UniformGrid Columns="3" />
@@ -120,8 +174,8 @@
 									</DataTemplate>
 								</ListBox.ItemTemplate>
 							</ListBox>
-							<TextBlock Grid.Row="2" Text="Минвушие события" VerticalAlignment="Bottom"/>
-							<ListBox Grid.Row="3" Name="NearlyEventLB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+							<TextBlock Grid.Row="3" Text="Минвушие события" VerticalAlignment="Bottom"/>
+							<ListBox Grid.Row="4" Name="NearlyEventLB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 								<ListBox.ItemsPanel>
 									<ItemsPanelTemplate>
 										<UniformGrid Columns="3" />
@@ -217,7 +271,7 @@
 					<ListBox ScrollViewer.IsScrollInertiaEnabled="False" Name="ExhibitLB">
 						<ListBox.ItemsPanel>
 							<ItemsPanelTemplate>
-								<UniformGrid Columns="2" />
+								<UniformGrid Columns="3" />
 							</ItemsPanelTemplate>
 						</ListBox.ItemsPanel>
 						<ListBox.ItemTemplate>
@@ -234,6 +288,19 @@
 											<TextBlock Text="{Binding Category.Name}"/>
 											<TextBlock Text="{Binding Name}"/>
 											<TextBlock Text="{Binding AddDate, StringFormat='Добавлен: {0} '}"/>
+											<StackPanel HorizontalAlignment="Center" IsVisible="{Binding HasRaiting}" Orientation="Horizontal">
+												<TextBlock Foreground="Yellow" Text="{Binding GoodReviews}"  >
+													<TextBlock.Effect>
+														<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>
+													</TextBlock.Effect>
+												</TextBlock>
+												<TextBlock Foreground="Gray" Text="{Binding BadReview}" >
+													<TextBlock.Effect>
+														<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>
+													</TextBlock.Effect>
+												</TextBlock>
+
+											</StackPanel>
 										</StackPanel>
 
 									</Grid>

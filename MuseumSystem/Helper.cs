@@ -25,10 +25,14 @@ namespace MuseumSystem
 
         static Random random = new Random();
 
-        public static User3Context DBContext = new User3Context();
+        static User3Context DBContext = new User3Context();
 
         //Глобальное отслеживание польователя
-        public static User currentUser = null;
+        static int currentUserId = 0;
+        public static User currentUser
+        {
+            get => Users.FirstOrDefault(u => u.Id == currentUserId);
+        }
 
         //Таблицы с связаные с пользователями
         public static List<Gender> Genders
@@ -37,7 +41,7 @@ namespace MuseumSystem
         }
         public static List<User> Users
         {
-            get => DBContext.Users.Include(u => u.Gender).Include(u => u.Role).ToList();
+            get => DBContext.Users.Include(u => u.Gender).Include(u => u.Role).Include(u => u.Tickets).ToList();
         }
 
 
@@ -72,7 +76,7 @@ namespace MuseumSystem
         // Таблицы связаные экспонатами
         public static List<Exhibit> Exhibits
         {
-            get => DBContext.Exhibits.Include(e => e.AtachedMedia).Include(e => e.Category).ToList();
+            get => DBContext.Exhibits.Include(e => e.AtachedMedia).Include(e => e.Category).Include(e => e.ExhibitReviews).ToList();
         }
         public static List<Category> Categories
         {
@@ -82,10 +86,15 @@ namespace MuseumSystem
         // Метод для проверки при входе
         public static bool IsExist(string FirsRow, string Password)
         {
-            currentUser = Users.FirstOrDefault(u => (u.Login == FirsRow || u.Email == FirsRow) && u.Password == Password && u.IsActive == true)!;
-            return currentUser != null;
+            currentUserId = Users.FirstOrDefault(u => (u.Login == FirsRow || u.Email == FirsRow) && u.Password == Password && u.IsActive == true).Id!;
+            return currentUserId != null;
         }
 
+
+        public static List<EventRegistration> registrations
+        {
+            get => DBContext.EventRegistrations.Include(r => r.Event).ToList();
+        }
 
         public static decimal HowMuchMoney
         {
@@ -104,6 +113,13 @@ namespace MuseumSystem
         {
             get => DBContext.Exhibits.Where(u => u.AddDate.Value.Year == DateTime.Now.Year).Count();
         }
+
+        public static List<Event> UsersEvents
+        {
+            get => registrations.Where(u => u.Id == currentUser.Id).Select(r => r.Event).ToList();
+        }
+
+
         public static void ChangeUserBool(User User)
         {
             User.IsActive = !User.IsActive;
@@ -326,7 +342,7 @@ namespace MuseumSystem
                     DBContext.Users.Update(User);
                 }
                 DBContext.SaveChanges();
-                currentUser = User;
+                currentUserId = User.Id;
                 return true;
             }
             catch
