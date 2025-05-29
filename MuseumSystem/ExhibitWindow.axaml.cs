@@ -72,6 +72,9 @@ public partial class ExhibitWindow : Window
     {
         InitializeComponent();
         EditCategoryCB.ItemsSource = Helper.Categories;
+        CommentSection.IsVisible = false;
+        AddComment.IsVisible = false;
+        RedactComment.IsVisible = false;
         InitMediaPlayer();
     }
     public ExhibitWindow(Exhibit Exhibit)
@@ -85,6 +88,8 @@ public partial class ExhibitWindow : Window
         PhotoList.ItemsSource = PhotoMedia;
         AudioList.ItemsSource = AudioMedia;
         VideoList.ItemsSource = VideoMedia;
+        AddComment.IsVisible = !HasComment;
+        RedactComment.IsVisible = HasComment;
         if (reviews.Count() > 3)
         {
             ReviewLB.ItemsSource = RandomComments(reviews.Count).Select(c => reviews[c]).ToList();
@@ -257,6 +262,9 @@ public partial class ExhibitWindow : Window
             MessageBoxManager.GetMessageBoxStandard("Успех", "Всё прошло хорошо").ShowWindowDialogAsync(this);
             exhibit = Helper.Exhibits.FirstOrDefault(e => e.Id == EditedExhibit.Id)!;
             Media = (List<AtachedMedium>)exhibit.AtachedMedia;
+            CommentSection.IsVisible = true;
+            AddComment.IsVisible = !HasComment;
+            RedactComment.IsVisible = HasComment;
         }
         else
         {
@@ -364,4 +372,26 @@ public partial class ExhibitWindow : Window
                         .ToList();
     }
 
+    private void CommentButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        new CommentWindow(reviews.Concat(Helper.currentUser.ExhibitReviews.Where(e => e.ExhibitId == exhibit.Id)).ToList()).ShowDialog(this);
+    }
+
+    private void EditCommentButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        if (SelectedValue == 0)
+        {
+            Helper.CallMessageBox("", this);
+            return;
+        }    
+        Helper.EditExhibitComment(new ExhibitReview { Raiting = SelectedValue, ExhibitId = exhibit.Id, UserId = Helper.currentUser.Id, Review = ReviewBox.Text });
+    }
+    int SelectedValue = 0;
+    private void RadioButton_Checked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        if (sender is RadioButton radioButton)
+        {
+            SelectedValue = int.Parse(radioButton.Tag?.ToString());
+        }
+    }
 }

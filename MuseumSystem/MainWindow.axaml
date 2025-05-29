@@ -14,7 +14,7 @@
 		</Style>
 	</Window.Styles>
 
-	<TabControl SelectionChanged="TabControl_SelectionChanged" Name="MainTab" Background="#E8BC75"  >
+	<TabControl SelectionChanged="TabControl_SelectionChanged" Name="MainTab" Background="#E8BC75" >
 
 		<!--Вкладка главного окна-->
 		<TabItem IsVisible="True" Header="a">

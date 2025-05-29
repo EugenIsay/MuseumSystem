@@ -86,8 +86,12 @@ namespace MuseumSystem
         // Метод для проверки при входе
         public static bool IsExist(string FirsRow, string Password)
         {
-            currentUserId = Users.FirstOrDefault(u => (u.Login == FirsRow || u.Email == FirsRow) && u.Password == Password && u.IsActive == true).Id!;
-            return currentUserId != null;
+            if (Users.FirstOrDefault(u => (u.Login == FirsRow || u.Email == FirsRow) && u.Password == Password && u.IsActive == true) != null)
+            {
+                currentUserId = Users.FirstOrDefault(u => (u.Login == FirsRow || u.Email == FirsRow) && u.Password == Password && u.IsActive == true).Id!;
+                return true;
+            }
+            return false;
         }
 
 
@@ -119,7 +123,18 @@ namespace MuseumSystem
             get => registrations.Where(u => u.Id == currentUser.Id).Select(r => r.Event).ToList();
         }
 
-
+        public static void EditExhibitComment(ExhibitReview review)
+        {
+            if (currentUser.ExhibitReviews.FirstOrDefault(e => e.ExhibitId == review.ExhibitId) != null)
+            {
+                DBContext.ExhibitReviews.Update(review);
+            }
+            else
+            {
+                DBContext.ExhibitReviews.Add(review);
+            }
+            DBContext.SaveChanges();
+        }
         public static void ChangeUserBool(User User)
         {
             User.IsActive = !User.IsActive;

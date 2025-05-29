@@ -31,33 +31,37 @@
 		</Border>
 		<ScrollViewer>
 			<DockPanel>
-				
-				
+
+
 				<!--Секция комменатриев-->
-				<DockPanel Name="CommentSection" DockPanel.Dock="Bottom">
-					<Border Margin="10" DockPanel.Dock="Top" HorizontalAlignment="Left">
-						<Grid RowDefinitions="*,3*,*">
-							<StackPanel Orientation="Horizontal">
-								<RadioButton GroupName="Group"
-											 Content="1★"/>
-								<RadioButton GroupName="Group"
-										  Content="2★"/>
-								<RadioButton GroupName="Group"
-										  Content="3★"/>
-								<RadioButton GroupName="Group"
-										  Content="4★"/>
-								<RadioButton GroupName="Group"
-										  Content="5★"/>
-							</StackPanel>
-							<TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Watermark="Почему вы выбрали такую оценку?"/>
-							<Button Name="AddComment" Grid.Row="2" Content="Добавить комментарий"/>
-							<Button Name="RedactComment" Grid.Row="2" Content="Редактировать"/>
-						</Grid>
-					</Border>
+				<DockPanel Margin="10" Name="CommentSection" DockPanel.Dock="Bottom">
+					<Grid DockPanel.Dock="Top" HorizontalAlignment="Stretch" ColumnDefinitions="*,*,*">
+						<Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" >
+							<Grid  RowDefinitions="*,3*,*">
+								<StackPanel Orientation="Horizontal">
+									<RadioButton GroupName="ValueGroup" Checked="RadioButton_Checked" Tag="1"
+												 Content="1★"/>
+									<RadioButton GroupName="ValueGroup" Checked="RadioButton_Checked" Tag="2"
+											  Content="2★"/>
+									<RadioButton GroupName="ValueGroup" Checked="RadioButton_Checked" Tag="3"
+											  Content="3★"/>
+									<RadioButton GroupName="ValueGroup" Checked="RadioButton_Checked" Tag="4"
+											  Content="4★"/>
+									<RadioButton GroupName="ValueGroup" Checked="RadioButton_Checked" Tag="5"
+											  Content="5★"/>
+								</StackPanel>
+								<TextBox Name="ReviewBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Watermark="Почему вы выбрали такую оценку?"/>
+								<Button Name="AddComment" Grid.Row="2" Click="EditCommentButton_Click" Content="Добавить комментарий"/>
+								<Button Name="RedactComment" Grid.Row="2" Click="EditCommentButton_Click" Content="Редактировать"/>
+							</Grid>
+						</Border>
+					</Grid>
+
+					<Button DockPanel.Dock="Bottom" Margin="10" Content="Посмотреть все комментарии" Click="CommentButton_Click"/>
 					<ListBox Margin="10" HorizontalAlignment="Stretch" Name="ReviewLB">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
-								<Border>
+								<Border Background="#E0CFBD" BorderBrush="Black" BorderThickness="2">
 									<Grid RowDefinitions="*,*,2*" >
 										<TextBlock Text="{Binding User.Login}"/>
 										<StackPanel Grid.Row="1" Orientation="Horizontal">
@@ -72,7 +76,7 @@
 					</ListBox>
 				</DockPanel>
 
-				
+
 				<!--Видео сегмент-->
 				<Expander HorizontalAlignment="Stretch" DockPanel.Dock="Bottom" Header="Связанныые видео файлы">
 					<Grid DockPanel.Dock="Bottom" ColumnDefinitions="*,*">
@@ -80,10 +84,14 @@
 						<ListBox HorizontalAlignment="Stretch" Name="VideoList">
 							<ListBox.ItemTemplate>
 								<DataTemplate>
-									<Border BorderBrush="Black" BorderThickness="2" CornerRadius="2" Background="Transparent">
-										<Button Tag="{Binding Id}" Click="VideoButton_Click" Content="Воспроизвести"/>
+									<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
+										<DockPanel>
+											<Button Content="-" Click="DeleteButton_Click" Tag="{Binding Id}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+											<Button Content="  ▶  " Tag="{Binding Id}" Click="PlayButton_Click" />
+											<TextBlock Text="{Binding Name}"/>
+										</DockPanel>
 										<ToolTip.Tip>
-											<TextBlock Text="{Binding Description}"/>
+											<TextBlock  Text="{Binding Description}"/>
 										</ToolTip.Tip>
 									</Border>
 								</DataTemplate>
@@ -101,17 +109,13 @@
 				<Expander DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Header="Связанные аудио файлы">
 					<DockPanel>
 						<ListBox Name="AudioList">
-							<ListBox.ItemsPanel>
-								<ItemsPanelTemplate>
-									<VirtualizingStackPanel Orientation="Horizontal" />
-								</ItemsPanelTemplate>
-							</ListBox.ItemsPanel>
 							<ListBox.ItemTemplate>
 								<DataTemplate>
 									<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
 										<DockPanel>
-											<Button  DockPanel.Dock="Bottom" Content="-" Click="DeleteButton_Click" Tag="{Binding Id}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
-											<Button Content="Play" Tag="{Binding Id}" Click="PlayButton_Click" />
+											<Button Content="-" Click="DeleteButton_Click" Tag="{Binding Id}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+											<Button Content="  ▶  " Tag="{Binding Id}" Click="PlayButton_Click" />
+											<TextBlock Text="{Binding Name}"/>
 										</DockPanel>
 										<ToolTip.Tip>
 											<TextBlock  Text="{Binding Description}"/>
@@ -122,8 +126,8 @@
 						</ListBox>
 					</DockPanel>
 				</Expander>
-				
-				
+
+
 				<UniformGrid Name="UGrid" Columns="2">
 
 					<!--Фото информация экспоната-->

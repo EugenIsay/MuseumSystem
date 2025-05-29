@@ -40,6 +40,7 @@ namespace MuseumSystem
             {
                 MessageHas.IsVisible = true;
             }
+            Resize();
         }
 
         public void FillForm()
@@ -266,11 +267,15 @@ namespace MuseumSystem
 
         private void Window_SizeChanged(object? sender, Avalonia.Controls.SizeChangedEventArgs e)
         {
+            Resize();
+        }
+        private void Resize()
+        {
             if (ExhibitLB.ItemsPanelRoot as UniformGrid != null)
             {
-                if ((int)Math.Ceiling((sender as Window).Width / 600) > 1)
+                if ((int)Math.Ceiling(MainW.Width / 600) > 1)
                 {
-                    (ExhibitLB.ItemsPanelRoot as UniformGrid).Columns = (int)Math.Ceiling( ((sender as Window).Width / 480));
+                    (ExhibitLB.ItemsPanelRoot as UniformGrid).Columns = (int)Math.Ceiling(MainW.Width / 480);
                 }
                 else
                 {
@@ -279,7 +284,7 @@ namespace MuseumSystem
             }
             if (BigList != null)
             {
-                if ((sender as Window).Width <= 800)
+                if (MainW.Width <= 800)
                 {
                     BigList.Columns = 1;
                 }
@@ -290,10 +295,12 @@ namespace MuseumSystem
             }
             if (MainGrid != null)
             {
-                MainGrid.Width = (sender as Window).Width;
-                MainGrid.Height = (sender as Window).Height - 200;
+                MainGrid.Width = MainW.Width;
+                MainGrid.Height = MainW.Height - 200;
             }
         }
+
+
 
         private void Rectangle_PointerEntered(object? sender, Avalonia.Input.PointerEventArgs e)
         {

@@ -42,6 +42,10 @@ public partial class User3Context : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<ExhibitReview> ExhibitReviews { get; set; }
+
+    public virtual DbSet<EventReview> EventReviews { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Host=45.67.56.214;Port=5666;Database=user3;Username=user3;password=VOTfZ8PQ");

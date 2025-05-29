@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MuseumSystem.CommentWindow"
+        Title="CommentWindow">
+	<DockPanel>
+		<Border Background="#484244" DockPanel.Dock="Top">
+			<Grid ColumnDefinitions="*,*,*">
+				<Button Margin="40" Grid.Column="2" HorizontalAlignment="Right" Content="Назад" Click="BackButton_Click"/>
+			</Grid>
+		</Border>
+		<ListBox Name="CommentLB">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border>
+						<Grid RowDefinitions="*,*,2*" >
+							<TextBlock Text="{Binding User.Login}"/>
+							<StackPanel Grid.Row="1" Orientation="Horizontal">
+								<TextBlock Foreground="Yellow" Text="{Binding GoodReviews}"/>
+								<TextBlock Foreground="Gray" Text="{Binding BadReview}"/>
+							</StackPanel>
+							<TextBlock Grid.Row="2" Text="{Binding Review}"/>
+						</Grid>
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</DockPanel>
+</Window>
