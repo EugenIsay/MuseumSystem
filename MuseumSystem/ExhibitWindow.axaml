@@ -87,7 +87,7 @@
 									<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
 										<DockPanel>
 											<Button Content="-" Click="DeleteButton_Click" Tag="{Binding Id}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
-											<Button Content="  ▶  " Tag="{Binding Id}" Click="PlayButton_Click" />
+											<Button Content="  ▶  " Tag="{Binding Id}" Click="VideoButton_Click" />
 											<TextBlock Text="{Binding Name}"/>
 										</DockPanel>
 										<ToolTip.Tip>

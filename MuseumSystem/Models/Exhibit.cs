@@ -52,6 +52,11 @@ public partial class Exhibit
     public virtual Category? Category { get; set; }
 
     public virtual ICollection<IncludedItem> IncludedItems { get; set; } = new List<IncludedItem>();
+
+    public List<string> AdditionalImages
+    {
+        get => AtachedMedia.Where(i => i.TypeId == 1).Select(i => i.Path).ToList();
+    }
     public virtual ICollection<ExhibitReview> ExhibitReviews { get; set; } = new List<ExhibitReview>();
 
 

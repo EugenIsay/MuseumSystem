@@ -283,7 +283,10 @@
 												<Setter Property="HorizontalAlignment" Value="Center"/>
 											</Style>
 										</Grid.Styles>
-										<Image Stretch="UniformToFill" Source="{Binding MainImageBitmap}"/>
+										<Image  Stretch="UniformToFill" Source="{Binding MainImageBitmap}"/>
+										<Border Tag="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" PointerEntered="EIBorder_PointerEntered" PointerExited="EIBorder_PointerExited">
+											<Image Stretch="UniformToFill" />
+										</Border>
 										<StackPanel Grid.Row="1">
 											<TextBlock Text="{Binding Category.Name}"/>
 											<TextBlock Text="{Binding Name}"/>
@@ -299,14 +302,14 @@
 														<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>
 													</TextBlock.Effect>
 												</TextBlock>
-
+												<ToolTip.Tip >
+													<TextBlock Text="{Binding Description}"/>
+												</ToolTip.Tip>
 											</StackPanel>
 										</StackPanel>
 
 									</Grid>
-									<ToolTip.Tip >
-										<TextBlock Text="{Binding Description}"/>
-									</ToolTip.Tip>
+
 								</Border>
 							</DataTemplate>
 						</ListBox.ItemTemplate>

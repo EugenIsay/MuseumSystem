@@ -5,6 +5,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.LogicalTree;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Threading;
 using Avalonia.VisualTree;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
@@ -19,6 +20,7 @@ namespace MuseumSystem
     public partial class MainWindow : Window
     {
         int HEpage = 0;
+        private DispatcherTimer _animationTimer;
         public MainWindow()
         {
             InitializeComponent();
@@ -28,7 +30,7 @@ namespace MuseumSystem
             BDay.DisplayDateEnd = System.DateTime.Now.AddYears(-12);
             Gender.ItemsSource = Helper.Genders;
             UserLB.ItemsSource = Helper.Users.Where(u => u.RoleId != 1);
-            ExibitTypeCB.ItemsSource = Helper.Categories.Concat( new List<Category>() { new Category() { Id = 0, Name="Все категории" } }).OrderBy(c => c.Id);
+            ExibitTypeCB.ItemsSource = Helper.Categories.Concat(new List<Category>() { new Category() { Id = 0, Name = "Все категории" } }).OrderBy(c => c.Id);
             MainTab.SelectedIndex = Helper.Page;
             ReadyButton.IsVisible = false;
             MainImage.Source = new Bitmap(Environment.CurrentDirectory + "/autum.jpg");
@@ -197,7 +199,7 @@ namespace MuseumSystem
                 case 2:
                     DateSelector.IsVisible = true;
                     break;
-                default: 
+                default:
                     return;
 
             }
@@ -308,7 +310,7 @@ namespace MuseumSystem
             {
                 LeftHE.IsVisible = true;
             }
-            else 
+            else if (Helper.UsersEvents.Count() > 3)
             {
                 RightHE.IsVisible = true;
             }
@@ -316,7 +318,7 @@ namespace MuseumSystem
 
         private void Rectangle_PointerExited(object? sender, Avalonia.Input.PointerEventArgs e)
         {
-            if ((sender as Border).Child.Name == "LeftHE" )
+            if ((sender as Border).Child.Name == "LeftHE")
             {
                 LeftHE.IsVisible = false;
             }
@@ -343,6 +345,56 @@ namespace MuseumSystem
                     HEpage++;
             }
             UsersEvents.ItemsSource = Helper.UsersEvents.Skip(HEpage * 3).Take(3);
+        }
+
+
+        List<AtachedMedium> Images = new List<AtachedMedium>();
+        Border currentHoverExhibit = null;
+        int HoveredPage = 0;
+        public Image BorderChild
+        {
+            get => currentHoverExhibit.Child as Image;
+        }
+        private void EIBorder_PointerEntered(object? sender, Avalonia.Input.PointerEventArgs e)
+        {
+            if (sender == null)
+                return;
+            if (((sender as Border).Tag as Exhibit)?.AdditionalImages?.Count == 0) return;
+            currentHoverExhibit = (sender as Border);
+            Images = (currentHoverExhibit.Tag as Exhibit).SpecificMdeia(1);
+            BorderChild.IsVisible = true;
+            _animationTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1) // Интервал переключения
+            };
+
+            _animationTimer.Tick += ImageAnimation;
+            _animationTimer.Start(); ;
+        }
+
+        private void ImageAnimation(object sender, EventArgs e)
+        {
+            HoveredPage++;
+            if (HoveredPage >= Images.Count)
+            {
+                HoveredPage = 0;
+            }
+            BorderChild.Source = Images[HoveredPage].ImageBitmap;
+        }
+
+
+        private void EIBorder_PointerExited(object? sender, Avalonia.Input.PointerEventArgs e)
+        {
+            if (_animationTimer != null)
+            {
+                _animationTimer.Tick -= ImageAnimation;
+                _animationTimer.Stop();
+                _animationTimer = null;
+                HoveredPage = 0;
+                BorderChild.IsVisible = false;
+                currentHoverExhibit = null;
+                Images.Clear();
+            }
         }
     }
 }
