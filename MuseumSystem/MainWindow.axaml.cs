@@ -38,6 +38,18 @@ namespace MuseumSystem
             HappEventLB.ItemsSource = Helper.Events.Where(s => s.StartDatetime > DateTime.Now).OrderByDescending(e => e.StartDatetime).Take(3);
             NearlyEventLB.ItemsSource = Helper.Events.Where(s => s.StartDatetime < DateTime.Now).OrderBy(e => e.EndDatetime).Take(3);
             UsersEvents.ItemsSource = Helper.UsersEvents.Take(3);
+            Leafes.Source = new Bitmap(Environment.CurrentDirectory + "/leafs.jpg");
+            River.Source = new Bitmap(Environment.CurrentDirectory + "/river.jpg");
+
+            TicketIcon.Source = new Bitmap(Environment.CurrentDirectory + "/Icons/Ticket.png");
+            TicketAmount.Text = Helper.HowMainTickets.ToString();
+            VisitIcon.Source = new Bitmap(Environment.CurrentDirectory + "/Icons/User.png");
+            VisitAmount.Text = Helper.HowManyVisitors.ToString();
+            EventIcon.Source = new Bitmap(Environment.CurrentDirectory + "/Icons/Mesuem.png");
+            EventAmount.Text = Helper.HowManyEvents.ToString();
+            ExhibitIcon.Source = new Bitmap(Environment.CurrentDirectory + "/Icons/Exhibit.png");
+            ExhibitAmount.Text = Helper.HowManyEhxibitions.ToString();
+
             if (UsersEvents.ItemCount == 0)
             {
                 MessageHas.IsVisible = true;
@@ -83,15 +95,12 @@ namespace MuseumSystem
 
         private void Border_DoubleTapped_1(object? sender, Avalonia.Input.TappedEventArgs e)
         {
-            if (Helper.IsEmployee)
+            if (EventLB.SelectedItem as Event == null)
             {
-                if (EventLB.SelectedItem as Event == null)
-                {
-                    return;
-                }
-                new EventWindow(EventLB.SelectedItem as Event).Show();
-                this.Close();
+                return;
             }
+            new EventWindow(EventLB.SelectedItem as Event).Show();
+            this.Close();
         }
 
         private async void ComfirmButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -260,7 +269,7 @@ namespace MuseumSystem
             }
             else
             {
-                ExhibitLB.ItemsSource = Helper.Exhibits.Where(e => e.Id == (ExibitTypeCB.SelectedItem as Category).Id);
+                ExhibitLB.ItemsSource = Helper.Exhibits.Where(e => e.CategoryId == (ExibitTypeCB.SelectedItem as Category).Id);
                 ExhibitSelectedText.Text = Helper.Categories.FirstOrDefault(c => c.Id == (ExibitTypeCB.SelectedItem as Category).Id).Name;
             }
 

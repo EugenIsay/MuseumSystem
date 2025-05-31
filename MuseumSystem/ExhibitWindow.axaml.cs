@@ -24,6 +24,7 @@ using Tmds.DBus.Protocol;
 using System.Collections.Generic;
 using MuseumSystem.Models;
 using System.IO;
+using Avalonia.Media;
 
 namespace MuseumSystem;
 
@@ -278,6 +279,9 @@ public partial class ExhibitWindow : Window
     {
         isEdit = !isEdit;
         ReadyButton.IsVisible = isEdit;
+        AddVideo.IsVisible = isEdit;
+        AddAudio.IsVisible = isEdit;
+        AddPhoto.IsVisible = isEdit;
         ShowExhibit();
     }
     string _imageName = "";
@@ -294,7 +298,10 @@ public partial class ExhibitWindow : Window
             {
                 return;
             }
-            result.Id = Media.Select(m => m.Id).Order().Last() + 1;
+            if (Media.Count() == 0)
+                result.Id = 1;
+            else
+                result.Id = Media.Select(m => m.Id).Order().Last() + 1;
             Media.Add(result);
             PhotoList.ItemsSource = PhotoMedia;
             AudioList.ItemsSource = AudioMedia;
@@ -381,10 +388,12 @@ public partial class ExhibitWindow : Window
     {
         if (SelectedValue == 0)
         {
-            Helper.CallMessageBox("", this);
+            Helper.CallMessageBox("Выберите оценку", this);
             return;
         }    
         Helper.EditExhibitComment(new ExhibitReview { Raiting = SelectedValue, ExhibitId = exhibit.Id, UserId = Helper.currentUser.Id, Review = ReviewBox.Text });
+        AddComment.IsVisible = false;
+        RedactComment.IsVisible = false;
     }
     int SelectedValue = 0;
     private void RadioButton_Checked(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -394,4 +403,27 @@ public partial class ExhibitWindow : Window
             SelectedValue = int.Parse(radioButton.Tag?.ToString());
         }
     }
+
+    private void Border_PointerEntered(object? sender, Avalonia.Input.PointerEventArgs e)
+    {
+        if (isEdit)
+        {
+            ((sender as Border).Child as Button).IsVisible = true;
+            (sender as Border).Background = Brushes.Gray;
+            (sender as Border).Opacity = 0.5;
+            ((sender as Border).Child as Button).Opacity = 1;
+        }
+    }
+
+    private void Border_PointerExited(object? sender, Avalonia.Input.PointerEventArgs e)
+    {
+        if (isEdit)
+        {
+            ((sender as Border).Child as Button).IsVisible = false;
+            (sender as Border).Background = Brushes.Transparent;
+            (sender as Border).Opacity = 1;
+        }
+    }
+
+
 }

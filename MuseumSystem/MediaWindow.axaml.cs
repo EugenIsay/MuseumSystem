@@ -96,6 +96,7 @@ public partial class MediaWindow : Window
             if (string.IsNullOrEmpty(Name.Text))
             {
                 Helper.CallMessageBox("ֲגוהטעו טלÿ פאיכא" ,this);
+                return;
             }
             try
             {

@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using LibVLCSharp.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using MsBox.Avalonia;
@@ -82,6 +83,10 @@ namespace MuseumSystem
         {
             get => DBContext.Categories.ToList();
         }
+        public static List<AtachedMedium> atachedMedia
+        {
+            get => DBContext.AtachedMedia.ToList();
+        }
 
         // Метод для проверки при входе
         public static bool IsExist(string FirsRow, string Password)
@@ -118,6 +123,16 @@ namespace MuseumSystem
             get => DBContext.Exhibits.Where(u => u.AddDate.Value.Year == DateTime.Now.Year).Count();
         }
 
+        public static int HowManyVisitors
+        {
+            get => DBContext.Users.Where(u => u.RoleId == 3).Count();
+        }
+
+        public static int HowMainTickets
+        {
+            get => DBContext.Tickets.Count();
+        }
+
         public static List<Event> UsersEvents
         {
             get => registrations.Where(u => u.Id == currentUser.Id).Select(r => r.Event).ToList();
@@ -132,6 +147,18 @@ namespace MuseumSystem
             else
             {
                 DBContext.ExhibitReviews.Add(review);
+            }
+            DBContext.SaveChanges();
+        }
+        public static void EditEventComment(EventReview review)
+        {
+            if (currentUser.EventReviews.FirstOrDefault(e => e.EventId == review.EventId) != null)
+            {
+                DBContext.EventReviews.Update(review);
+            }
+            else
+            {
+                DBContext.EventReviews.Add(review);
             }
             DBContext.SaveChanges();
         }
@@ -182,6 +209,7 @@ namespace MuseumSystem
         {
             try
             {
+                medium.Id = atachedMedia.Select(s => s.Id).Order().Last() + 1;
                 DBContext.Add(medium);
                 DBContext.SaveChanges();
             }

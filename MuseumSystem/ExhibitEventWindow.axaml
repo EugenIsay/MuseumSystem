@@ -1,0 +1,123 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MuseumSystem.ExhibitEventWindow"
+        Title="ExhibitEventWindow">
+	
+	<DockPanel Margin="10">
+		<Button DockPanel.Dock="Bottom" Content="Готово" Margin="0,10" Click="ReadyButton_Click"/>
+		<ListBox DockPanel.Dock="Bottom" ScrollViewer.IsScrollInertiaEnabled="False" Name="ExhibitLB">
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel Orientation="Horizontal"/>
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border MaxHeight="480" Tag="1" >
+						<Grid Margin="10" RowDefinitions="3*,2*" >
+							<Border Tag="{Binding}" Grid.Row="0" Grid.RowSpan="2" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" PointerEntered="Border_PointerEntered" PointerExited="Border_PointerExited">
+								<Button Content="-" Tag="{Binding}" Click="Button_Click"/>
+							</Border>
+							<Grid.Styles>
+								<Style Selector="TextBlock">
+									<Setter Property="HorizontalAlignment" Value="Center"/>
+								</Style>
+							</Grid.Styles>
+							<Image Source="{Binding MainImageBitmap}"/>
+							<Border Grid.Row="1" BorderBrush="Gainsboro" BorderThickness="1">
+								<StackPanel >
+									<TextBlock Text="{Binding Category.Name}"/>
+									<TextBlock Text="{Binding Name}"/>
+									<TextBlock Text="{Binding AddDate, StringFormat='Добавлен: {0} '}"/>
+
+									<StackPanel HorizontalAlignment="Center" IsVisible="{Binding HasRaiting}" Orientation="Horizontal">
+										<TextBlock Foreground="Yellow" Text="{Binding GoodReviews}"  >
+											<TextBlock.Effect>
+												<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>
+											</TextBlock.Effect>
+										</TextBlock>
+										<TextBlock Foreground="Gray" Text="{Binding BadReview}" >
+											<TextBlock.Effect>
+												<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>
+											</TextBlock.Effect>
+										</TextBlock>
+										<ToolTip.Tip >
+											<TextBlock Text="{Binding Description}"/>
+										</ToolTip.Tip>
+									</StackPanel>
+								</StackPanel>
+							</Border>
+						</Grid>
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<Border DockPanel.Dock="Bottom" Margin="0,0,0,5" HorizontalAlignment="Stretch" Background="Gainsboro" VerticalAlignment="Stretch" >
+			<Grid Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ColumnDefinitions="*,*,*">
+				<Viewbox Margin="10,0" Stretch="Uniform" Grid.Row="1">
+					<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Выбранные вами мероприятия" />
+				</Viewbox>
+			</Grid>
+			<Border.Effect>
+				<DropShadowDirectionEffect BlurRadius="10"
+								 Color="#484244"
+								 ShadowDepth="5"
+								 Direction="180"/>
+			</Border.Effect>
+		</Border>
+		
+		<ListBox Name="MainExhibitLB">
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<UniformGrid Columns="3" />
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border Tag="{Binding}" DoubleTapped="Border_DoubleTapped" MaxHeight="480">
+						<Grid Margin="10" RowDefinitions="3*,2*" >
+							<Grid.Styles>
+								<Style Selector="TextBlock">
+									<Setter Property="HorizontalAlignment" Value="Center"/>
+								</Style>
+							</Grid.Styles>
+
+							<Image Stretch="UniformToFill" Source="{Binding MainImageBitmap}"/>
+
+							<Border Grid.Row="1" BorderBrush="Gainsboro" BorderThickness="1">
+								<StackPanel >
+									<TextBlock Text="{Binding Category.Name}"/>
+									<TextBlock Text="{Binding Name}"/>
+									<TextBlock Text="{Binding AddDate, StringFormat='Добавлен: {0} '}"/>
+
+									<StackPanel HorizontalAlignment="Center" IsVisible="{Binding HasRaiting}" Orientation="Horizontal">
+										<TextBlock Foreground="Yellow" Text="{Binding GoodReviews}"  >
+											<TextBlock.Effect>
+												<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>
+											</TextBlock.Effect>
+										</TextBlock>
+										<TextBlock Foreground="Gray" Text="{Binding BadReview}" >
+											<TextBlock.Effect>
+												<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>
+											</TextBlock.Effect>
+										</TextBlock>
+
+										<ToolTip.Tip >
+											<TextBlock Text="{Binding Description}"/>
+										</ToolTip.Tip>
+									</StackPanel>
+
+								</StackPanel>
+							</Border>
+
+						</Grid>
+
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</DockPanel>
+</Window>

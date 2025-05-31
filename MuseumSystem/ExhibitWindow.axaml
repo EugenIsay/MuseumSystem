@@ -6,7 +6,6 @@
         x:Class="MuseumSystem.ExhibitWindow"
 		xmlns:local="clr-namespace:MuseumSystem"
 		SizeChanged="Window_SizeChanged"
-		Background="#E8BC75"
 		
         Title="Экспонат">
 	<Window.Resources>
@@ -79,39 +78,43 @@
 
 				<!--Видео сегмент-->
 				<Expander HorizontalAlignment="Stretch" DockPanel.Dock="Bottom" Header="Связанныые видео файлы">
-					<Grid DockPanel.Dock="Bottom" ColumnDefinitions="*,*">
+					<DockPanel>
+						<Button Content="+" Click="MediaButton_Click" Name="AddVideo" DockPanel.Dock="Left"/>
+						<Grid DockPanel.Dock="Bottom" ColumnDefinitions="*,*">
+							<ListBox HorizontalAlignment="Stretch" Name="VideoList">
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
+											<DockPanel>
+												<Button Content="-" Click="DeleteButton_Click" Tag="{Binding Id}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+												<Button Content="  ▶  " Tag="{Binding Id}" Click="VideoButton_Click" />
+												<TextBlock Text="{Binding Name}"/>
+											</DockPanel>
+											<ToolTip.Tip>
+												<TextBlock  Text="{Binding Description}"/>
+											</ToolTip.Tip>
+										</Border>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
 
-						<ListBox HorizontalAlignment="Stretch" Name="VideoList">
-							<ListBox.ItemTemplate>
-								<DataTemplate>
-									<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
-										<DockPanel>
-											<Button Content="-" Click="DeleteButton_Click" Tag="{Binding Id}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
-											<Button Content="  ▶  " Tag="{Binding Id}" Click="VideoButton_Click" />
-											<TextBlock Text="{Binding Name}"/>
-										</DockPanel>
-										<ToolTip.Tip>
-											<TextBlock  Text="{Binding Description}"/>
-										</ToolTip.Tip>
-									</Border>
-								</DataTemplate>
-							</ListBox.ItemTemplate>
+							</ListBox>
+							<StackPanel Grid.Column="1" x:Name="VideoContainer">
+								<Rectangle Fill="Black" Width="400" Height="300"/>
+							</StackPanel>
+						</Grid>
+					</DockPanel>
 
-						</ListBox>
-						<StackPanel Grid.Column="1" x:Name="VideoContainer">
-							<Rectangle Fill="Black" Width="400" Height="300"/>
-						</StackPanel>
-					</Grid>
 
 
 					<!--Аудиофайлы-->
 				</Expander>
 				<Expander DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Header="Связанные аудио файлы">
 					<DockPanel>
-						<ListBox Name="AudioList">
+						<Button Content="+" Click="MediaButton_Click" DockPanel.Dock="Left" Name="AddAudio"/>
+						<ListBox Name="AudioList" >
 							<ListBox.ItemTemplate>
 								<DataTemplate>
-									<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
+									<Border CornerRadius="2" Background="Gainsboro" BorderBrush="Gray" BorderThickness="2">
 										<DockPanel>
 											<Button Content="-" Click="DeleteButton_Click" Tag="{Binding Id}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 											<Button Content="  ▶  " Tag="{Binding Id}" Click="PlayButton_Click" />
@@ -133,17 +136,38 @@
 					<!--Фото информация экспоната-->
 					<Border MaxHeight="960">
 						<Grid HorizontalAlignment="Stretch" Margin="10" RowDefinitions="3*,2*">
+
 							<Grid ColumnDefinitions="*,2*,2*,*" RowDefinitions="*,2*,2*,*">
-								<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Name="ImageShow"/>
+								<Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" >
+									<Border BorderBrush="Gainsboro" BorderThickness="1">
+										<Image Margin="5" Name="ImageShow"/>
+									</Border>
+									<Border Margin="10" Background="Transparent" PointerEntered="Border_PointerEntered" PointerExited="Border_PointerExited">
+										<Button VerticalAlignment="Center" HorizontalAlignment="Center" Content="+" Click="PhotoButton_Click" IsVisible="False"/>
+									</Border>
+								</Grid>
 							</Grid>
-							<Button Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Добавить/Изменить основную картинку" Click="PhotoButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+
 							<DockPanel Grid.Row="2" Grid.Column="1">
-								<Button Click="MediaButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}">
+
+								<Border DockPanel.Dock="Top" Margin="0,0,0,5" HorizontalAlignment="Stretch" Background="Gainsboro" VerticalAlignment="Stretch">
+									<Grid Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ColumnDefinitions="*,*,*">
+										<TextBlock  DockPanel.Dock="Top" Text="Дополнительные изображения" Grid.Row="1" Margin="10,0"/>
+									</Grid>
+									<Border.Effect>
+										<DropShadowDirectionEffect BlurRadius="10"
+														 Color="#484244"
+														 ShadowDepth="5"
+														 Direction="180"/>
+									</Border.Effect>
+								</Border>
+								<Button Click="MediaButton_Click" Name="AddPhoto" IsVisible="{x:Static local:Helper.IsEmployee}">
 									<Button.Content>
 										<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="+"/>
 									</Button.Content>
 								</Button>
-								<TextBlock DockPanel.Dock="Top" Text="Дополнительные картинки"/>
+
+
 								<ListBox Name="PhotoList">
 									<ListBox.ItemsPanel>
 										<ItemsPanelTemplate>
@@ -152,15 +176,24 @@
 									</ListBox.ItemsPanel>
 									<ListBox.ItemTemplate>
 										<DataTemplate>
-											<Border CornerRadius="2" Background="#E0CFBD" BorderBrush="#953C2C" BorderThickness="2">
-												<Grid RowDefinitions="3*,*">
+											<Border BorderBrush="Gainsboro" BorderThickness="1" >
+												<Grid Margin="5">
+
 													<Grid MaxHeight="200" MaxWidth="200" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
 														<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Source="{Binding ImageBitmap}"/>
 													</Grid>
-													<Button DockPanel.Dock="Bottom" Grid.Row="1" Content="-" Click="DeleteButton_Click" Tag="{Binding Id}"/>
+													<Border Background="Transparent" PointerEntered="Border_PointerEntered" PointerExited="Border_PointerExited">
+														<Button HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Bottom" Grid.Row="1" Content="-" Click="DeleteButton_Click" Tag="{Binding Id}" IsVisible="False"/>
+													</Border>
 												</Grid>
 												<ToolTip.Tip>
-													<TextBlock Text="{Binding Description}"/>
+													<DockPanel>
+														<TextBlock DockPanel.Dock="Bottom" Text="{Binding Description}"/>
+
+														<Grid  ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
+															<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Source="{Binding ImageBitmap}"/>
+														</Grid>
+													</DockPanel>
 												</ToolTip.Tip>
 											</Border>
 										</DataTemplate>
@@ -171,7 +204,7 @@
 					</Border>
 
 					<!--Текстовая информация єкспоната-->
-					<Border Background="#E0CFBD" BorderBrush="#E0CFBD" CornerRadius="2" Margin="10">
+					<Border Background="White" BorderBrush="Gainsboro" BorderThickness="1" Margin="10">
 						<Grid HorizontalAlignment="Stretch" Margin="10" Name="InfoGrid" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*">
 							<TextBlock Grid.Row="0" Classes="Title" Text="Название"/>
 							<TextBox Grid.Row="1" Name="EditName"/>
@@ -217,6 +250,13 @@
 								<Button Grid.Column="2" HorizontalAlignment="Right" Content="Редактировать" Click="RedactButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 							</Grid>
 						</Grid>
+						<Border.Effect>
+							<DropShadowDirectionEffect BlurRadius="10"
+											 Color="Black"
+											 Opacity="0.5"
+											 ShadowDepth="3"
+											 Direction="0"/>
+						</Border.Effect>
 					</Border>
 				</UniformGrid>
 

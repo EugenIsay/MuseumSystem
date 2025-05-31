@@ -4,7 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="MuseumSystem.EventWindow"
-		Background="#E8BC75"
+		xmlns:local="clr-namespace:MuseumSystem"
+		FontFamily="Verdana"
         Title="Мероприятие">
 	<Window.Styles>
 		<Style Selector="TextBlock">
@@ -17,95 +18,263 @@
 			<Setter Property="VerticalAlignment" Value="Stretch"/>
 		</Style>
 	</Window.Styles>
-	<ScrollViewer>
-		<Grid RowDefinitions="*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,2*,*,*" ColumnDefinitions="*,*" Margin="20">
-			<Grid.Styles>
-				<Style Selector="Grid > TextBox">
-					<Setter Property="Grid.ColumnSpan" Value="2" />
-				</Style>
-				<Style Selector="Grid > ComboBox">
-					<Setter Property="Grid.ColumnSpan" Value="2" />
-				</Style>
-			</Grid.Styles>
-			<TextBlock Grid.Row="0" Text="Название"/>
-			<TextBox Grid.Row="1" Name="Title"/>
+	<DockPanel >
+		<Border Background="#484244" DockPanel.Dock="Top">
+			<Grid ColumnDefinitions="*,*,*">
+				<Button Margin="40" Content="Редактировать" Grid.Column="0" Click="RedactButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+				<Button Margin="40" Grid.Column="2" HorizontalAlignment="Right" Content="Назад" Click="BackButton_Click"/>
+			</Grid>
+		</Border>
 
-			<TextBlock Grid.Row="2" Text="Тип"/>
-			<ComboBox Grid.Row="3" Name="TypeCB">
-				<ComboBox.ItemTemplate>
-					<DataTemplate>
-						<TextBlock Text="{Binding Name}"/>
-					</DataTemplate>
-				</ComboBox.ItemTemplate>
-			</ComboBox>
+		<StackPanel DockPanel.Dock="Bottom"  Orientation="Horizontal">
+			<Button Content="Готово" Click="ComfirmButton_Click"/>
+		</StackPanel>
+		<ScrollViewer>
+			<Grid RowDefinitions="*,*,*,*,*" Margin="20">
+				<Grid.Styles>
+					<Style Selector="Grid > TextBox">
+						<Setter Property="Grid.ColumnSpan" Value="2" />
+					</Style>
+					<Style Selector="Grid > ComboBox">
+						<Setter Property="Grid.ColumnSpan" Value="2" />
+					</Style>
+				</Grid.Styles>
+				<Grid HorizontalAlignment="Left" ColumnDefinitions="*,*,*">
+					<Viewbox Margin="10,0" Stretch="Uniform" Grid.Column="1" >
+						<Grid>
+							<TextBlock   TextWrapping="Wrap" Name="TitleTB" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							<TextBox   TextWrapping="Wrap" Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Grid>
+					</Viewbox>
+				</Grid>
 
-			<TextBlock Grid.Row="4" Text="Организатор"/>
-			<ComboBox Grid.Row="5" Name="OrgCB">
-				<ComboBox.ItemTemplate>
-					<DataTemplate>
-						<TextBlock Text="{Binding FullName}"/>
-					</DataTemplate>
-				</ComboBox.ItemTemplate>
-			</ComboBox>
-
-
-			<TextBlock Grid.Row="6"  Text="Начало мероприятия"/>
-			<StackPanel Grid.Row="7"  Orientation="Horizontal">
-				<DatePicker Name="StartDate"/>
-				<TimePicker Name="StartTime"/>
-			</StackPanel>
-			<TextBlock Grid.Row="8"  Text="Конец мероприятия"/>
-			<StackPanel Grid.Row="9"  Orientation="Horizontal">
-				<DatePicker Name="EndDate"/>
-				<TimePicker Name="EndTime"/>
-			</StackPanel>
-			<Border Grid.Column="1" Grid.Row="7"  Grid.RowSpan="9" CornerRadius="2" BorderBrush="#953C2C" Margin="10,0" BorderThickness="5" >
-
-				<ListBox SelectionMode="Multiple" Name="ExhibitLB" Background="#E0CFBD">
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<Border Background="#E0CFBD" BorderBrush="#D77546" BorderThickness="4">
-								<Grid Margin="20" RowDefinitions="*,*,*,*,*" ColumnDefinitions="2*,8*,2*">
-									<TextBlock Grid.ColumnSpan="10" VerticalAlignment="Center" Text="{Binding InventoryNumber}"/>
-									<StackPanel Grid.Column="1" Orientation="Horizontal">
-										<TextBlock Text="{Binding Category.Name}"/>
-										<TextBlock Text=": "/>
-										<TextBlock Text="{Binding Name}"/>
-									</StackPanel>
-									<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding ApproximateCost, StringFormat='Предположительная цена: {0}'}"/>
-									<StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
-										<TextBlock Text="{Binding AddDate, StringFormat='Добавлен в коллекцию: {0} '}"/>
-										<TextBlock Text="{Binding PermanentlyLocated, StringFormat=',находится в помещении: {0}'}"/>
-									</StackPanel>
-									<TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Description, StringFormat='Описание: {0}'}"/>
-									<Grid ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*" Grid.Column="2" Grid.RowSpan="5">
-										<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Source="{Binding MainImageBitmap}"/>
+				<Grid HorizontalAlignment="Left" Grid.Row="1" ColumnDefinitions="*,2*,2*,*" RowDefinitions="*,2*,2*,*">
+					<Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" >
+						<Border MinHeight="240" MaxHeight="480" BorderBrush="Gainsboro" BorderThickness="1">
+							<Image Stretch="UniformToFill"  Margin="5" Name="ImageShow"/>
+						</Border>
+						<Border Margin="10" Background="Transparent" PointerEntered="Border_PointerEntered" PointerExited="Border_PointerExited">
+							<Button VerticalAlignment="Center" HorizontalAlignment="Center" Content="+" Click="PhotoButton_Click" IsVisible="False"/>
+						</Border>
+					</Grid>
+				</Grid>
+				<!--Инфа-->
+				<DockPanel Grid.Row="2" HorizontalAlignment="Stretch">
+					<Border Margin="0,0,0,5" HorizontalAlignment="Stretch" Background="Gainsboro" VerticalAlignment="Stretch" DockPanel.Dock="Top">
+						<Grid Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ColumnDefinitions="*,*,*">
+							<TextBlock  DockPanel.Dock="Top" Text="Описание" Grid.Row="1" Margin="10,0"/>
+						</Grid>
+						<Border.Effect>
+							<DropShadowDirectionEffect BlurRadius="10"
+											 Color="#484244"
+											 ShadowDepth="5"
+											 Direction="180"/>
+						</Border.Effect>
+					</Border>
+					<Grid>
+						<TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="Description" />
+						<TextBlock Padding="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="DescriptionTB"/>
+					</Grid>
+				</DockPanel>
+				<!--Табконтрол-->
+				<TabControl Grid.Row="3"  Padding="0" Background="White">
+					<TabControl.Styles>
+						<Style Selector="TabItem:selected">
+							<Setter Property="Template">
+								<ControlTemplate>
+									<Grid Name="grid">
+										<Border BorderBrush="White" BorderThickness="0,0,0,0" >
+											<Border Name="border"
+													BorderBrush="Gainsboro"
+													Background="Transparent"
+													BorderThickness="2,2,2,0">
+												<ContentPresenter Margin="10,0"
+													Content="{TemplateBinding Header}"
+													HorizontalAlignment="Center"
+													VerticalAlignment="Center"/>
+											</Border>
+										</Border>
 									</Grid>
-								</Grid>
-							</Border>
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-				</ListBox>
-			</Border>
+								</ControlTemplate>
+							</Setter>
+						</Style>
+						<Style Selector="TabControl WrapPanel">
+
+						</Style>
+						<Style Selector="TabControl /template/ ContentPresenter">
+
+							<Setter Property="BorderThickness" Value="2,2,2,2"/>
+							<Setter Property="BorderBrush" Value="Gainsboro"/>
+							<Setter Property="Margin" Value="20,0,20,20"/>
+							<Setter Property="Padding" Value="20"/>
+						</Style>
+					</TabControl.Styles>
 
 
-			<TextBlock Grid.Row="10" Text="Место провидения мероприятия" />
-			<TextBox Grid.Row="11" Name="Addres" Grid.ColumnSpan="1"/>
+					<!--Детали-->
+					<TabItem  Header="Детали">
+						<Grid RowDefinitions="*,*,*,*,*,*,*,*" ColumnDefinitions="2*,8*" Name="InfoGrid">
+							<Grid.Styles>
+								<Style Selector="TextBlock">
+									<Setter Property="Margin" Value="0,10"/>
+								</Style>
+							</Grid.Styles>
+							<TextBlock Foreground="Gray" Grid.Row="1"  Text="> Тип:"/>
+							<ComboBox Grid.Row="1" Grid.Column="1" Name="TypeCBEdit">
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Name}"/>
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+							<TextBlock Grid.Row="1" Name="TypeShow" Grid.Column="1"/>
 
-			<TextBlock Grid.Row="12" Text="Максимум людей"/>
-			<NumericUpDown Grid.Row="13" Name="Attendance" Minimum="1" ShowButtonSpinner="False" FormatString="0"/>
+							<TextBlock Foreground="Gray" Grid.Row="2" Text="> Организатор: "/>
+							<ComboBox Grid.Row="2" Name="OrgCBEdit" Grid.Column="1">
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding FullName}"/>
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+							<TextBlock Grid.Row="2" Name="OrgShow" Grid.Column="1"/>
 
-			<TextBlock Grid.Row="14" Text="Цена на человека"/>
-			<NumericUpDown Grid.Row="15" Name="Price" Minimum="1" ShowButtonSpinner="False" />
 
-			<TextBlock Grid.Row="16" Text="Описание"/>
-			<TextBox Grid.Row="17" Name="Description" Grid.RowSpan="2"/>
+							<TextBlock Grid.Row="3"  Foreground="Gray" Text="> Начало: "/>
+							<StackPanel Name="StartTimeEdit" Grid.Row="3"  Orientation="Horizontal" Grid.Column="1">
+								<DatePicker Name="StartDate"/>
+								<TimePicker Name="StartTime"/>
+							</StackPanel>
+							<TextBlock Grid.Row="3" Name="StartTimeShow" Grid.Column="1"/>
 
-			<StackPanel Grid.Row="19" Orientation="Horizontal">
-				<Button Content="Готово" Click="ComfirmButton_Click"/>
-				<Button Content="Отмена" Click="BackButton_Click"/>
-			</StackPanel>
-		</Grid>
-	</ScrollViewer>
-	
+							<TextBlock Grid.Row="4"  Text="> Конец:" Foreground="Gray"/>
+							<StackPanel Name="EndTimeEdit"  Grid.Row="4"  Orientation="Horizontal" Grid.Column="1">
+								<DatePicker Name="EndDate"/>
+								<TimePicker Name="EndTime"/>
+							</StackPanel>
+							<TextBlock Grid.Row="4" Name="EndTimeShow" Grid.Column="1"/>
+
+							<TextBlock Grid.Row="5" Text="> Адрес:"  Foreground="Gray"/>
+							<TextBox Grid.Row="5" Name="AddresEdit" Grid.Column="1" />
+							<TextBlock Grid.Row="5" Name="AddresShow" Grid.Column="1"/>
+
+							<TextBlock Grid.Row="6" Text="> Кол-во людей:" Foreground="Gray"/>
+							<NumericUpDown Grid.Row="6" Name="AttendanceEdit" Minimum="1" ShowButtonSpinner="False" FormatString="0" Grid.Column="1"/>
+							<TextBlock Grid.Row="6" Name="AttendanceShow" Grid.Column="1"/>
+
+							<TextBlock Grid.Row="7" Text="> Цена: " Foreground="Gray"/>
+							<NumericUpDown Grid.Row="7" Name="PriceEdit" Minimum="1" ShowButtonSpinner="False" Grid.Column="1"/>
+							<TextBlock Grid.Row="7" Name="PriceShow" Grid.Column="1"/>
+
+
+
+
+						</Grid>
+
+					</TabItem>
+
+					<!--Экспонаты-->
+					<TabItem Header="Экспонаты">
+						<DockPanel>
+							<Button DockPanel.Dock="Bottom" Name="AddExhibit" Content="Редактировать эксопнаты" Click="AddExhibit_CLick"/>
+							<ListBox Name="ExhibitLB">
+								<ListBox.Scroll>
+									
+								</ListBox.Scroll>
+								<ListBox.ItemsPanel>
+									<ItemsPanelTemplate>
+										<VirtualizingStackPanel Orientation="Horizontal"/>
+									</ItemsPanelTemplate>
+								</ListBox.ItemsPanel>
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<Border MaxHeight="480" Tag="1" >
+											<Grid Margin="10" RowDefinitions="3*,2*" >
+												<Grid.Styles>
+													<Style Selector="TextBlock">
+														<Setter Property="HorizontalAlignment" Value="Center"/>
+													</Style>
+												</Grid.Styles>
+												<Image Source="{Binding MainImageBitmap}"/>
+												<Border Grid.Row="1" BorderBrush="Gainsboro" BorderThickness="1">
+													<StackPanel >
+														<TextBlock Text="{Binding Category.Name}"/>
+														<TextBlock Text="{Binding Name}"/>
+														<TextBlock Text="{Binding AddDate, StringFormat='Добавлен: {0} '}"/>
+
+														<StackPanel HorizontalAlignment="Center" IsVisible="{Binding HasRaiting}" Orientation="Horizontal">
+															<TextBlock Foreground="Yellow" Text="{Binding GoodReviews}"  >
+																<TextBlock.Effect>
+																	<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>
+																</TextBlock.Effect>
+															</TextBlock>
+															<TextBlock Foreground="Gray" Text="{Binding BadReview}" >
+																<TextBlock.Effect>
+																	<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>
+																</TextBlock.Effect>
+															</TextBlock>
+															<ToolTip.Tip >
+																<TextBlock Text="{Binding Description}"/>
+															</ToolTip.Tip>
+														</StackPanel>
+													</StackPanel>
+												</Border>
+											</Grid>
+										</Border>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</DockPanel>
+
+					</TabItem>
+				</TabControl>
+
+
+				<DockPanel Margin="10" Name="CommentSection" Grid.Row="4">
+					<Grid DockPanel.Dock="Top" HorizontalAlignment="Stretch" ColumnDefinitions="*,*,*">
+						<Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" >
+							<Grid  RowDefinitions="*,3*,*">
+								<StackPanel Orientation="Horizontal">
+									<RadioButton GroupName="ValueGroup" Checked="RadioButton_Checked" Tag="1"
+												 Content="1★"/>
+									<RadioButton GroupName="ValueGroup" Checked="RadioButton_Checked" Tag="2"
+											  Content="2★"/>
+									<RadioButton GroupName="ValueGroup" Checked="RadioButton_Checked" Tag="3"
+											  Content="3★"/>
+									<RadioButton GroupName="ValueGroup" Checked="RadioButton_Checked" Tag="4"
+											  Content="4★"/>
+									<RadioButton GroupName="ValueGroup" Checked="RadioButton_Checked" Tag="5"
+											  Content="5★"/>
+								</StackPanel>
+								<TextBox Name="ReviewBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Watermark="Почему вы выбрали такую оценку?"/>
+								<Button Name="AddComment" Grid.Row="2" Click="EditCommentButton_Click" Content="Добавить комментарий"/>
+								<Button Name="RedactComment" Grid.Row="2" Click="EditCommentButton_Click" Content="Редактировать"/>
+							</Grid>
+						</Border>
+					</Grid>
+
+					<Button DockPanel.Dock="Bottom" Margin="10" Content="Посмотреть все комментарии" Click="CommentButton_Click"/>
+					<ListBox Margin="10" HorizontalAlignment="Stretch" Name="ReviewLB">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Border Background="#E0CFBD" BorderBrush="Black" BorderThickness="2">
+									<Grid RowDefinitions="*,*,2*" >
+										<TextBlock Text="{Binding User.Login}"/>
+										<StackPanel Grid.Row="1" Orientation="Horizontal">
+											<TextBlock Foreground="Yellow" Text="{Binding GoodReviews}"/>
+											<TextBlock Foreground="Gray" Text="{Binding BadReview}"/>
+										</StackPanel>
+										<TextBlock Grid.Row="2" Text="{Binding Review}"/>
+									</Grid>
+								</Border>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+
+
+			</Grid>
+		</ScrollViewer>
+
+	</DockPanel>
 </Window>

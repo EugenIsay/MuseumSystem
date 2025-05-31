@@ -1,118 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\",
+  "WorkspaceRootPath": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\ticketwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\ticketwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\eventwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\eventwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\exhibitwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\exhibitwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\ticketwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\ticketwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\eventwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\eventwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
       "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\eventwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\context\\user3context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\context\\user3context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\authorizationwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\authorizationwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\exhibitwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\exhibitwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\mediawindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\mediawindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
       "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\mediawindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\models\\atachedmedium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\atachedmedium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\eventwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\eventwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\models\\eventtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\eventtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\exhibitwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\exhibitwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\exhibitwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\exhibitwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\exhibiteventwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\exhibiteventwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\models\\includeditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\includeditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\exhibiteventwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\exhibiteventwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\models\\exhibit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\exhibit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\authorizationwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\authorizationwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\mediawindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\mediawindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\museumsystem.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\museumsystem.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\models\\tickettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\tickettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\blockchain\\desktop\\d\\museumsystem\\museumsystem\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|c:\\users\\zheka\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\museumsystem\\museumsystem\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{2DC8722D-D849-403F-855D-8D041439064F}|MuseumSystem\\MuseumSystem.csproj|solutionrelative:museumsystem\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     }
   ],
   "DocumentGroupContainers": [
@@ -122,345 +42,115 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 7,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "User3Context.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Context\\User3Context.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\Context\\User3Context.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Context\\User3Context.cs",
-              "RelativeToolTip": "MuseumSystem\\Context\\User3Context.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAwwDAAAABGAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ExhibitWindow.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\ExhibitWindow.axaml.cs",
+              "RelativeDocumentMoniker": "MuseumSystem\\ExhibitWindow.axaml.cs",
+              "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\ExhibitWindow.axaml.cs",
+              "RelativeToolTip": "MuseumSystem\\ExhibitWindow.axaml.cs",
+              "ViewState": "AQIAAIQBAAAAAAAAAAAAAJYBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-26T09:58:14.499Z",
+              "WhenOpened": "2025-05-31T08:39:07.474Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "IncludedItem.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\IncludedItem.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\Models\\IncludedItem.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\IncludedItem.cs",
-              "RelativeToolTip": "MuseumSystem\\Models\\IncludedItem.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T20:01:38.748Z"
+              "DocumentIndex": 4,
+              "Title": "ExhibitWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\ExhibitWindow.axaml",
+              "RelativeDocumentMoniker": "MuseumSystem\\ExhibitWindow.axaml",
+              "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\ExhibitWindow.axaml",
+              "RelativeToolTip": "MuseumSystem\\ExhibitWindow.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-31T08:39:05.676Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 7,
+              "Title": "MainWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\MainWindow.axaml",
+              "RelativeDocumentMoniker": "MuseumSystem\\MainWindow.axaml",
+              "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\MainWindow.axaml",
+              "RelativeToolTip": "MuseumSystem\\MainWindow.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-30T21:30:54.781Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MediaWindow.axaml",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\MediaWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\MediaWindow.axaml",
               "RelativeDocumentMoniker": "MuseumSystem\\MediaWindow.axaml",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\MediaWindow.axaml",
+              "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\MediaWindow.axaml",
               "RelativeToolTip": "MuseumSystem\\MediaWindow.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-11T14:39:53.541Z"
+              "WhenOpened": "2025-05-30T21:29:47.606Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "MediaWindow.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\MediaWindow.axaml.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\MediaWindow.axaml.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\MediaWindow.axaml.cs",
-              "RelativeToolTip": "MuseumSystem\\MediaWindow.axaml.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAxwCwAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T14:39:53.431Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "AtachedMedium.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\AtachedMedium.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\Models\\AtachedMedium.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\AtachedMedium.cs",
-              "RelativeToolTip": "MuseumSystem\\Models\\AtachedMedium.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAowB0AAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T18:11:50.582Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "app.manifest",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\app.manifest",
-              "RelativeDocumentMoniker": "MuseumSystem\\app.manifest",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\app.manifest",
-              "RelativeToolTip": "MuseumSystem\\app.manifest",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001203|",
-              "WhenOpened": "2025-05-10T17:30:22.148Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "EventType.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\EventType.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\Models\\EventType.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\EventType.cs",
-              "RelativeToolTip": "MuseumSystem\\Models\\EventType.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T16:48:47.909Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "EventWindow.axaml",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\EventWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\EventWindow.axaml",
               "RelativeDocumentMoniker": "MuseumSystem\\EventWindow.axaml",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\EventWindow.axaml",
-              "RelativeToolTip": "MuseumSystem\\EventWindow.axaml",
+              "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\EventWindow.axaml*",
+              "RelativeToolTip": "MuseumSystem\\EventWindow.axaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-09T15:10:40.193Z",
+              "WhenOpened": "2025-05-30T21:26:51.148Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "EventWindow.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\EventWindow.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\EventWindow.axaml.cs",
               "RelativeDocumentMoniker": "MuseumSystem\\EventWindow.axaml.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\EventWindow.axaml.cs",
+              "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\EventWindow.axaml.cs",
               "RelativeToolTip": "MuseumSystem\\EventWindow.axaml.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAhwEsAAAANAAAAAAAAAA==",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACEAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T15:10:39.988Z",
+              "WhenOpened": "2025-05-30T21:26:50.018Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Program.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\Program.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Program.cs",
-              "RelativeToolTip": "MuseumSystem\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T15:25:01.552Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TicketWindow.axaml",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\TicketWindow.axaml",
-              "RelativeDocumentMoniker": "MuseumSystem\\TicketWindow.axaml",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\TicketWindow.axaml",
-              "RelativeToolTip": "MuseumSystem\\TicketWindow.axaml",
+              "Title": "ExhibitEventWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\ExhibitEventWindow.axaml",
+              "RelativeDocumentMoniker": "MuseumSystem\\ExhibitEventWindow.axaml",
+              "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\ExhibitEventWindow.axaml",
+              "RelativeToolTip": "MuseumSystem\\ExhibitEventWindow.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-02T14:42:08.386Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-30T21:26:07.41Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TicketWindow.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\TicketWindow.axaml.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\TicketWindow.axaml.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\TicketWindow.axaml.cs",
-              "RelativeToolTip": "MuseumSystem\\TicketWindow.axaml.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAuwFkAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "ExhibitEventWindow.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\ExhibitEventWindow.axaml.cs",
+              "RelativeDocumentMoniker": "MuseumSystem\\ExhibitEventWindow.axaml.cs",
+              "ToolTip": "C:\\Users\\zheka\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\MuseumSystem\\MuseumSystem\\ExhibitEventWindow.axaml.cs",
+              "RelativeToolTip": "MuseumSystem\\ExhibitEventWindow.axaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T14:42:08.289Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "Category.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\Category.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\Models\\Category.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\Category.cs",
-              "RelativeToolTip": "MuseumSystem\\Models\\Category.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T11:53:51.379Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ExhibitWindow.axaml",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\ExhibitWindow.axaml",
-              "RelativeDocumentMoniker": "MuseumSystem\\ExhibitWindow.axaml",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\ExhibitWindow.axaml",
-              "RelativeToolTip": "MuseumSystem\\ExhibitWindow.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-27T17:58:49.666Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ExhibitWindow.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\ExhibitWindow.axaml.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\ExhibitWindow.axaml.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\ExhibitWindow.axaml.cs",
-              "RelativeToolTip": "MuseumSystem\\ExhibitWindow.axaml.cs",
-              "ViewState": "AgIAAP0AAAAAAAAAAAAUwIIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:58:49.542Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Exhibit.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\Exhibit.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\Models\\Exhibit.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\Exhibit.cs",
-              "RelativeToolTip": "MuseumSystem\\Models\\Exhibit.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAqwDAAAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:00:35.1Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Ticket.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\Ticket.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\Models\\Ticket.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\Ticket.cs",
-              "RelativeToolTip": "MuseumSystem\\Models\\Ticket.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:47:02.615Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "TicketType.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\TicketType.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\Models\\TicketType.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\TicketType.cs",
-              "RelativeToolTip": "MuseumSystem\\Models\\TicketType.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:42:02.16Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "AuthorizationWindow.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\AuthorizationWindow.axaml.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\AuthorizationWindow.axaml.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\AuthorizationWindow.axaml.cs",
-              "RelativeToolTip": "MuseumSystem\\AuthorizationWindow.axaml.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAlwBsAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:07:04.485Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Event.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\Event.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\Models\\Event.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\Event.cs",
-              "RelativeToolTip": "MuseumSystem\\Models\\Event.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAYwCkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T16:03:04.426Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "MuseumSystem.csproj",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\MuseumSystem.csproj",
-              "RelativeDocumentMoniker": "MuseumSystem\\MuseumSystem.csproj",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\MuseumSystem.csproj",
-              "RelativeToolTip": "MuseumSystem\\MuseumSystem.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-26T15:30:19.448Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\User.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\Models\\User.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Models\\User.cs",
-              "RelativeToolTip": "MuseumSystem\\Models\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T15:29:21.213Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "App.axaml",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\App.axaml",
-              "RelativeDocumentMoniker": "MuseumSystem\\App.axaml",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\App.axaml",
-              "RelativeToolTip": "MuseumSystem\\App.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-26T13:26:24.541Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Helper.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Helper.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\Helper.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\Helper.cs",
-              "RelativeToolTip": "MuseumSystem\\Helper.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAWwDIAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-26T11:19:12.362Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "App.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\App.axaml.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\App.axaml.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\App.axaml.cs",
-              "RelativeToolTip": "MuseumSystem\\App.axaml.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAiwBEAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T19:39:01.326Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AuthorizationWindow.axaml",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\AuthorizationWindow.axaml",
-              "RelativeDocumentMoniker": "MuseumSystem\\AuthorizationWindow.axaml",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\AuthorizationWindow.axaml",
-              "RelativeToolTip": "MuseumSystem\\AuthorizationWindow.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-22T19:36:48.997Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "MainWindow.axaml",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\MainWindow.axaml",
-              "RelativeDocumentMoniker": "MuseumSystem\\MainWindow.axaml",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\MainWindow.axaml",
-              "RelativeToolTip": "MuseumSystem\\MainWindow.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-22T19:27:40.354Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "MainWindow.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\MainWindow.axaml.cs",
-              "RelativeDocumentMoniker": "MuseumSystem\\MainWindow.axaml.cs",
-              "ToolTip": "C:\\Users\\blockchain\\Desktop\\d\\MuseumSystem\\MuseumSystem\\MainWindow.axaml.cs",
-              "RelativeToolTip": "MuseumSystem\\MainWindow.axaml.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAgwJYAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T19:27:38.819Z"
+              "WhenOpened": "2025-05-30T21:26:07.25Z"
             }
           ]
         }
