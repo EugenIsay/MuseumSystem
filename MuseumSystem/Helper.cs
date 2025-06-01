@@ -1,4 +1,14 @@
 ﻿using Avalonia.Controls;
+using iText.IO.Font;
+using iText.IO.Image;
+using iText.Kernel.Colors;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Draw;
+using iText.Layout;
+using iText.Layout.Borders;
+using iText.Layout.Element;
+using iText.Layout.Properties;
 using LibVLCSharp.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
@@ -10,13 +20,16 @@ using MuseumSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MuseumSystem
 {
@@ -67,7 +80,7 @@ namespace MuseumSystem
         }
         public static List<Ticket> Tickets
         {
-            get => DBContext.Tickets.Where(t => t.UserId == currentUser.Id).Include(t => t.User).Include(t => t.EventRegistrations).ThenInclude(t => t.Event).Include(t => t.Type).ToList();
+            get => DBContext.Tickets.Where(t => t.UserId == currentUser.Id || IsEmployee).Include(t => t.User).Include(t => t.EventRegistrations).ThenInclude(t => t.Event).Include(t => t.Type).ToList();
         }
         public static List<TicketType> TicketTypes
         {
@@ -470,5 +483,102 @@ namespace MuseumSystem
         {
             get => currentUser.RoleId != 3;
         }
+        public static bool PrintTicket(Ticket Ticket, Window window)
+        {
+            try
+            {
+                string outputPath = "C:\\output.pdf";
+                string arialFontPath = "C:\\Windows\\Fonts\\arial.ttf";
+                PdfFont arial = PdfFontFactory.CreateFont(arialFontPath, PdfEncodings.IDENTITY_H);
+                PdfWriter writer = new PdfWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\{Ticket.Number}.pdf");
+                PdfDocument pdfDocument = new PdfDocument(writer.SetSmartMode(true));
+                Document d = new Document(pdfDocument, iText.Kernel.Geom.PageSize.LETTER);
+                d.SetFont(arial);
+                d.Add(new Paragraph("Билет").SetTextAlignment(TextAlignment.CENTER).SetFontSize(20));
+                d.Add(new Paragraph($"{Ticket.Number}").SetTextAlignment(TextAlignment.CENTER).SetFontSize(20));
+                d.Add(new Paragraph($"Дата покупки {Ticket.PurchaseDate}").SetTextAlignment(TextAlignment.CENTER).SetFontSize(14));
+                ImageData imageData = ImageDataFactory.Create(Ticket.qrBytes);
+                d.Add(new iText.Layout.Element.Image(imageData).ScaleToFit(300, 300).SetHorizontalAlignment(HorizontalAlignment.CENTER));
+                LineSeparator ls = new LineSeparator(new SolidLine());
+                d.Add(ls);
+                d.Add(new Paragraph($"Покупатель {Ticket.User.FullName}").SetFontSize(14));
+                d.Add(new Paragraph($"Билет действителен с {Ticket.ValidFrom}, до {Ticket.ValidTo}").SetFontSize(14));
+                d.Add(ls);
+                // Создаем таблицу (3 колонки: №, Услуга, Цена)
+                Table table = new Table(3, true)
+                    .SetWidth(UnitValue.CreatePercentValue(100)); 
+                table.AddHeaderCell("№");
+                table.AddHeaderCell("Услуга");
+                table.AddHeaderCell("Цена");
+
+                table.AddCell($"{1}");
+                table.AddCell(Ticket.Type.Name);
+                table.AddCell($"{Ticket.Type.Price} руб.");
+                if (Ticket.EventRegistrations?.Count > 0)
+                {
+                    // Заполняем данные
+                    for (int i = 0; i < Ticket.EventRegistrations.Count; i++)
+                    {
+                        var service = Ticket.EventRegistrations.ToList()[i];
+                        table.AddCell($"{i + 2}");
+                        table.AddCell(service.Event.Title);
+                        table.AddCell($"{service.Event.Price} руб.");
+                    }
+                }
+
+                table.SetBorder(new SolidBorder(0));
+                d.Add(table);
+                d.Add(ls);
+                d.Add(new Paragraph($"Итого: {Ticket.Price}").SetFontSize(14));
+                d.Add(ls);
+                d.Close();
+                return true;
+            }
+            catch
+            {
+                CallMessageBox($"Билет \"{Ticket.Number}\" не распечатался", window);
+                return false;
+            }
+
+        }
+        public static void MakeReport(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                string outputPath = "C:\\output.pdf";
+                string arialFontPath = "C:\\Windows\\Fonts\\arial.ttf";
+                PdfFont arial = PdfFontFactory.CreateFont(arialFontPath, PdfEncodings.IDENTITY_H);
+                PdfWriter writer = new PdfWriter(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\{DateTime.Now.ToString("yyyy_MM_dd-HH_mm")}.pdf");
+                PdfDocument pdfDocument = new PdfDocument(writer.SetSmartMode(true));
+                Document d = new Document(pdfDocument, iText.Kernel.Geom.PageSize.LETTER);
+                LineSeparator ls = new LineSeparator(new SolidLine());
+                d.SetFont(arial);
+                d.Add(new Paragraph("Отчёт").SetFontSize(20)).SetTextAlignment(TextAlignment.CENTER);
+                d.Add(new Paragraph($"C \"{startDate.Day}\" {startDate.ToString("MMMM yyyy")} по \"{endDate.Day}\" {endDate.ToString("MMMM yyyy")}").SetFontSize(14)).SetTextAlignment(TextAlignment.CENTER);
+                d.Add(ls);
+                d.Add(new Paragraph("Общая статистика").SetFontSize(20)).SetTextAlignment(TextAlignment.CENTER);
+                Table table = new Table(2, true)
+                    .SetWidth(UnitValue.CreatePercentValue(100));
+                table.AddHeaderCell("Переменная");
+                table.AddHeaderCell("Значение");
+                table.AddCell("Количетсво эксонатов");
+                table.AddCell($"{Exhibits.Count}");;
+
+                int n = pdfDocument.GetNumberOfPages();
+                for (int i = 1; i <= n; i++)
+                {
+                    d.ShowTextAligned(new Paragraph(System.String
+                       .Format("стр." + i + " из " + n)),
+                        559, 806, i, TextAlignment.RIGHT,
+                        VerticalAlignment.TOP, 0);
+                }
+                d.Close();
+            }
+            catch
+            {
+
+            }
+        }
     }
+
 }

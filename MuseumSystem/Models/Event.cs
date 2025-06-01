@@ -36,6 +36,11 @@ public partial class Event
         get => EventRegistrations.Count;
     }
 
+    public int FreeSeats
+    {
+        get => (int)(MaxAttendees - RegistrationCount);
+    }
+
     public bool IsOld
     {
         get => StartDatetime < DateTime.Now.Date;
@@ -79,4 +84,27 @@ public partial class Event
     public virtual EventType? Type { get; set; }
 
     public virtual ICollection<EventReview> EventReviews { get; set; } = new List<EventReview>();
+
+    public int AvgRaiting
+    {
+        get
+        {
+            if (EventReviews.Select(s => s.Raiting).Count() == 0)
+                return 0;
+            else
+                return (int)EventReviews.Select(s => s.Raiting).Average();
+        }
+    }
+    public bool HasRaiting
+    {
+        get => AvgRaiting > 0;
+    }
+    public string GoodReviews
+    {
+        get => new string('★', (int)AvgRaiting);
+    }
+    public string BadReview
+    {
+        get => new string('★', 5 - (int)AvgRaiting);
+    }
 }

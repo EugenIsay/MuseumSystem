@@ -52,6 +52,7 @@ public partial class EventWindow : Window
         TypeCBEdit.ItemsSource = Helper.EventTypes;
         AddComment.IsVisible = !HasComment;
         RedactComment.IsVisible = HasComment;
+        CommentSection.IsVisible = @event.StartDatetime > DateTime.Now;
         CheckIfRedact();
         if (reviews.Count() > 3)
         {

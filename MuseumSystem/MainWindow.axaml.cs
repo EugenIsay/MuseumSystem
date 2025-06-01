@@ -7,13 +7,19 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 using MuseumSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Tmds.DBus.Protocol;
+using iText.IO.Image;
+using iText.Kernel.Pdf.Canvas.Parser;
 
 namespace MuseumSystem
 {
@@ -40,6 +46,7 @@ namespace MuseumSystem
             UsersEvents.ItemsSource = Helper.UsersEvents.Take(3);
             Leafes.Source = new Bitmap(Environment.CurrentDirectory + "/leafs.jpg");
             River.Source = new Bitmap(Environment.CurrentDirectory + "/river.jpg");
+            Forest.Source = new Bitmap(Environment.CurrentDirectory + "/forest.jpg");
 
             TicketIcon.Source = new Bitmap(Environment.CurrentDirectory + "/Icons/Ticket.png");
             TicketAmount.Text = Helper.HowMainTickets.ToString();
@@ -49,7 +56,9 @@ namespace MuseumSystem
             EventAmount.Text = Helper.HowManyEvents.ToString();
             ExhibitIcon.Source = new Bitmap(Environment.CurrentDirectory + "/Icons/Exhibit.png");
             ExhibitAmount.Text = Helper.HowManyEhxibitions.ToString();
-
+            EventTypeCB.ItemsSource = Helper.EventTypes.Concat(new List<Models.EventType>() { new Models.EventType { Id = 0, Name = "Все мероприятя" } }).OrderBy(c => c.Id);
+            EventTypeCB.SelectedIndex = 0;
+            TicketLB.SelectedItems = new List<Ticket>();
             if (UsersEvents.ItemCount == 0)
             {
                 MessageHas.IsVisible = true;
@@ -231,7 +240,7 @@ namespace MuseumSystem
                 startDate = StartDate.SelectedDate.Value.DateTime;
                 endDate = EndDate.SelectedDate.Value.DateTime;
             }
-
+            Helper.MakeReport(startDate, endDate);
         }
 
         private void ExibiyHeader_PointerEntered(object? sender, Avalonia.Input.PointerEventArgs e)
@@ -264,16 +273,17 @@ namespace MuseumSystem
             ctl.Hide();
             if ((ExibitTypeCB.SelectedItem as Category).Id == 0)
             {
-                ExhibitLB.ItemsSource = Helper.Exhibits;
+                exCategory = 0;
                 ExhibitSelectedText.Text = "Экспонаты";
             }
             else
             {
-                ExhibitLB.ItemsSource = Helper.Exhibits.Where(e => e.CategoryId == (ExibitTypeCB.SelectedItem as Category).Id);
+                exCategory = (ExibitTypeCB.SelectedItem as Category).Id;
                 ExhibitSelectedText.Text = Helper.Categories.FirstOrDefault(c => c.Id == (ExibitTypeCB.SelectedItem as Category).Id).Name;
             }
 
             MainTab.SelectedIndex = Helper.Page;
+            UpdateExibits();
         }
 
         private void Window_SizeChanged(object? sender, Avalonia.Controls.SizeChangedEventArgs e)
@@ -360,9 +370,9 @@ namespace MuseumSystem
         List<AtachedMedium> Images = new List<AtachedMedium>();
         Border currentHoverExhibit = null;
         int HoveredPage = 0;
-        public Image BorderChild
+        public Avalonia.Controls.Image BorderChild
         {
-            get => currentHoverExhibit.Child as Image;
+            get => currentHoverExhibit.Child as Avalonia.Controls.Image;
         }
         private void EIBorder_PointerEntered(object? sender, Avalonia.Input.PointerEventArgs e)
         {
@@ -404,6 +414,195 @@ namespace MuseumSystem
                 currentHoverExhibit = null;
                 Images.Clear();
             }
+        }
+
+        private void PressButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            List<Ticket> selectedTickets = TicketLB.SelectedItems as List<Ticket>;
+
+            List<bool> succes = new List<bool>();
+            foreach (var OneTicket in selectedTickets)
+            {
+                succes.Add(Helper.PrintTicket(OneTicket, this));
+            }
+            MessageBoxManager.GetMessageBoxStandard("Готово", $"Создано {succes.Where(s => s == true).Count()} файлов").ShowWindowDialogAsync(this);
+        }
+
+        private void TicketLB_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+        {
+            if (TicketLB != null)
+            {
+                PressButton.IsVisible = TicketLB.SelectedItems.Count > 0;
+            }
+        }
+
+        int exCategory = 0;
+        string exSearch = "";
+        int exSort = 0;
+        private void SearchExhibit_TextChanged(object? sender, Avalonia.Controls.TextChangedEventArgs e)
+        {
+            exSearch = (sender as TextBox).Text;
+            UpdateExibits();
+        }
+
+        public void UpdateExibits()
+        {
+            if (ExhibitLB == null)
+                return;
+            string[] searchWords = exSearch.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                                     .Select(w => w.ToLower())
+                                     .ToArray();
+            // Фильтрация
+            ExhibitLB.ItemsSource = Helper.Exhibits
+                .Where(e => e.CategoryId == exCategory || exCategory == 0)
+                .Where(exhibit =>
+            {
+                // Поиск
+                string fullText = $"{exhibit.Name?.ToLower()} {exhibit.Description?.ToLower()} {exhibit.InventoryNumber.ToLower()} {exhibit.Condition.ToLower()} {exhibit.PermanentlyLocated.ToLower()}";
+                return searchWords.Any(word => fullText.Contains(word))
+                || string.IsNullOrEmpty(exSearch);
+
+            }).OrderByDescending<Exhibit, object>(e =>
+            // Сортировка по убыванию
+            exSort switch
+            {
+                1 => e.Name,
+                2 => e.InventoryNumber,
+                3 => e.AddDate,
+                4 => e.ApproximateCost,
+                5 => e.AvgRaiting,
+                _ => null
+            })
+            .OrderBy<Exhibit, object>(e =>
+            exSort switch
+            {
+                // Сортировка по возрастанию
+                7 => e.Name,
+                8 => e.InventoryNumber,
+                9 => e.AddDate,
+                10 => e.ApproximateCost,
+                11 => e.AvgRaiting,
+                _ => null
+            }).ToList();
+        }
+
+        private void EXComboBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+        {
+            if (sender == null || EXSortCB == null)
+                return;
+            if ((sender as ComboBox).SelectedIndex == 0)
+            {
+                EXSortCB.IsVisible = false;
+            }
+            else
+            {
+                EXSortCB.IsVisible = true;
+            }
+            exSort = (sender as ComboBox).SelectedIndex + (-EXSortCB.SelectedIndex + 1) * 6;
+            UpdateExibits();
+        }
+
+        private void EXComboBox_SelectionChanged_2(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+        {
+            if (sender == null)
+                return;
+            if ((sender as ComboBox).SelectedIndex == 0)
+            {
+                exSort += 6;
+            }
+            else
+            {
+                exSort -= 6;
+            }
+            UpdateExibits();
+        }
+
+
+        int evType = 0;
+        string evSearch = "";
+        int evSort = 0;
+        private void EvTextBox_TextChanged(object? sender, Avalonia.Controls.TextChangedEventArgs e)
+        {
+            evSearch = (sender as TextBox).Text;
+            UpdateEvents();
+        }
+
+        public void UpdateEvents()
+        {
+            if (EventLB == null)
+                return;
+            string[] searchWords = evSearch.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                                     .Select(w => w.ToLower())
+                                     .ToArray();
+            // Фильтрация
+            EventLB.ItemsSource = Helper.Events
+                .Where(e => e.TypeId == evType || evType == 0)
+                .Where(evnt =>
+                {
+                    // Поиск
+                    string fullText = $"{evnt.Title?.ToLower()} {evnt.Description?.ToLower()} {evnt.Organizer.FullName.ToLower()} {evnt.Addres.ToLower()}";
+                    return searchWords.Any(word => fullText.Contains(word))
+                    || string.IsNullOrEmpty(evSearch);
+
+                }).OrderByDescending<Event, object>(e =>
+                // Сортировка по убыванию
+                evSort switch
+                {
+                    1 => e.Title,
+                    2 => e.StartDatetime,
+                    3 => e.FreeSeats,
+                    4 => e.Price,
+                    5 => e.AvgRaiting,
+                    _ => null
+                })
+            .OrderBy<Event, object>(e =>
+            evSort switch
+            {
+                // Сортировка по возрастанию
+                7 => e.Title,
+                8 => e.StartDatetime,
+                9 => e.FreeSeats,
+                10 => e.Price,
+                11 => e.AvgRaiting,
+                _ => null
+            }).ToList();
+        }
+
+        private void EVTypeComboBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+        {
+            evType = ((sender as ComboBox).SelectedItem as Models.EventType).Id;
+            UpdateEvents();
+        }
+
+        private void EvComboBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+        {
+            if (sender == null || EVSortCB == null)
+                return;
+            if ((sender as ComboBox).SelectedIndex == 0)
+            {
+                EVSortCB.IsVisible = false;
+            }
+            else
+            {
+                EVSortCB.IsVisible = true;
+            }
+            evSort = (sender as ComboBox).SelectedIndex + (-EVSortCB.SelectedIndex + 1) * 6;
+            UpdateEvents();
+        }
+
+        private void EvComboBox_SelectionChanged_2(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+        {
+            if (sender == null)
+                return;
+            if ((sender as ComboBox).SelectedIndex == 0)
+            {
+                evSort += 6;
+            }
+            else
+            {
+                evSort -= 6;
+            }
+            UpdateEvents();
         }
     }
 }

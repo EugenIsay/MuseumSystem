@@ -33,22 +33,27 @@ public partial class Ticket
 
     public virtual User User { get; set; } = null!;
 
-    public Bitmap qrBitmap
+    public byte[] qrBytes
     {
         get
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode($"Номер: {Number}, Клиент: {User.FullName}, Дата покупки: {PurchaseDate}, Доступен с: {ValidFrom}, Доступен до: {ValidTo}, Тип {Type.Name}, Доступные мероприятия: {EventRegistrations.Select(s => s.Event.Title)}", QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode($"Дата:{PurchaseDate}, цена:{Price}, с:{ValidFrom}, до:{ValidTo}, ", QRCodeGenerator.ECCLevel.Q);
             using (PngByteQRCode qrCode = new PngByteQRCode(qrCodeData))
             {
-                byte[] qrCodeImage = qrCode.GetGraphic(20);
-                using (var ms = new MemoryStream(qrCodeImage))
-                {
-                    return new Bitmap(ms);
-                }
-
+                return qrCode.GetGraphic(20);
             };
+        }
+    }
 
+    public Bitmap qrBitmap
+    {
+        get
+        {
+            using (var ms = new MemoryStream(qrBytes))
+            {
+                return new Bitmap(ms);
+            }
         }
     }
 

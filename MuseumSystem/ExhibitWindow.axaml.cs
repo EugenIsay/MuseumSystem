@@ -303,6 +303,13 @@ public partial class ExhibitWindow : Window
             else
                 result.Id = Media.Select(m => m.Id).Order().Last() + 1;
             Media.Add(result);
+            Control mediaPlayerControl = App.AppNativeVideoPlayerService.CreateControl();
+
+            mediaPlayerControl.Width = 400;
+            mediaPlayerControl.Height = 300;
+
+            VideoContainer.Children.Clear();
+            VideoContainer.Children.Add(mediaPlayerControl);
             PhotoList.ItemsSource = PhotoMedia;
             AudioList.ItemsSource = AudioMedia;
             VideoList.ItemsSource = VideoMedia;

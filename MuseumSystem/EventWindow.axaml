@@ -6,6 +6,7 @@
         x:Class="MuseumSystem.EventWindow"
 		xmlns:local="clr-namespace:MuseumSystem"
 		FontFamily="Verdana"
+		Background="#FFFCED"
         Title="Мероприятие">
 	<Window.Styles>
 		<Style Selector="TextBlock">
@@ -39,14 +40,23 @@
 						<Setter Property="Grid.ColumnSpan" Value="2" />
 					</Style>
 				</Grid.Styles>
-				<Grid HorizontalAlignment="Left" ColumnDefinitions="*,*,*">
-					<Viewbox Margin="10,0" Stretch="Uniform" Grid.Column="1" >
-						<Grid>
-							<TextBlock   TextWrapping="Wrap" Name="TitleTB" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-							<TextBox   TextWrapping="Wrap" Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-						</Grid>
-					</Viewbox>
+
+				<Grid Margin="20,10" ColumnDefinitions="*,*,*" RowDefinitions="*,*" HorizontalAlignment="Left">
+					<Border Margin="5" BorderBrush="#484244" BorderThickness="4,4,0,0"></Border>
+					<Border Margin="5" BorderBrush="#484244" BorderThickness="0,0,4,4" Grid.Column="2" Grid.Row="1"></Border>
+					<Grid  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" ColumnDefinitions="*,*,*">
+
+						<Viewbox Margin="20,10"  Stretch="Uniform" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+							<Grid>
+								<TextBlock   TextWrapping="Wrap" Name="TitleTB" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								<TextBox   TextWrapping="Wrap" Name="Title" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Grid>
+						</Viewbox>
+
+					</Grid>
 				</Grid>
+
+
 
 				<Grid HorizontalAlignment="Left" Grid.Row="1" ColumnDefinitions="*,2*,2*,*" RowDefinitions="*,2*,2*,*">
 					<Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" >
@@ -231,7 +241,7 @@
 
 
 				<DockPanel Margin="10" Name="CommentSection" Grid.Row="4">
-					<Grid DockPanel.Dock="Top" HorizontalAlignment="Stretch" ColumnDefinitions="*,*,*">
+					<Grid Background="White" DockPanel.Dock="Top" HorizontalAlignment="Stretch" ColumnDefinitions="*,*,*">
 						<Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" >
 							<Grid  RowDefinitions="*,3*,*">
 								<StackPanel Orientation="Horizontal">

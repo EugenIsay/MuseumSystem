@@ -98,6 +98,14 @@
             "VideoLAN.LibVLC.Windows": {
               "target": "Package",
               "version": "[3.0.21, )"
+            },
+            "itext.bouncy-castle-adapter": {
+              "target": "Package",
+              "version": "[9.2.0, )"
+            },
+            "itext7": {
+              "target": "Package",
+              "version": "[9.2.0, )"
             }
           },
           "imports": [

@@ -8,6 +8,7 @@
 		SizeChanged="Window_SizeChanged"
 		Name="MainW"
 		FontFamily="Verdana"
+		Background="#FFFCED"
         Title="Система музея">
 	<Window.Styles>
 		<Style Selector="TabControl WrapPanel">
@@ -15,7 +16,7 @@
 		</Style>
 	</Window.Styles>
 
-	<TabControl Padding="0" SelectionChanged="TabControl_SelectionChanged" Name="MainTab" >
+	<TabControl Background="#FFFCED" Padding="0" SelectionChanged="TabControl_SelectionChanged" Name="MainTab" >
 		<!--Вкладка главного окна-->
 		<TabItem IsVisible="True" Header="a" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 			<TabItem.Header>
@@ -125,7 +126,7 @@
 							<Grid RowDefinitions="*,*,*">
 								<Grid Margin="10" Grid.Row="1" ColumnDefinitions="*,*,*,*,*,*,*,*,*" RowDefinitions="2*,*,*">
 									<Grid.Styles>
-										<Style Selector="TextBlock"> 
+										<Style Selector="TextBlock">
 											<Setter Property="HorizontalAlignment" Value="Center"/>
 											<Setter Property="Foreground"  Value="White"/>
 											<Setter Property="FontFamily" Value="TimesNewRoman"/>
@@ -134,11 +135,11 @@
 									<Image Grid.Column="1" Name="TicketIcon"/>
 									<TextBlock Grid.Row="1" Grid.Column="1"  Name="TicketAmount"/>
 									<TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="Продано билетов"/>
-									
+
 									<Image Name="VisitIcon" Grid.Column="3"/>
 									<TextBlock Grid.Row="1" Grid.Column="3" Name="VisitAmount"/>
 									<TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Text="Посетителей"/>
-									
+
 									<Image Name="EventIcon" Grid.Column="5"/>
 									<TextBlock Grid.Row="1" Grid.Column="5" Name="EventAmount"/>
 									<TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Text="Организованных мероприятий"/>
@@ -146,7 +147,7 @@
 									<Image Name="ExhibitIcon" Grid.Column="7"/>
 									<TextBlock Grid.Row="1" Grid.Column="7" Name="ExhibitAmount"/>
 									<TextBlock Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="3" Text="Экспоната"/>
-									
+
 								</Grid>
 							</Grid>
 						</Border>
@@ -178,6 +179,29 @@
 								</Grid>
 							</Grid>
 						</Grid>
+						<Grid DockPanel.Dock="Top" Margin="5" ColumnDefinitions="2*,*,*,*">
+							<TextBox Watermark="Поиск" Margin="5" TextChanged="EvTextBox_TextChanged"/>
+							<ComboBox Margin="5" Grid.Column="1" Name="EventTypeCB" SelectionChanged="EVTypeComboBox_SelectionChanged">
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Name}"/>
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+							<ComboBox Margin="5" SelectedIndex="0" Grid.Column="2" SelectionChanged="EvComboBox_SelectionChanged">
+								<ComboBoxItem>Без сортировки</ComboBoxItem>
+								<ComboBoxItem>По названию</ComboBoxItem>
+								<ComboBoxItem>По дате начала</ComboBoxItem>
+								<ComboBoxItem>По свободным местам</ComboBoxItem>
+								<ComboBoxItem>По цене</ComboBoxItem>
+								<ComboBoxItem>По рейтингу</ComboBoxItem>
+							</ComboBox>
+							<ComboBox SelectedIndex="0" Margin="5" Grid.Column="3" Name="EVSortCB" SelectionChanged="EvComboBox_SelectionChanged_2">
+								<ComboBoxItem>По возрастанию</ComboBoxItem>
+								<ComboBoxItem>По Убыванию</ComboBoxItem>
+							</ComboBox>
+
+						</Grid>
 						<UniformGrid Margin="0,20" Name="BigList">
 							<ListBox Margin="0,5" Grid.Column="0" Name="EventLB" >
 								<ListBox.Styles>
@@ -196,34 +220,49 @@
 									<DataTemplate>
 
 										<Border Background="Transparent" DoubleTapped="Border_DoubleTapped_1" Margin="5" BorderBrush="Gainsboro" BorderThickness="0,0,2,2">
-											<Grid Background="Transparent" Margin="20" RowDefinitions="*,*,*" ColumnDefinitions="*,3*,*">
+											<Grid Background="Transparent" Margin="20" ColumnDefinitions="*,3*,*">
 												<Border Grid.Row="0" BorderBrush="Gainsboro" BorderThickness="1" Grid.RowSpan="3"  Grid.Column="0">
 
 													<Image Margin="5" Stretch="UniformToFill" Source="{Binding MainImageBitmap}"/>
 												</Border>
 
-												<StackPanel Margin="10,0" Grid.Column="1" Orientation="Horizontal">
-													<TextBlock Text="{Binding Type.Name}"/>
-													<TextBlock Text=": "/>
-													<TextBlock Text="{Binding Title}"/>
+												<StackPanel Grid.Column="1">
+
+													<StackPanel Margin="10,0"  Orientation="Horizontal">
+														<TextBlock Text="{Binding Type.Name}"/>
+														<TextBlock Text=": "/>
+														<TextBlock Text="{Binding Title}"/>
+													</StackPanel>
+													<StackPanel Margin="10,0" Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+														<StackPanel.Styles>
+															<Style Selector="TextBlock">
+																<Setter Property="Foreground" Value="Gray"/>
+															</Style>
+														</StackPanel.Styles>
+														<TextBlock Text="{Binding Addres}"/>
+														<TextBlock Text=" / "/>
+														<TextBlock Text="{Binding StartDatetime, StringFormat='С {0} '}"/>
+														<TextBlock Text="{Binding EndDatetime, StringFormat=', по {0} '}"/>
+													</StackPanel>
+
+													<StackPanel Margin="10,0" Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+														<TextBlock Text="{Binding MaxAttendees, StringFormat='Мероприятие запланировано на {0} мест '}"/>
+														<TextBlock Text="{Binding RegistrationCount, StringFormat='({0} занято) '}"/>
+													</StackPanel>
+													<StackPanel IsVisible="{Binding HasRaiting}" Orientation="Horizontal">
+														<TextBlock Foreground="Yellow" Text="{Binding GoodReviews}"  >
+															<TextBlock.Effect>
+																<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>
+															</TextBlock.Effect>
+														</TextBlock>
+														<TextBlock Foreground="Gray" Text="{Binding BadReview}" >
+															<TextBlock.Effect>
+																<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>
+															</TextBlock.Effect>
+														</TextBlock>
+													</StackPanel>
 												</StackPanel>
 
-												<StackPanel Margin="10,0" Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-													<StackPanel.Styles>
-														<Style Selector="TextBlock">
-															<Setter Property="Foreground" Value="Gray"/>
-														</Style>
-													</StackPanel.Styles>
-													<TextBlock Text="{Binding Addres, StringFormat=' в {0}'}"/>
-													<TextBlock Text=" / "/>
-													<TextBlock Text="{Binding StartDatetime, StringFormat='С {0} '}"/>
-													<TextBlock Text="{Binding EndDatetime, StringFormat=', по {0} '}"/>
-												</StackPanel>
-
-												<StackPanel Margin="10,0" Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-													<TextBlock Text="{Binding MaxAttendees, StringFormat='Мероприятие запланировано на {0} мест '}"/>
-													<TextBlock Text="{Binding RegistrationCount, StringFormat='({0} занято) '}"/>
-												</StackPanel>
 
 												<ToolTip.Tip>
 													<TextBlock Text="{Binding Description}"/>
@@ -331,31 +370,61 @@
 				<TextBlock Text="Билеты" Foreground="White"/>
 			</TabItem.Header>
 			<DockPanel>
-				<Button Content="Купить билет" DockPanel.Dock="Bottom" Click="TicketButton_Click"/>
-				<ListBox Name="TicketLB" Background="#E0CFBD">
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<Border BorderBrush="#D77546" BorderThickness="4">
-								<Grid Margin="20" RowDefinitions="*,*,*,*" ColumnDefinitions="*,10*,3*">
-									<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding Number}"/>
-									<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Type.Name}"/>
-									<StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
-										<TextBlock Text="{Binding PurchaseDate, StringFormat='Куплен {0}'}"/>
-										<TextBlock Text="{Binding Price, StringFormat=', по цене {0}'}"/>
-									</StackPanel>
-									<StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
-										<TextBlock Text="{Binding ValidFrom, StringFormat='Доступен с {0} '}"/>
-										<TextBlock Text="{Binding ValidTo, StringFormat='до {0}'}"/>
-									</StackPanel>
-									<Grid Grid.Column="2" Grid.RowSpan="4" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
-										<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Source="{Binding qrBitmap}"/>
-									</Grid>
+				<Grid Margin="10" DockPanel.Dock="Bottom" ColumnDefinitions="*,*,*">
+					<Button Content="Купить билет"  Click="TicketButton_Click"/>
+					<Button Grid.Column="2" HorizontalAlignment="Right" Content="Распечатать" Click="PressButton_Click" Name="PressButton" IsVisible="False"/>
+				</Grid>
+				<ScrollViewer>
+
+					<DockPanel>
+						<Grid DockPanel.Dock="Top" HorizontalAlignment="Stretch">
+							<Image Stretch="UniformToFill" MaxHeight="300" Name="Forest"/>
+							<Grid Grid.Row="1" DockPanel.Dock="Top" ColumnDefinitions="2*,*,2*" RowDefinitions="*,*,*">
+								<Rectangle Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Fill="#484244"/>
+								<Viewbox Grid.Row="1" Margin="15" Stretch="Uniform" Grid.Column="1" >
+									<TextBlock HorizontalAlignment="Center" Text="Билеты" Foreground="#E0CFBD"/>
+								</Viewbox>
+								<Grid Margin="4" Grid.Row="1" Grid.Column="1" RowDefinitions="*,*" ColumnDefinitions="*,*,*">
+									<Border BorderBrush="#E0CFBD" BorderThickness="4,4,0,0"></Border>
+									<Border BorderBrush="#E0CFBD" BorderThickness="0,0,4,4" Grid.Column="2" Grid.Row="1"></Border>
 								</Grid>
-							</Border>
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-				</ListBox>
+							</Grid>
+						</Grid>
+						<ListBox SelectionMode="Multiple" SelectionChanged="TicketLB_SelectionChanged" Name="TicketLB">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<Grid>
+										
+										<Grid Margin="20" RowDefinitions="*,*,*,*" ColumnDefinitions="*,10*,3*">
+											<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding Number}"/>
+											<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Type.Name}"/>
+											<StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+												<TextBlock Text="{Binding PurchaseDate, StringFormat='Куплен {0}'}"/>
+												<TextBlock Text="{Binding Price, StringFormat=', по цене {0}'}"/>
+											</StackPanel>
+											<StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
+												<TextBlock Text="{Binding ValidFrom, StringFormat='Доступен с {0} '}"/>
+												<TextBlock Text="{Binding ValidTo, StringFormat='до {0}'}"/>
+											</StackPanel>
+											<Grid Grid.Column="2" Grid.RowSpan="4" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
+												<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Source="{Binding qrBitmap}"/>
+											</Grid>
+										</Grid>
+
+										<Grid ColumnDefinitions="*,8*,*" RowDefinitions="*,4*,*">
+											<Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" BorderThickness="0,2,0,2" BorderBrush="Gainsboro"/>
+											<Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="2,0,2,0" BorderBrush="Gainsboro"/>
+										</Grid>
+									</Grid>
+									
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
+					</DockPanel>
+				</ScrollViewer>
 			</DockPanel>
+
+
 		</TabItem>
 
 
@@ -398,7 +467,22 @@
 						</Grid>
 
 						<Border DockPanel.Dock="Top" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-							<ComboBox HorizontalAlignment="Left"/>
+							<Grid ColumnDefinitions="2*,*,*">
+								<TextBox Margin="5" TextChanged="SearchExhibit_TextChanged" Watermark="Поиск"/>
+								<ComboBox SelectionChanged="EXComboBox_SelectionChanged" Margin="5" Grid.Column="1" SelectedIndex="0">
+									<ComboBoxItem>Без сортировки</ComboBoxItem>
+									<ComboBoxItem>По имени</ComboBoxItem>
+									<ComboBoxItem>По номеру</ComboBoxItem>
+									<ComboBoxItem>По дате</ComboBoxItem>
+									<ComboBoxItem>По цене</ComboBoxItem>
+									<ComboBoxItem>По рейтингу</ComboBoxItem>
+								</ComboBox>
+								<ComboBox IsVisible="False" SelectionChanged="EXComboBox_SelectionChanged_2" Name="EXSortCB" Margin="5" SelectedIndex="0" Grid.Column="2">
+									<ComboBoxItem>По возрастанию</ComboBoxItem>
+									<ComboBoxItem>По Убыванию</ComboBoxItem>
+								</ComboBox>
+							</Grid>
+							
 						</Border>
 
 						<ListBox ScrollViewer.IsScrollInertiaEnabled="False" Name="ExhibitLB">
@@ -439,12 +523,10 @@
 																<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>
 															</TextBlock.Effect>
 														</TextBlock>
-
-														<ToolTip.Tip >
-															<TextBlock Text="{Binding Description}"/>
-														</ToolTip.Tip>
 													</StackPanel>
-
+													<ToolTip.Tip >
+														<TextBlock Text="{Binding Description}"/>
+													</ToolTip.Tip>
 												</StackPanel>
 											</Border>
 
@@ -474,7 +556,7 @@
 						<ComboBoxItem>За год</ComboBoxItem>
 						<ComboBoxItem>За определённый промежуток времени</ComboBoxItem>
 					</ComboBox>
-					<StackPanel Name="DateSelector" Grid.Row="2" Spacing="10" Orientation="Horizontal">
+					<StackPanel Name="DateSelector" Grid.Row="2" Spacing="10" IsVisible="False" Orientation="Horizontal">
 						<TextBlock VerticalAlignment="Center" Text="С"/>
 						<DatePicker Name="StartDate"></DatePicker>
 						<TextBlock VerticalAlignment="Center" Text="по"/>

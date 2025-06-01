@@ -6,7 +6,7 @@
         x:Class="MuseumSystem.ExhibitWindow"
 		xmlns:local="clr-namespace:MuseumSystem"
 		SizeChanged="Window_SizeChanged"
-		
+		Background="#FFFCED"
         Title="Экспонат">
 	<Window.Resources>
 		<TextDecorationCollection x:Key="CustomUnderline">
@@ -34,7 +34,7 @@
 
 				<!--Секция комменатриев-->
 				<DockPanel Margin="10" Name="CommentSection" DockPanel.Dock="Bottom">
-					<Grid DockPanel.Dock="Top" HorizontalAlignment="Stretch" ColumnDefinitions="*,*,*">
+					<Grid Background="White" DockPanel.Dock="Top" HorizontalAlignment="Stretch" ColumnDefinitions="*,*,*">
 						<Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" >
 							<Grid  RowDefinitions="*,3*,*">
 								<StackPanel Orientation="Horizontal">
@@ -98,9 +98,12 @@
 								</ListBox.ItemTemplate>
 
 							</ListBox>
-							<StackPanel Grid.Column="1" x:Name="VideoContainer">
-								<Rectangle Fill="Black" Width="400" Height="300"/>
-							</StackPanel>
+							<Border Grid.Column="1" Width="400" Height="300" Background="Black">
+								<StackPanel  x:Name="VideoContainer">
+									<Rectangle Fill="Black" Width="400" Height="300"/>
+								</StackPanel>
+							</Border>
+
 						</Grid>
 					</DockPanel>
 
