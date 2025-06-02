@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "xBjGm+aiNFXe+0/faxVqI21jT1wZ5/CshetZn3kMqw+fL6hqlUL+9Ll8ECxzlKJ6ZCC4dj7uwc/gqo6hk/zgpg==",
+  "dgSpecHash": "bGWTdOKl7VzhqLICssHoUorFiRsKpk25eI25ffaEVrOnDfHYE0Q8tgJxdsdW3i2BYL7wINpqJ5prMRncdJJ0sQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\zheka\\Desktop\\Диплом\\MuseumSystem\\MuseumSystem\\MuseumSystem.csproj",
   "expectedPackageFiles": [
@@ -34,6 +34,8 @@
     "C:\\Users\\zheka\\.nuget\\packages\\itext7\\9.2.0\\itext7.9.2.0.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\libvlcsharp\\3.9.3\\libvlcsharp.3.9.3.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\libvlcsharp.avalonia\\3.9.3\\libvlcsharp.avalonia.3.9.3.nupkg.sha512",
+    "C:\\Users\\zheka\\.nuget\\packages\\livechartscore\\2.0.0-rc5.4\\livechartscore.2.0.0-rc5.4.nupkg.sha512",
+    "C:\\Users\\zheka\\.nuget\\packages\\livechartscore.skiasharpview\\2.0.0-rc5.4\\livechartscore.skiasharpview.2.0.0-rc5.4.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\messagebox.avalonia\\3.2.0\\messagebox.avalonia.3.2.0.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\microcom.runtime\\0.11.0\\microcom.runtime.0.11.0.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
@@ -85,6 +87,7 @@
     "C:\\Users\\zheka\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\skiasharp\\2.88.9\\skiasharp.2.88.9.nupkg.sha512",
+    "C:\\Users\\zheka\\.nuget\\packages\\skiasharp.harfbuzz\\2.88.9\\skiasharp.harfbuzz.2.88.9.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\skiasharp.nativeassets.linux\\2.88.9\\skiasharp.nativeassets.linux.2.88.9.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\skiasharp.nativeassets.macos\\2.88.9\\skiasharp.nativeassets.macos.2.88.9.nupkg.sha512",
     "C:\\Users\\zheka\\.nuget\\packages\\skiasharp.nativeassets.webassembly\\2.88.9\\skiasharp.nativeassets.webassembly.2.88.9.nupkg.sha512",

@@ -37,8 +37,6 @@ public partial class EventWindow : Window
         OrgCBEdit.ItemsSource = Helper.Users.Where(u => u.RoleId != 3);
         OrgCBEdit.SelectedItem = Helper.currentUser;
         TypeCBEdit.ItemsSource = Helper.EventTypes;
-        StartDate.MinYear = DateTime.Now;
-        EndDate.MinYear = DateTime.Now;
         CommentSection.IsVisible = false;
         AddComment.IsVisible = false;
         RedactComment.IsVisible = false;
@@ -73,7 +71,7 @@ public partial class EventWindow : Window
     private void ComfirmButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         @event.Title = Title.Text;
-        @event.Description = Description.Name;
+        @event.Description = Description.Text;
         @event.Addres = AddresEdit.Text;
         @event.MaxAttendees = (int?)AttendanceEdit.Value;
         @event.Price = PriceEdit.Value;
@@ -136,14 +134,6 @@ public partial class EventWindow : Window
                 Exhibits = result;
                 ExhibitLB.ItemsSource = GetExhibits;
             }
-            //if (Media.Count() == 0)
-            //    result.Id = 1;
-            //else
-            //    result.Id = Media.Select(m => m.Id).Order().Last() + 1;
-            //Media.Add(result);
-            //PhotoList.ItemsSource = PhotoMedia;
-            //AudioList.ItemsSource = AudioMedia;
-            //VideoList.ItemsSource = VideoMedia;
         }
         catch
         {

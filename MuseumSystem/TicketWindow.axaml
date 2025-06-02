@@ -4,85 +4,103 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="MuseumSystem.TicketWindow"
-		Background="#E8BC75"
 		xmlns:local="clr-namespace:MuseumSystem"
+		FontFamily="Verdana"
+		Background="#FFFCED"
         Title="Покупка билета">
-	<Grid RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*">
-		<ComboBox Name="UserCB" IsEnabled="{x:Static local:Helper.IsEmployee}">
-			<ComboBox.ItemTemplate>
-				<DataTemplate>
-					<TextBlock Text="{Binding FullName}"/>
-				</DataTemplate>
-			</ComboBox.ItemTemplate>
-		</ComboBox>
-		<TextBlock Grid.Row="1" Text="Номер (автоматически генерируется)"/>
-		<TextBlock Grid.Row="2" Name="Number"/>
-		<TextBlock Grid.Row="3" Text="Выберите тип билета"/>
-		<ComboBox SelectionChanged="ComboBox_SelectionChanged" Grid.Row="4" Name="TypeCB">
-			<ComboBox.ItemTemplate>
-				<DataTemplate>
-					<StackPanel Spacing="5" Background="Transparent" Orientation="Horizontal">
-						<TextBlock Text="{Binding Name}"/>
-						<TextBlock Text="{Binding Price}"/>
-						<ToolTip.Tip>
-							<TextBlock Text="{Binding Description}"/>
-						</ToolTip.Tip>
-					</StackPanel>
-				</DataTemplate>
-			</ComboBox.ItemTemplate>
-		</ComboBox>
-		<StackPanel Grid.Row="5" Spacing="5" Orientation="Horizontal">
-			<TextBlock Text="Дата начала:"/>
-			<DatePicker Name="StartDate" SelectedDateChanged="DatePicker_SelectedDateChanged" DayFormat="ddd dd"/>
-		</StackPanel>
-		<StackPanel Grid.Row="6" IsEnabled="False" Spacing="5" Orientation="Horizontal">
-			<TextBlock Text="Конца:"/>
-			<DatePicker Name="EndDate" DayFormat="ddd dd"/>
-		</StackPanel>
-		<TextBlock Grid.Row="7" Text="Мероприятия доступные в этот период (Будет стоить дополнительно)"/>
-		<Grid Grid.Row="8" Grid.RowSpan="2">
-			<TextBlock Name="Massage" Text="Выберите начальную дату, дабы посмотреть список доступных событий"/>
-			<ListBox  Name="EventLB" IsVisible="False" SelectionMode="Multiple" SelectionChanged="ListBox_SelectionChanged_1">
-				<ListBox.ItemsPanel>
-					<ItemsPanelTemplate>
-						<VirtualizingStackPanel Orientation="Horizontal" />
-					</ItemsPanelTemplate>
-				</ListBox.ItemsPanel>
-				<ListBox.ItemTemplate>
-					<DataTemplate>
-						<Border BorderBrush="#D77546" BorderThickness="4">
-							<Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*,*">
-								<StackPanel Grid.Column="1" Orientation="Horizontal">
-									<TextBlock Text="{Binding Type.Name}"/>
-									<TextBlock Text=": "/>
-									<TextBlock Text="{Binding Title}"/>
-								</StackPanel>
-								<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-									<TextBlock Text="{Binding StartDatetime, StringFormat='С {0} '}"/>
-									<TextBlock Text="{Binding EndDatetime, StringFormat=', по {0} '}"/>
-									<TextBlock Text="{Binding Addres, StringFormat=' в {0}'}"/>
-								</StackPanel>
-								<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Organizer.FullName, StringFormat='Отсвественое лицо: {0}'}"/>
-								<StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-									<TextBlock Text="{Binding MaxAttendees, StringFormat='Мероприятие запланировано на {0} мест '}"/>
-									<TextBlock Text="{Binding RegistrationCount, StringFormat='({0} занято) '}"/>
-									<TextBlock Text="{Binding Price, StringFormat='по цене {0} руб. за человека'}"/>
-								</StackPanel>
-								<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Description, StringFormat='Описание: {0}'}"/>
-							</Grid>
-						</Border>
-					</DataTemplate>
-				</ListBox.ItemTemplate>
-			</ListBox>
-		</Grid>
-		<StackPanel Grid.Row="10" Orientation="Horizontal" Spacing="5">
-			<TextBlock Text="Итоговая цена:"/>
-			<TextBlock Name="Price"/>
-		</StackPanel>
-		<StackPanel Grid.Row="11" Orientation="Horizontal" Spacing="5">
+	<DockPanel>
+		<Border Background="#484244" DockPanel.Dock="Top">
+			<Grid ColumnDefinitions="*,*,*">
+				<Button Margin="40" Grid.Column="2" HorizontalAlignment="Right" Content="Назад" Click="BackButton_Click"/>
+			</Grid>
+		</Border>
+		<ScrollViewer>
+			<Border HorizontalAlignment="Center" CornerRadius="2" BorderBrush="White" BorderThickness="2" Margin="10" VerticalAlignment="Center" Background="White">
 
-			<Button Content="Готово" Click="ComfirmButton_Click"/>
-			<Button Content="Отмена" Click="BackButton_Click"/>
-		</StackPanel>
-	</Grid>
+				<DockPanel Margin="10" HorizontalAlignment="Center">
+					<DockPanel.Styles>
+						<Style Selector="DockPanel > :is(Control)">
+							<Setter Property="DockPanel.Dock" Value="Top"/>
+							<Setter Property="Margin" Value="0,10"/>
+						</Style>
+					</DockPanel.Styles>
+					<TextBlock Text="Оформление билета" FontSize="20" HorizontalAlignment="Center" Margin="10"/>
+
+					<TextBlock Text="Пользователь:"/>
+					<ComboBox Name="UserCB" IsEnabled="{x:Static local:Helper.IsEmployee}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding FullName}"/>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+
+					<TextBlock Text="Номер (автоматически генерируется)"/>
+					<Border BorderBrush="Black" BorderThickness="2">
+						<TextBlock HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center" Name="Number"/>
+					</Border>
+					<TextBlock Text="Выберите тип билета"/>
+					<ComboBox SelectionChanged="ComboBox_SelectionChanged" Grid.Row="4" Name="TypeCB">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Spacing="5" Background="Transparent" Orientation="Horizontal">
+									<TextBlock Text="{Binding Name}"/>
+									<TextBlock Text="{Binding Price}"/>
+									<ToolTip.Tip>
+										<TextBlock Text="{Binding Description}"/>
+									</ToolTip.Tip>
+								</StackPanel>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+					<StackPanel Grid.Row="5" Spacing="5" Orientation="Horizontal">
+						<TextBlock Text="Дата начала:"/>
+						<DatePicker Name="StartDate" SelectedDateChanged="DatePicker_SelectedDateChanged" DayFormat="ddd dd"/>
+					</StackPanel>
+					<StackPanel Grid.Row="6" IsEnabled="False" Spacing="5" Orientation="Horizontal">
+						<TextBlock Text="Конца:"/>
+						<DatePicker Name="EndDate" DayFormat="ddd dd"/>
+					</StackPanel>
+					<TextBlock Grid.Row="7" Text="Мероприятия доступные в этот период (Будет стоить дополнительно)"/>
+					<Grid Grid.Row="8" Grid.RowSpan="2">
+						<TextBlock Name="Massage" Text="Выберите начальную дату, дабы посмотреть список доступных событий"/>
+						<ListBox ScrollViewer.HorizontalScrollBarVisibility="Auto"  Name="EventLB" IsVisible="False" SelectionMode="Multiple" SelectionChanged="ListBox_SelectionChanged_1">
+							<ListBox.ItemsPanel>
+								<ItemsPanelTemplate>
+									<VirtualizingStackPanel Orientation="Horizontal" />
+								</ItemsPanelTemplate>
+							</ListBox.ItemsPanel>
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<Grid Margin="10" RowDefinitions="3*, *">
+										<Border Grid.Row="0" BorderBrush="Gainsboro" BorderThickness="1" >
+
+											<Image Margin="5" Stretch="UniformToFill" Source="{Binding MainImageBitmap}"/>
+										</Border>
+										<StackPanel Grid.Row="1">
+											<TextBlock Text="{Binding Type.Name}"/>
+											<TextBlock Text="{Binding Title}"/>
+											<TextBlock Text="{Binding StartDatetime}"/>
+										</StackPanel>
+										<ToolTip.Tip>
+											<TextBlock Text="{Binding Description}"/>
+										</ToolTip.Tip>
+									</Grid>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
+					</Grid>
+					<StackPanel Grid.Row="10" Orientation="Horizontal" Spacing="5">
+						<TextBlock Text="Итоговая цена:"/>
+						<TextBlock Name="Price"/>
+					</StackPanel>
+					<StackPanel Grid.Row="11" Orientation="Horizontal" Spacing="5">
+
+						<Button Content="Готово" Click="ComfirmButton_Click"/>
+					</StackPanel>
+				</DockPanel>
+			</Border>
+		</ScrollViewer>
+	</DockPanel>
+
 </Window>

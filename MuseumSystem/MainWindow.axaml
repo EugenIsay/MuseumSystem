@@ -196,7 +196,7 @@
 								<ComboBoxItem>По цене</ComboBoxItem>
 								<ComboBoxItem>По рейтингу</ComboBoxItem>
 							</ComboBox>
-							<ComboBox SelectedIndex="0" Margin="5" Grid.Column="3" Name="EVSortCB" SelectionChanged="EvComboBox_SelectionChanged_2">
+							<ComboBox SelectedIndex="0" Margin="5" Grid.Column="3" Name="EVSortCB" IsVisible="False" SelectionChanged="EvComboBox_SelectionChanged_2">
 								<ComboBoxItem>По возрастанию</ComboBoxItem>
 								<ComboBoxItem>По Убыванию</ComboBoxItem>
 							</ComboBox>
@@ -394,7 +394,7 @@
 							<ListBox.ItemTemplate>
 								<DataTemplate>
 									<Grid>
-										
+
 										<Grid Margin="20" RowDefinitions="*,*,*,*" ColumnDefinitions="*,10*,3*">
 											<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding Number}"/>
 											<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Type.Name}"/>
@@ -416,7 +416,7 @@
 											<Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="2,0,2,0" BorderBrush="Gainsboro"/>
 										</Grid>
 									</Grid>
-									
+
 								</DataTemplate>
 							</ListBox.ItemTemplate>
 						</ListBox>
@@ -482,7 +482,7 @@
 									<ComboBoxItem>По Убыванию</ComboBoxItem>
 								</ComboBox>
 							</Grid>
-							
+
 						</Border>
 
 						<ListBox ScrollViewer.IsScrollInertiaEnabled="False" Name="ExhibitLB">
@@ -546,60 +546,89 @@
 		<!--Вкладка для отчётов-->
 		<TabItem IsVisible="{x:Static local:Helper.IsAdmin}" >
 			<TabItem.Header>
-				<TextBlock Text="Отчётность" Foreground="White"/>
+				<TextBlock Text="Панель администратора" Foreground="White"/>
 			</TabItem.Header>
-			<Grid>
-				<Grid Name="StartReportGrid" RowDefinitions="*,*,*,*" >
-					<TextBlock Grid.Row="0" VerticalAlignment="Center" Text="Выберите за какой период времени вы хотите получить отчёт"/>
-					<ComboBox Name="ReportCB" Grid.Row="1" SelectionChanged="ReportCB_SelectionChanged">
-						<ComboBoxItem>За месяц</ComboBoxItem>
-						<ComboBoxItem>За год</ComboBoxItem>
-						<ComboBoxItem>За определённый промежуток времени</ComboBoxItem>
-					</ComboBox>
-					<StackPanel Name="DateSelector" Grid.Row="2" Spacing="10" IsVisible="False" Orientation="Horizontal">
-						<TextBlock VerticalAlignment="Center" Text="С"/>
-						<DatePicker Name="StartDate"></DatePicker>
-						<TextBlock VerticalAlignment="Center" Text="по"/>
-						<DatePicker Name="EndDate"></DatePicker>
-					</StackPanel >
-					<Button Grid.Row="3" Content="Сформировать отчёт" Click="MakeReportButton_Click"/>
-				</Grid>
-				<Grid Name="ReportGrid" IsVisible="False">
-
-				</Grid>
-			</Grid>
-
-
-		</TabItem>
-
-		<!--Вкладка пользователей для амдинистратора-->
-		<TabItem IsVisible="{x:Static local:Helper.IsAdmin}">
-			<TabItem.Header>
-				<TextBlock Text="Список пользователей" Foreground="White"/>
-			</TabItem.Header>
-			<DockPanel Margin="5">
+			<DockPanel>
 				<Button DockPanel.Dock="Bottom" Content="Заблокировать/разблокировать" Name="BlockButton" IsVisible="False" Click="BlockButton_Click"/>
-				<ListBox Background="#E0CFBD" SelectionMode="Multiple" SelectionChanged="UserLB_SelectionChanged" Margin="0,5" Name="UserLB">
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<Border BorderBrush="#D77546" Background="{Binding Color}" BorderThickness="4">
-								<DockPanel LastChildFill="False">
-									<TextBlock DockPanel.Dock="Top" Text="{Binding FullName}"/>
-									<TextBlock DockPanel.Dock="Top" Text="{Binding Gender.Name}"/>
-									<TextBlock DockPanel.Dock="Top" Text="{Binding Login}"/>
-									<TextBlock DockPanel.Dock="Top" Text="{Binding PhoneNumber}"/>
-									<TextBlock DockPanel.Dock="Top" Text="{Binding Email}"/>
-									<TextBlock DockPanel.Dock="Top" Text="{Binding Birthday, StringFormat='Дата рождения {0}'}"/>
-									<TextBlock DockPanel.Dock="Top" Text="{Binding RegistrationDate, StringFormat='Дата регистрации {0}'}"/>
-									<TextBlock DockPanel.Dock="Top" Text="{Binding Role.Name}"/>
-								</DockPanel>
-							</Border>
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-				</ListBox>
-			</DockPanel>
-		</TabItem>
+				<ScrollViewer>
+					<DockPanel>
+						<Border Margin="0,0,0,5" HorizontalAlignment="Stretch" Background="Gainsboro" VerticalAlignment="Stretch" DockPanel.Dock="Top">
+							<Grid Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ColumnDefinitions="*,*,*">
+								<Viewbox Margin="10,0" Stretch="Uniform" Grid.Row="1">
+									<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Отчёты за определдённый период времени" />
+								</Viewbox>
+							</Grid>
+							<Border.Effect>
+								<DropShadowDirectionEffect BlurRadius="10"
+												 Color="#484244"
+												 ShadowDepth="5"
+												 Direction="180"/>
+							</Border.Effect>
+						</Border>
+						<StackPanel DockPanel.Dock="Top" Spacing="10" Name="StartReportGrid" >
+							<TextBlock Grid.Row="0" VerticalAlignment="Center" Text="Выберите за какой период времени вы хотите получить отчёт"/>
+							<ComboBox Margin="0,10" Name="ReportCB" Grid.Row="1" SelectionChanged="ReportCB_SelectionChanged">
+								<ComboBoxItem>За месяц</ComboBoxItem>
+								<ComboBoxItem>За год</ComboBoxItem>
+								<ComboBoxItem>За определённый промежуток времени</ComboBoxItem>
+							</ComboBox>
+							<StackPanel Name="DateSelector" Grid.Row="2" Spacing="10" IsVisible="False" Orientation="Horizontal">
+								<TextBlock VerticalAlignment="Center" Text="С"/>
+								<DatePicker Name="StartDate"></DatePicker>
+								<TextBlock VerticalAlignment="Center" Text="по"/>
+								<DatePicker Name="EndDate"></DatePicker>
+							</StackPanel >
+							<Button Grid.Row="3" Content="Сформировать отчёт" Click="MakeReportButton_Click"/>
+						</StackPanel>
 
+						<Border Margin="0,0,0,5" HorizontalAlignment="Stretch" Background="Gainsboro" VerticalAlignment="Stretch" DockPanel.Dock="Top">
+							<Grid Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ColumnDefinitions="*,*,*">
+								<Viewbox Margin="10,0" Stretch="Uniform" Grid.Row="1">
+									<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Список пользователей системы" />
+								</Viewbox>
+							</Grid>
+							<Border.Effect>
+								<DropShadowDirectionEffect BlurRadius="10"
+												 Color="#484244"
+												 ShadowDepth="5"
+												 Direction="180"/>
+							</Border.Effect>
+						</Border>
+						<DockPanel Margin="5">
+
+							<ListBox Background="#E0CFBD" SelectionMode="Multiple" SelectionChanged="UserLB_SelectionChanged" Margin="0,5" Name="UserLB">
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<Border BorderBrush="#D77546" Background="{Binding Color}" BorderThickness="4">
+											<DockPanel Margin="10" LastChildFill="False">
+												<DockPanel.Styles>
+													<Style Selector="DockPanel > :is(Control)">
+														<Setter Property="DockPanel.Dock" Value="Top"/>
+														<Setter Property="Margin" Value="10,5"/>
+													</Style>
+												</DockPanel.Styles>
+												<TextBlock Text="{Binding Role.Name}" HorizontalAlignment="Center"/>
+												<TextBlock Text="{Binding FullName}"/>
+												<TextBlock Text="{Binding Gender.Name}"/>
+												<TextBlock Text="{Binding Login}"/>
+												<TextBlock Text="{Binding PhoneNumber}"/>
+												<TextBlock Text="{Binding Email}"/>
+												<TextBlock Text="{Binding Birthday, StringFormat='Дата рождения {0}'}"/>
+												<TextBlock Text="{Binding RegistrationDate, StringFormat='Дата регистрации {0}'}"/>
+											</DockPanel>
+										</Border>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</DockPanel>
+					</DockPanel>
+				</ScrollViewer>
+
+
+			</DockPanel>
+
+
+		</TabItem>
 		<!--Вкладка содержащие личные данные пользователя-->
 		<TabItem >
 			<TabItem.Header>

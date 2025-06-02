@@ -4254,3 +4254,6 @@ C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\obj\Debug\net8.0\r
 C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\obj\Debug\net8.0\MuseumSy.C609F91A.Up2Date
 C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\obj\Debug\net8.0\MuseumSystem.genruntimeconfig.cache
 C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\obj\Debug\net8.0\ref\MuseumSystem.dll
+C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\bin\Debug\net8.0\LiveChartsCore.dll
+C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\bin\Debug\net8.0\LiveChartsCore.SkiaSharpView.dll
+C:\Users\zheka\Desktop\Диплом\MuseumSystem\MuseumSystem\bin\Debug\net8.0\SkiaSharp.HarfBuzz.dll

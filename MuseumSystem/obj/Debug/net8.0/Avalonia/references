@@ -40,6 +40,8 @@ C:\Users\zheka\.nuget\packages\itext\9.2.0\lib\netstandard2.0\itext.styledxmlpar
 C:\Users\zheka\.nuget\packages\itext\9.2.0\lib\netstandard2.0\itext.svg.dll
 C:\Users\zheka\.nuget\packages\libvlcsharp.avalonia\3.9.3\lib\netstandard2.0\LibVLCSharp.Avalonia.dll
 C:\Users\zheka\.nuget\packages\libvlcsharp\3.9.3\lib\net8.0\LibVLCSharp.dll
+C:\Users\zheka\.nuget\packages\livechartscore\2.0.0-rc5.4\lib\net8.0\LiveChartsCore.dll
+C:\Users\zheka\.nuget\packages\livechartscore.skiasharpview\2.0.0-rc5.4\lib\net8.0\LiveChartsCore.SkiaSharpView.dll
 C:\Users\zheka\.nuget\packages\microcom.runtime\0.11.0\lib\net5.0\MicroCom.Runtime.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.4\ref\net8.0\Microsoft.CSharp.dll
 C:\Users\zheka\.nuget\packages\microsoft.dotnet.platformabstractions\1.1.0\lib\netstandard1.3\Microsoft.DotNet.PlatformAbstractions.dll
@@ -67,6 +69,7 @@ C:\Users\zheka\.nuget\packages\npgsql\9.0.3\lib\net8.0\Npgsql.dll
 C:\Users\zheka\.nuget\packages\npgsql.entityframeworkcore.postgresql\9.0.4\lib\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\zheka\.nuget\packages\qrcoder\1.6.0\lib\net6.0\QRCoder.dll
 C:\Users\zheka\.nuget\packages\skiasharp\2.88.9\lib\net6.0\SkiaSharp.dll
+C:\Users\zheka\.nuget\packages\skiasharp.harfbuzz\2.88.9\lib\net6.0\SkiaSharp.HarfBuzz.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.4\ref\net8.0\System.AppContext.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.4\ref\net8.0\System.Buffers.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.4\ref\net8.0\System.Collections.Concurrent.dll

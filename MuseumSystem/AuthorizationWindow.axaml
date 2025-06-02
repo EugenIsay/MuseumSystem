@@ -58,7 +58,7 @@
 						<TextBox Watermark="Почта"  Name="Email"/>
 						<MaskedTextBox Grid.Column="1" Mask="+7 (000) 000-00-00"  Name="Phone"/>
 					</Grid>
-					<Grid Grid.Row="5" ColumnDefinitions="2*,*">
+					<Grid Grid.Row="5" ColumnDefinitions="3*,2*">
 						<CalendarDatePicker Watermark="Дата рождения" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="BDay" Margin="0,5"/>
 						<DockPanel Grid.Column="1" >
 							<TextBlock Text="  Пол:"/>

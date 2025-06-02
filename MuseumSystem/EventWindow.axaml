@@ -5,7 +5,6 @@
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="MuseumSystem.EventWindow"
 		xmlns:local="clr-namespace:MuseumSystem"
-		FontFamily="Verdana"
 		Background="#FFFCED"
         Title="Мероприятие">
 	<Window.Styles>
@@ -59,7 +58,7 @@
 
 
 				<Grid HorizontalAlignment="Left" Grid.Row="1" ColumnDefinitions="*,2*,2*,*" RowDefinitions="*,2*,2*,*">
-					<Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" >
+					<Grid MinWidth="300" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" >
 						<Border MinHeight="240" MaxHeight="480" BorderBrush="Gainsboro" BorderThickness="1">
 							<Image Stretch="UniformToFill"  Margin="5" Name="ImageShow"/>
 						</Border>
@@ -82,8 +81,8 @@
 						</Border.Effect>
 					</Border>
 					<Grid>
-						<TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="Description" />
-						<TextBlock Padding="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="DescriptionTB"/>
+						<TextBox  AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Name="Description" />
+						<TextBlock  TextWrapping="Wrap" Padding="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="DescriptionTB"/>
 					</Grid>
 				</DockPanel>
 				<!--Табконтрол-->
@@ -153,14 +152,14 @@
 							<TextBlock Grid.Row="3"  Foreground="Gray" Text="> Начало: "/>
 							<StackPanel Name="StartTimeEdit" Grid.Row="3"  Orientation="Horizontal" Grid.Column="1">
 								<DatePicker Name="StartDate"/>
-								<TimePicker Name="StartTime"/>
+								<TimePicker Name="StartTime" Foreground="Black" />
 							</StackPanel>
 							<TextBlock Grid.Row="3" Name="StartTimeShow" Grid.Column="1"/>
 
 							<TextBlock Grid.Row="4"  Text="> Конец:" Foreground="Gray"/>
 							<StackPanel Name="EndTimeEdit"  Grid.Row="4"  Orientation="Horizontal" Grid.Column="1">
 								<DatePicker Name="EndDate"/>
-								<TimePicker Name="EndTime"/>
+								<TimePicker Name="EndTime" Foreground="Black" />
 							</StackPanel>
 							<TextBlock Grid.Row="4" Name="EndTimeShow" Grid.Column="1"/>
 

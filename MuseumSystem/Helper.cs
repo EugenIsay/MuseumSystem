@@ -10,6 +10,10 @@ using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using LibVLCSharp.Shared;
+using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.SkiaSharpView.SKCharts;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using MsBox.Avalonia;
@@ -17,6 +21,7 @@ using MsBox.Avalonia.Dto;
 using MsBox.Avalonia.Models;
 using MuseumSystem.Context;
 using MuseumSystem.Models;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,6 +35,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using LiveChartsCore.Kernel.Sketches;
 
 namespace MuseumSystem
 {
@@ -278,6 +284,11 @@ namespace MuseumSystem
                 CallMessageBox("Укажите начальную дату", Window);
                 return false;
             }
+            else if (@event.StartDatetime > DateTime.Now)
+            {
+                CallMessageBox("Начальная дата доллжна быть позже чем сейчас", Window);
+                return false;
+            }
             else
             {
                 if (@event.EndDatetime != DateTime.MinValue && @event.StartDatetime > @event.EndDatetime)
@@ -440,10 +451,9 @@ namespace MuseumSystem
                     {
                         new ButtonDefinition { Name = "Потвердить", }
                     },
-                    ContentMessage = "введите сюда код из сообщения",
                     InputParams = new InputParams()
                     {
-                        Label = "код",
+                        Label = "введите сюда код из сообщения",
                     }
                 });
             await box.ShowWindowDialogAsync(window);
@@ -506,7 +516,7 @@ namespace MuseumSystem
                 d.Add(ls);
                 // Создаем таблицу (3 колонки: №, Услуга, Цена)
                 Table table = new Table(3, true)
-                    .SetWidth(UnitValue.CreatePercentValue(100)); 
+                    .SetWidth(UnitValue.CreatePercentValue(100));
                 table.AddHeaderCell("№");
                 table.AddHeaderCell("Услуга");
                 table.AddHeaderCell("Цена");
@@ -541,7 +551,7 @@ namespace MuseumSystem
             }
 
         }
-        public static void MakeReport(DateTime startDate, DateTime endDate)
+        public static void MakeReport(DateTime startDate, DateTime endDate, Window window)
         {
             try
             {
@@ -556,13 +566,74 @@ namespace MuseumSystem
                 d.Add(new Paragraph("Отчёт").SetFontSize(20)).SetTextAlignment(TextAlignment.CENTER);
                 d.Add(new Paragraph($"C \"{startDate.Day}\" {startDate.ToString("MMMM yyyy")} по \"{endDate.Day}\" {endDate.ToString("MMMM yyyy")}").SetFontSize(14)).SetTextAlignment(TextAlignment.CENTER);
                 d.Add(ls);
-                d.Add(new Paragraph("Общая статистика").SetFontSize(20)).SetTextAlignment(TextAlignment.CENTER);
+
+                // Общая статистика
+                d.Add(new Paragraph("Общая статистика").SetFontSize(14)).SetTextAlignment(TextAlignment.CENTER);
                 Table table = new Table(2, true)
                     .SetWidth(UnitValue.CreatePercentValue(100));
                 table.AddHeaderCell("Переменная");
                 table.AddHeaderCell("Значение");
                 table.AddCell("Количетсво эксонатов");
-                table.AddCell($"{Exhibits.Count}");;
+                table.AddCell($"{Exhibits.Count}");
+
+                table.AddCell("Количетсво мероприятий");
+                table.AddCell($"{Events.Count}");
+
+                table.AddCell("Количетсво пользователей");
+                table.AddCell($"{Users.Count}");
+                d.Add(table);
+
+                d.Add(ls);
+
+                // Мроприятия
+                d.Add(new Paragraph("Статистика по мероприятиям").SetFontSize(14)).SetTextAlignment(TextAlignment.CENTER);
+                Table tableEvent = new Table(2, true)
+    .SetWidth(UnitValue.CreatePercentValue(100));
+                tableEvent.AddCell("Количество мероприятий за период");
+                tableEvent.AddCell($"{Events.Where(e => startDate < e.EndDatetime && endDate > e.StartDatetime).Count()}");
+                tableEvent.AddCell("Самое востребованное мероприятия");
+                tableEvent.AddCell($"{Events.FirstOrDefault(e => e.RegistrationCount == Events.Select(s => s.RegistrationCount).Max()).Title}");
+
+                d.Add(tableEvent);
+                d.Add(ls);
+
+                // Финансовая отчётность
+                d.Add(new Paragraph("Статистика по финансам").SetFontSize(14)).SetTextAlignment(TextAlignment.CENTER);
+                Table tableFin = new Table(2, true)
+    .SetWidth(UnitValue.CreatePercentValue(100));
+
+                tableFin.AddCell("Выручка за период");
+                tableFin.AddCell($"{AllTickets.Where(t => startDate < t.PurchaseDate && endDate > t.PurchaseDate).Select(t => t.Price).Sum()}");
+
+                tableFin.AddCell("По типам билетов");
+                tableFin.AddCell($" ");
+
+                foreach(var tType in TicketTypes)
+                {
+                    tableFin.AddCell($"{tType.Name}");
+                    tableFin.AddCell($"{AllTickets.Where(e => e.TypeId == tType.Id).Where(t => startDate < t.PurchaseDate && endDate > t.PurchaseDate).Select(t => t.Price).Sum()}");
+                }
+
+                tableFin.AddCell("Выручка за мероприятия");
+                tableFin.AddCell($"{Events.Where(e => (startDate <= e.StartDatetime && endDate >= e.StartDatetime) || (startDate <= e.EndDatetime && endDate >= e.EndDatetime)).Select(e => e.EventRegistrations.Count() * e.Price).Sum()}");
+
+                tableFin.AddCell("По мероприятиям (5 лучших)");
+                tableFin.AddCell($" ");
+
+                foreach (var eType in Events.Where(e => e.EventRegistrations.Count() != 0).Where(e => (startDate <= e.StartDatetime && endDate >= e.StartDatetime) || (startDate <= e.EndDatetime && endDate >= e.EndDatetime)).OrderBy(s => s.EventRegistrations.Count() * s.Price).Take(5))
+                { 
+                    tableFin.AddCell($"{eType.Title}");
+                    tableFin.AddCell($"{eType.EventRegistrations.Count * eType.Price}");
+                }
+                SKImage chartImage = GeneratePieChart(Events.Where(e => (startDate <= e.StartDatetime && endDate >= e.StartDatetime) || (startDate <= e.EndDatetime && endDate >= e.EndDatetime)).ToList());
+
+                // 2. Конвертируем SKImage в массив байтов
+                SKData data = chartImage.Encode(SKEncodedImageFormat.Png, 100);
+                byte[] imageBytes = data.ToArray();
+                d.Add(tableFin);
+                d.Add(ls);
+                ImageData imageData = ImageDataFactory.Create(imageBytes);
+                d.Add(new iText.Layout.Element.Image(imageData).SetAutoScale(true));
 
                 int n = pdfDocument.GetNumberOfPages();
                 for (int i = 1; i <= n; i++)
@@ -573,11 +644,30 @@ namespace MuseumSystem
                         VerticalAlignment.TOP, 0);
                 }
                 d.Close();
+                MessageBoxManager.GetMessageBoxStandard("Готово", $"Отчёт успешно файлов").ShowWindowDialogAsync(window);
             }
             catch
             {
-
+                CallMessageBox("Ошибка, что-то пошло нет так", window);
             }
+        }
+        private static SKImage GeneratePieChart(List<Event> events)
+        {
+            var pieSeries = new List<PieSeries<decimal>>();
+            foreach(var ev in events)
+            {
+                pieSeries.Add(new PieSeries<decimal> { Name = ev.Title, Values = new List<decimal> { ev.EventRegistrations.Count() * (decimal)ev.Price } });
+                
+            }
+            var chart = new SKPieChart
+            {
+                Width = 600,
+                Height = 400,
+                Series = pieSeries,
+                LegendPosition = LiveChartsCore.Measure.LegendPosition.Right
+            };
+
+            return chart.GetImage();
         }
     }
 

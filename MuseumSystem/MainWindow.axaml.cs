@@ -240,7 +240,7 @@ namespace MuseumSystem
                 startDate = StartDate.SelectedDate.Value.DateTime;
                 endDate = EndDate.SelectedDate.Value.DateTime;
             }
-            Helper.MakeReport(startDate, endDate);
+            Helper.MakeReport(startDate, endDate, this);
         }
 
         private void ExibiyHeader_PointerEntered(object? sender, Avalonia.Input.PointerEventArgs e)
