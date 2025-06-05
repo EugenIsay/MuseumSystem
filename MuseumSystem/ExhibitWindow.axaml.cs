@@ -76,6 +76,7 @@ public partial class ExhibitWindow : Window
         CommentSection.IsVisible = false;
         AddComment.IsVisible = false;
         RedactComment.IsVisible = false;
+        RedButton.IsVisible = false;
         InitMediaPlayer();
     }
     public ExhibitWindow(Exhibit Exhibit)
@@ -262,10 +263,14 @@ public partial class ExhibitWindow : Window
             }
             MessageBoxManager.GetMessageBoxStandard("Успех", "Всё прошло хорошо").ShowWindowDialogAsync(this);
             exhibit = Helper.Exhibits.FirstOrDefault(e => e.Id == EditedExhibit.Id)!;
-            Media = (List<AtachedMedium>)exhibit.AtachedMedia;
+            Media = new List<AtachedMedium>((List<AtachedMedium>)exhibit.AtachedMedia.ToList());
             CommentSection.IsVisible = true;
             AddComment.IsVisible = !HasComment;
             RedactComment.IsVisible = HasComment;
+            PhotoList.ItemsSource = PhotoMedia;
+            AudioList.ItemsSource = AudioMedia;
+            VideoList.ItemsSource = VideoMedia;
+            RedButton.IsVisible = true;
         }
         else
         {

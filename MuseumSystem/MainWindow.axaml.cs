@@ -42,7 +42,7 @@ namespace MuseumSystem
             MainImage.Source = new Bitmap(Environment.CurrentDirectory + "/autum.jpg");
             HelloMessage.Text = $"Добропожаловать, {Helper.currentUser.FullName}!";
             HappEventLB.ItemsSource = Helper.Events.Where(s => s.StartDatetime > DateTime.Now).OrderByDescending(e => e.StartDatetime).Take(3);
-            NearlyEventLB.ItemsSource = Helper.Events.Where(s => s.StartDatetime < DateTime.Now).OrderBy(e => e.EndDatetime).Take(3);
+            NearlyEventLB.ItemsSource = Helper.Events.Where(s => s.EndDatetime < DateTime.Now).OrderByDescending(e => e.EndDatetime).Take(3);
             UsersEvents.ItemsSource = Helper.UsersEvents.Take(3);
             Leafes.Source = new Bitmap(Environment.CurrentDirectory + "/leafs.jpg");
             River.Source = new Bitmap(Environment.CurrentDirectory + "/river.jpg");
@@ -59,9 +59,10 @@ namespace MuseumSystem
             EventTypeCB.ItemsSource = Helper.EventTypes.Concat(new List<Models.EventType>() { new Models.EventType { Id = 0, Name = "Все мероприятя" } }).OrderBy(c => c.Id);
             EventTypeCB.SelectedIndex = 0;
             TicketLB.SelectedItems = new List<Ticket>();
-            if (UsersEvents.ItemCount == 0)
+            if (Helper.UsersEvents.Count() == 0)
             {
                 MessageHas.IsVisible = true;
+                UsersEvents.IsVisible = false;
             }
             Resize();
         }
@@ -352,7 +353,7 @@ namespace MuseumSystem
             if ((sender as Button).Name == "BackHE")
             {
                 if (HEpage == 0)
-                    HEpage = (int)Math.Ceiling(Helper.UsersEvents.Count() / 3.00);
+                    HEpage = (int)Math.Ceiling(Helper.UsersEvents.Count() / 3.00) -1;
                 else
                     HEpage--;
             }
@@ -484,6 +485,7 @@ namespace MuseumSystem
                 11 => e.AvgRaiting,
                 _ => null
             }).ToList();
+            ExScroll.ScrollToHome();
         }
 
         private void EXComboBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
@@ -566,6 +568,7 @@ namespace MuseumSystem
                 11 => e.AvgRaiting,
                 _ => null
             }).ToList();
+            EvScroll.ScrollToHome();
         }
 
         private void EVTypeComboBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)

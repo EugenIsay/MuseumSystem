@@ -37,7 +37,7 @@
 					<Grid Background="White" DockPanel.Dock="Top" HorizontalAlignment="Stretch" ColumnDefinitions="*,*,*">
 						<Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" >
 							<Grid  RowDefinitions="*,3*,*">
-								<StackPanel Orientation="Horizontal">
+								<StackPanel Orientation="Horizontal" Spacing="10" Margin="5">
 									<RadioButton GroupName="ValueGroup" Checked="RadioButton_Checked" Tag="1"
 												 Content="1★"/>
 									<RadioButton GroupName="ValueGroup" Checked="RadioButton_Checked" Tag="2"
@@ -250,7 +250,7 @@
 							<Grid Grid.Row="16" Grid.RowSpan="2" ColumnDefinitions="*,*,*">
 								<Button Grid.Column="0" Content="Готово" Name="ReadyButton" Click="ReadyButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 
-								<Button Grid.Column="2" HorizontalAlignment="Right" Content="Редактировать" Click="RedactButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+								<Button Grid.Column="2" HorizontalAlignment="Right" Content="Редактировать" Name="RedButton" Click="RedactButton_Click" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 							</Grid>
 						</Grid>
 						<Border.Effect>

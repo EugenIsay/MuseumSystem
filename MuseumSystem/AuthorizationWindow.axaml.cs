@@ -57,6 +57,7 @@ public partial class AuthorizationWindow : Window
         if (RegPassword.Text != RegPasswordCheck.Text)
         {
             Helper.CallMessageBox("Проверьте правильность пароля и попробуйте заново" ,this);
+            return;
         }
 
         if (!DateOnly.TryParse(BDay.Text, out _))

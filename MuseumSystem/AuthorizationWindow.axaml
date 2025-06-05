@@ -28,7 +28,7 @@
 						<TextBlock Text="Авторизация" Margin="5" />
 					</Viewbox>
 					<TextBox Watermark="Логин или почта" Grid.Row="3" Name="FirstRow"/>
-					<TextBox Watermark="Пароль" Grid.Row="4" Name="Password"/>
+					<TextBox PasswordChar="*" Watermark="Пароль" Grid.Row="4" Name="Password"/>
 					<Button Click="Login_Click" Grid.Row="5" Content="Продолжить"/>
 				</Grid>
 			</Border>

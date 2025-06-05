@@ -135,11 +135,11 @@ namespace MuseumSystem
 
         public static int HowManyEhxibitions
         {
-            get => DBContext.Exhibits.Where(u => u.AddDate.Value.Year == DateTime.Now.Year).Count();
+            get => DBContext.Exhibits.Count();
         }
         public static int HowManyEvents
         {
-            get => DBContext.Exhibits.Where(u => u.AddDate.Value.Year == DateTime.Now.Year).Count();
+            get => DBContext.Exhibits.Count();
         }
 
         public static int HowManyVisitors
@@ -154,7 +154,7 @@ namespace MuseumSystem
 
         public static List<Event> UsersEvents
         {
-            get => registrations.Where(u => u.Id == currentUser.Id).Select(r => r.Event).ToList();
+            get => registrations.Where(u => u.Ticket.UserId == currentUser.Id).Select(r => r.Event).ToList();
         }
 
         public static void EditExhibitComment(ExhibitReview review)
@@ -555,6 +555,7 @@ namespace MuseumSystem
         {
             try
             {
+                List<Event> reportEvents = Events.Where(e => (startDate <= e.StartDatetime && endDate >= e.StartDatetime) || (startDate <= e.EndDatetime && endDate >= e.EndDatetime)).ToList();
                 string outputPath = "C:\\output.pdf";
                 string arialFontPath = "C:\\Windows\\Fonts\\arial.ttf";
                 PdfFont arial = PdfFontFactory.CreateFont(arialFontPath, PdfEncodings.IDENTITY_H);
@@ -590,14 +591,22 @@ namespace MuseumSystem
                 Table tableEvent = new Table(2, true)
     .SetWidth(UnitValue.CreatePercentValue(100));
                 tableEvent.AddCell("Количество мероприятий за период");
-                tableEvent.AddCell($"{Events.Where(e => startDate < e.EndDatetime && endDate > e.StartDatetime).Count()}");
+                tableEvent.AddCell($"{reportEvents.Count()}");
                 tableEvent.AddCell("Самое востребованное мероприятия");
                 tableEvent.AddCell($"{Events.FirstOrDefault(e => e.RegistrationCount == Events.Select(s => s.RegistrationCount).Max()).Title}");
 
                 d.Add(tableEvent);
                 d.Add(ls);
 
+
+                SKImage chartImageColumn = GenerateCartChart(reportEvents.Where(e => e.RegistrationCount != 0).ToList());
+                SKData dataColumn = chartImageColumn.Encode(SKEncodedImageFormat.Png, 100);
+                byte[] imageBytesColumn = dataColumn.ToArray();
+                ImageData imageDataColumn = ImageDataFactory.Create(imageBytesColumn);
+                d.Add(new iText.Layout.Element.Image(imageDataColumn).ScaleToFit(300, 300).SetHorizontalAlignment(HorizontalAlignment.CENTER));
                 // Финансовая отчётность
+
+                d.Add(new AreaBreak(AreaBreakType.NEXT_PAGE));
                 d.Add(new Paragraph("Статистика по финансам").SetFontSize(14)).SetTextAlignment(TextAlignment.CENTER);
                 Table tableFin = new Table(2, true)
     .SetWidth(UnitValue.CreatePercentValue(100));
@@ -608,32 +617,32 @@ namespace MuseumSystem
                 tableFin.AddCell("По типам билетов");
                 tableFin.AddCell($" ");
 
-                foreach(var tType in TicketTypes)
+                foreach (var tType in TicketTypes)
                 {
                     tableFin.AddCell($"{tType.Name}");
                     tableFin.AddCell($"{AllTickets.Where(e => e.TypeId == tType.Id).Where(t => startDate < t.PurchaseDate && endDate > t.PurchaseDate).Select(t => t.Price).Sum()}");
                 }
 
                 tableFin.AddCell("Выручка за мероприятия");
-                tableFin.AddCell($"{Events.Where(e => (startDate <= e.StartDatetime && endDate >= e.StartDatetime) || (startDate <= e.EndDatetime && endDate >= e.EndDatetime)).Select(e => e.EventRegistrations.Count() * e.Price).Sum()}");
+                tableFin.AddCell($"{reportEvents.Select(e => e.EventRegistrations.Count() * e.Price).Sum()}");
 
                 tableFin.AddCell("По мероприятиям (5 лучших)");
                 tableFin.AddCell($" ");
 
-                foreach (var eType in Events.Where(e => e.EventRegistrations.Count() != 0).Where(e => (startDate <= e.StartDatetime && endDate >= e.StartDatetime) || (startDate <= e.EndDatetime && endDate >= e.EndDatetime)).OrderBy(s => s.EventRegistrations.Count() * s.Price).Take(5))
-                { 
+                foreach (var eType in reportEvents.Where(e => e.EventRegistrations.Count() != 0).OrderBy(s => s.EventRegistrations.Count() * s.Price).Take(5))
+                {
                     tableFin.AddCell($"{eType.Title}");
                     tableFin.AddCell($"{eType.EventRegistrations.Count * eType.Price}");
                 }
-                SKImage chartImage = GeneratePieChart(Events.Where(e => (startDate <= e.StartDatetime && endDate >= e.StartDatetime) || (startDate <= e.EndDatetime && endDate >= e.EndDatetime)).ToList());
 
-                // 2. Конвертируем SKImage в массив байтов
-                SKData data = chartImage.Encode(SKEncodedImageFormat.Png, 100);
-                byte[] imageBytes = data.ToArray();
                 d.Add(tableFin);
                 d.Add(ls);
+
+                SKImage chartImage = GeneratePieChart(reportEvents.Where(e => e.RegistrationCount != 0).ToList());
+                SKData data = chartImage.Encode(SKEncodedImageFormat.Png, 100);
+                byte[] imageBytes = data.ToArray();
                 ImageData imageData = ImageDataFactory.Create(imageBytes);
-                d.Add(new iText.Layout.Element.Image(imageData).SetAutoScale(true));
+                d.Add(new iText.Layout.Element.Image(imageData).ScaleToFit(300, 300).SetHorizontalAlignment(HorizontalAlignment.CENTER));
 
                 int n = pdfDocument.GetNumberOfPages();
                 for (int i = 1; i <= n; i++)
@@ -654,16 +663,37 @@ namespace MuseumSystem
         private static SKImage GeneratePieChart(List<Event> events)
         {
             var pieSeries = new List<PieSeries<decimal>>();
-            foreach(var ev in events)
+            foreach (var ev in events)
             {
                 pieSeries.Add(new PieSeries<decimal> { Name = ev.Title, Values = new List<decimal> { ev.EventRegistrations.Count() * (decimal)ev.Price } });
-                
+
             }
             var chart = new SKPieChart
             {
                 Width = 600,
                 Height = 400,
                 Series = pieSeries,
+                LegendPosition = LiveChartsCore.Measure.LegendPosition.Right
+            };
+
+            return chart.GetImage();
+        }
+        private static SKImage GenerateCartChart(List<Event> events)
+        {
+            var columnSeries = new List<ColumnSeries<int>>();
+            foreach (var ev in events)
+            {
+                columnSeries.Add(new ColumnSeries<int> { Name = ev.Title, Values = new List<int> { ev.EventRegistrations.Count } });
+
+            }
+
+            var chart = new SKCartesianChart
+            {
+                Width = 600,
+                Height = 400,
+                Series = columnSeries,
+                XAxes = new List<Axis> { new Axis { IsVisible = false } },
+                YAxes = new List<Axis> { new Axis { MinStep = 1,  MinLimit = 0} },
                 LegendPosition = LiveChartsCore.Measure.LegendPosition.Right
             };
 

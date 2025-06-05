@@ -54,7 +54,7 @@
 								</Border.Effect>
 							</Border>
 							<Grid>
-								<TextBlock Name="MessageHas" IsVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Вы не записаны ни на какие мерориятия. Чтобы записаться перейдите во вкладку билеті" TextWrapping="Wrap"/>
+								<TextBlock Name="MessageHas" Margin="40" IsVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Вы не записаны ни на какие мерориятия. Чтобы записаться перейдите во вкладку билеты" TextWrapping="Wrap"/>
 								<ListBox Margin="50,0" Name="UsersEvents" HorizontalAlignment="Stretch">
 									<ListBox.ItemsPanel>
 										<ItemsPanelTemplate>
@@ -164,7 +164,7 @@
 			</TabItem.Header>
 			<DockPanel Margin="10">
 				<Button Foreground="White" DockPanel.Dock="Bottom" Click="EventButton_Click" Content="Добавить мероприятия" IsVisible="{x:Static local:Helper.IsEmployee}"/>
-				<ScrollViewer>
+				<ScrollViewer Name="EvScroll">
 					<DockPanel>
 						<Grid DockPanel.Dock="Top" HorizontalAlignment="Stretch">
 							<Image Stretch="UniformToFill" MaxHeight="300" Name="Leafes" />
@@ -450,7 +450,7 @@
 			</TabItem.Header>
 			<DockPanel>
 				<Button Click="AddExhibitionButton_Click" DockPanel.Dock="Bottom" Content="Добавить экспонат" IsVisible="{x:Static local:Helper.IsEmployee}"/>
-				<ScrollViewer>
+				<ScrollViewer Name="ExScroll">
 					<DockPanel>
 						<Grid DockPanel.Dock="Top" HorizontalAlignment="Stretch">
 							<Image Stretch="UniformToFill" MaxHeight="300" Name="River"/>

@@ -6,6 +6,7 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
 using LibVLCSharp.Shared;
 using Microsoft.Extensions.Logging;
+using MsBox.Avalonia;
 using MuseumSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace MuseumSystem;
 
 public partial class EventWindow : Window
 {
-    readonly Event @event = new();
+    Event @event = new();
     List<Exhibit> Exhibits = new List<Exhibit>();
     public List<Exhibit> GetExhibits
     {
@@ -40,6 +41,7 @@ public partial class EventWindow : Window
         CommentSection.IsVisible = false;
         AddComment.IsVisible = false;
         RedactComment.IsVisible = false;
+        Redbutton.IsVisible = false;
     }
     public EventWindow(Event @event)
     {
@@ -112,8 +114,9 @@ public partial class EventWindow : Window
             {
                 Helper.RemoveEventEhibits(new IncludedItem() { EventId = @event.Id, ExhibitId = item.Id });
             }
-            new MainWindow().Show();
-            this.Close();
+            @event = Helper.Events.FirstOrDefault(e => e.Id == @event.Id);
+            Redbutton.IsVisible = true;
+            MessageBoxManager.GetMessageBoxStandard("Успех", "Всё прошло хорошо").ShowWindowDialogAsync(this);
         }
     }
 
