@@ -24,7 +24,7 @@
 							<Setter Property="Margin" Value="0,10"/>
 						</Style>
 					</DockPanel.Styles>
-					<TextBlock Text="Оформление билета" FontSize="20" HorizontalAlignment="Center" Margin="10"/>
+					<TextBlock Text="Заказ билета" FontSize="20" HorizontalAlignment="Center" Margin="10"/>
 
 					<TextBlock Text="Пользователь:"/>
 					<ComboBox Name="UserCB" IsEnabled="{x:Static local:Helper.IsEmployee}">
@@ -64,7 +64,7 @@
 					<TextBlock Grid.Row="7" Text="Мероприятия доступные в этот период (Будет стоить дополнительно)"/>
 					<Grid Grid.Row="8" Grid.RowSpan="2">
 						<TextBlock Name="Massage" Text="Выберите начальную дату, дабы посмотреть список доступных событий"/>
-						<ListBox ScrollViewer.HorizontalScrollBarVisibility="Auto"  Name="EventLB" IsVisible="False" SelectionMode="Multiple" SelectionChanged="ListBox_SelectionChanged_1">
+						<ListBox HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Auto"  Name="EventLB" IsVisible="False" SelectionMode="Multiple" SelectionChanged="ListBox_SelectionChanged_1">
 							<ListBox.ItemsPanel>
 								<ItemsPanelTemplate>
 									<VirtualizingStackPanel Orientation="Horizontal" />

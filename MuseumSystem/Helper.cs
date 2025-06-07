@@ -420,26 +420,17 @@ namespace MuseumSystem
         private static async Task<bool> EmailTask(string email, Window window)
         {
             string code = $"{random.Next(100000, 999999)}";
-            // с какого аккаунта будет отправленно письмо
             MailAddress from = new MailAddress("museum.system.00@gmail.com", "Код для регистрации");
-            // кому отправляем
             MailAddress to = new MailAddress($"{email}");
-            // создаем объект сообщения
             MailMessage m = new MailMessage(from, to);
-            // тема письма
             m.Subject = "Пароль для потвердждения регистрации!";
-            // текст письма
             string mail = $"<h2>{code}</h2>\r\n";
             m.Body = mail;
-            // письмо представляет код html
             m.IsBodyHtml = true;
-            // адрес smtp-сервера и порт, с которого будем отправлять письмо (если почта с которой ты отправляешь gmail, то оставляй так)
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            // логин и пароль
             smtp.Credentials = new NetworkCredential("museum.system.00@gmail.com", "vtoy zmwb iiob zqkn");
             smtp.EnableSsl = true;
             await smtp.SendMailAsync(m);
-
             var box = MsBox.Avalonia.MessageBoxManager.GetMessageBoxCustom(
                 new MessageBoxCustomParams()
                 {
@@ -461,7 +452,6 @@ namespace MuseumSystem
                 return true;
             else
                 return false;
-
         }
         static bool IsValidEmail(string email)
         {

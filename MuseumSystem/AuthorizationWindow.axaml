@@ -35,7 +35,7 @@
 			<Border IsVisible="False" Background="#953C2C" Name="LeftTop">
 				<Grid RowDefinitions="2*,*,*" ColumnDefinitions="*,10*,*">
 					<Viewbox Grid.Column="1" Stretch="Uniform" Grid.Row="0" >
-						<TextBlock TextWrapping="Wrap" Text="Добропожаловать в систему музея" FontWeight="Bold" Foreground="White" />
+						<TextBlock TextWrapping="Wrap" Text="Добро пожаловать в систему музея" FontWeight="Bold" Foreground="White" />
 					</Viewbox>
 					<TextBlock Name="MainText1" Grid.Column="1" VerticalAlignment="Top" Text="Пожалуйста, зарегестрируйтесь для продолжения, либо если вы уже регестрировали его, то авторизуйтесь" TextWrapping="Wrap" Grid.Row="1" Foreground="White"/>
 					<Button Grid.Column="1" HorizontalAlignment="Center" Click="Change_Click" VerticalAlignment="Center" Grid.Row="2" Content="Авторизация"/>
@@ -79,7 +79,7 @@
 			<Border Name="RightTop"  Grid.Column="1" Background="#953C2C">
 				<Grid RowDefinitions="2*,*,*" ColumnDefinitions="*,10*,*">
 					<Viewbox Grid.Column="1" Stretch="Uniform" Grid.Row="0" >
-						<TextBlock TextWrapping="Wrap" Text="Добропожаловать в систему музея" FontWeight="Bold" Foreground="White" />
+						<TextBlock TextWrapping="Wrap" Text="Добро пожаловать в систему музея" FontWeight="Bold" Foreground="White" />
 					</Viewbox>
 					<TextBlock Name="MainText2"  Grid.Column="1" VerticalAlignment="Top" Text="Пожалуйста, авторизуйтесь для продолжения, либо если в нашей системе нет вашего аккаунта, то зарегестрируйте его" TextWrapping="Wrap" Grid.Row="1" Foreground="White"/>
 					<Button Grid.Column="1" HorizontalAlignment="Center" Click="Change_Click" VerticalAlignment="Center" Grid.Row="2" Content="Регистрация"/>

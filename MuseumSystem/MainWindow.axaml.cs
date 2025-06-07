@@ -40,8 +40,8 @@ namespace MuseumSystem
             MainTab.SelectedIndex = Helper.Page;
             ReadyButton.IsVisible = false;
             MainImage.Source = new Bitmap(Environment.CurrentDirectory + "/autum.jpg");
-            HelloMessage.Text = $"Добропожаловать, {Helper.currentUser.FullName}!";
-            HappEventLB.ItemsSource = Helper.Events.Where(s => s.StartDatetime > DateTime.Now).OrderByDescending(e => e.StartDatetime).Take(3);
+            HelloMessage.Text = $"Добро пожаловать, {Helper.currentUser.FullName}!";
+            HappEventLB.ItemsSource = Helper.Events.Where(s => s.StartDatetime > DateTime.Now).OrderBy(e => e.StartDatetime).Take(3);
             NearlyEventLB.ItemsSource = Helper.Events.Where(s => s.EndDatetime < DateTime.Now).OrderByDescending(e => e.EndDatetime).Take(3);
             UsersEvents.ItemsSource = Helper.UsersEvents.Take(3);
             Leafes.Source = new Bitmap(Environment.CurrentDirectory + "/leafs.jpg");
@@ -606,6 +606,24 @@ namespace MuseumSystem
                 evSort -= 6;
             }
             UpdateEvents();
+        }
+
+        private void TicketLB_SelectionChanged(object? sender, Avalonia.Controls.TextChangedEventArgs e)
+        {
+            if (TicketLB == null)
+                return;
+            string[] searchWords = (sender as TextBox).Text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                                     .Select(w => w.ToLower())
+                                     .ToArray();
+            TicketLB.ItemsSource = Helper.Tickets
+                .Where(ticket =>
+                {
+                    // Поиск
+                    string fullText = $"{ticket.Number?.ToLower()} {ticket.User?.FullName.ToLower()}";
+                    return searchWords.Any(word => fullText.Contains(word))
+                    || string.IsNullOrEmpty((sender as TextBox).Text);
+
+                });
         }
     }
 }

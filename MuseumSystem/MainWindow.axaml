@@ -371,8 +371,8 @@
 			</TabItem.Header>
 			<DockPanel>
 				<Grid Margin="10" DockPanel.Dock="Bottom" ColumnDefinitions="*,*,*">
-					<Button Content="Купить билет"  Click="TicketButton_Click"/>
-					<Button Grid.Column="2" HorizontalAlignment="Right" Content="Распечатать" Click="PressButton_Click" Name="PressButton" IsVisible="False"/>
+					<Button Content="Заказать билет"  Click="TicketButton_Click"/>
+					<Button Grid.Column="2" HorizontalAlignment="Right" Content="Сохранить на устройство" Click="PressButton_Click" Name="PressButton" IsVisible="False"/>
 				</Grid>
 				<ScrollViewer>
 
@@ -390,13 +390,21 @@
 								</Grid>
 							</Grid>
 						</Grid>
+
+						<Grid DockPanel.Dock="Top" ColumnDefinitions="3*,2*">
+							<TextBox Margin="10" TextChanged="TicketLB_SelectionChanged" IsVisible="{x:Static local:Helper.IsEmployee}"/>
+						</Grid>
 						<ListBox SelectionMode="Multiple" SelectionChanged="TicketLB_SelectionChanged" Name="TicketLB">
 							<ListBox.ItemTemplate>
 								<DataTemplate>
 									<Grid>
 
 										<Grid Margin="20" RowDefinitions="*,*,*,*" ColumnDefinitions="*,10*,3*">
-											<TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding Number}"/>
+											<StackPanel Orientation="Horizontal" Grid.Column="1">
+
+												<TextBlock Text="{Binding Number}"/>
+												<TextBlock IsVisible="{x:Static local:Helper.IsEmployee}" Text="{Binding User.FullName, StringFormat=' | пользователь: {0}'}"/>
+											</StackPanel>
 											<TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Type.Name}"/>
 											<StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
 												<TextBlock Text="{Binding PurchaseDate, StringFormat='Куплен {0}'}"/>
