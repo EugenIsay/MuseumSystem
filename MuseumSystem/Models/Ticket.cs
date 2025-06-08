@@ -26,6 +26,15 @@ public partial class Ticket
     public decimal Price { get; set; }
 
     public bool? IsUsed { get; set; }
+    public string Massage
+    {
+        get
+        {
+            if ((bool)IsUsed)
+                return "Оплачено";
+            else return "Не оплачено";
+        }
+    }
 
     public virtual ICollection<EventRegistration> EventRegistrations { get; set; } = new List<EventRegistration>();
 

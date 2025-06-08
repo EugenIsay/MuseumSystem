@@ -417,6 +417,7 @@
 											<Grid Grid.Column="2" Grid.RowSpan="4" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*">
 												<Image Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" Source="{Binding qrBitmap}"/>
 											</Grid>
+											<Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" Content="{Binding Massage}" IsEnabled="{Binding !IsUsed}" Click="PayButton_Click" Tag="{Binding}" IsVisible="{x:Static local:Helper.IsEmployee}"/>
 										</Grid>
 
 										<Grid ColumnDefinitions="*,8*,*" RowDefinitions="*,4*,*">

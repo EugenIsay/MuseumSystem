@@ -483,6 +483,14 @@ namespace MuseumSystem
         {
             get => currentUser.RoleId != 3;
         }
+
+        public static void PayedTIcket(Ticket ticket)
+        {
+            ticket.IsUsed = true;
+            DBContext.Tickets.Update(ticket);
+            DBContext.SaveChanges();
+        }
+
         public static bool PrintTicket(Ticket Ticket, Window window)
         {
             try

@@ -20,6 +20,7 @@ using System.Linq;
 using Tmds.DBus.Protocol;
 using iText.IO.Image;
 using iText.Kernel.Pdf.Canvas.Parser;
+using System.Threading.Tasks;
 
 namespace MuseumSystem
 {
@@ -624,6 +625,19 @@ namespace MuseumSystem
                     || string.IsNullOrEmpty((sender as TextBox).Text);
 
                 });
+        }
+
+        private async void PayButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var box = MessageBoxManager.GetMessageBoxStandard("Предосторежение", "Билет точно оплачен?", ButtonEnum.YesNo);
+            var result = await box.ShowAsync();
+            if (result.Equals(ButtonResult.Yes))
+            {
+                Helper.PayedTIcket((sender as Button).Tag as Ticket);
+                (sender as Button).IsEnabled = false;
+                (sender as Button).Content = "Оплачено";
+            }
+
         }
     }
 }
