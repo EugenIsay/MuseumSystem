@@ -284,7 +284,7 @@ namespace MuseumSystem
                 CallMessageBox("Укажите начальную дату", Window);
                 return false;
             }
-            else if (@event.StartDatetime > DateTime.Now)
+            else if (@event.StartDatetime < DateTime.Now)
             {
                 CallMessageBox("Начальная дата доллжна быть позже чем сейчас", Window);
                 return false;
