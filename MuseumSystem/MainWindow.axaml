@@ -249,7 +249,7 @@
 														<TextBlock Text="{Binding MaxAttendees, StringFormat='Мероприятие запланировано на {0} мест '}"/>
 														<TextBlock Text="{Binding RegistrationCount, StringFormat='({0} занято) '}"/>
 													</StackPanel>
-													<StackPanel IsVisible="{Binding HasRaiting}" Orientation="Horizontal">
+													<StackPanel Margin="10,0" IsVisible="{Binding HasRaiting}" Orientation="Horizontal">
 														<TextBlock Foreground="Yellow" Text="{Binding GoodReviews}"  >
 															<TextBlock.Effect>
 																<DropShadowDirectionEffect BlurRadius="0" ShadowDepth="0" Color="Black" Opacity="1"/>

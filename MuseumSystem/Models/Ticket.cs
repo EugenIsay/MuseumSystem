@@ -47,7 +47,7 @@ public partial class Ticket
         get
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode($"Дата:{PurchaseDate}, цена:{Price}, с:{ValidFrom}, до:{ValidTo}, ", QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode($"{Number}", QRCodeGenerator.ECCLevel.Q);
             using (PngByteQRCode qrCode = new PngByteQRCode(qrCodeData))
             {
                 return qrCode.GetGraphic(20);

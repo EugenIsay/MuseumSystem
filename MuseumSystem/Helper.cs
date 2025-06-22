@@ -68,7 +68,7 @@ namespace MuseumSystem
         //Таблицы связаные с мероприятиями
         public static List<Event> Events
         {
-            get => DBContext.Events.Include(e => e.Type).Include(e => e.Organizer).Include(e => e.IncludedItems).ThenInclude(i => i.Exhibit).Include(e => e.EventRegistrations).ToList();
+            get => DBContext.Events.Include(e => e.Type).Include(e => e.Organizer).Include(e => e.IncludedItems).ThenInclude(i => i.Exhibit).Include(e => e.EventRegistrations).Include(e => e.EventReviews).ToList();
         }
         public static List<Event> ShownEvents
         {
@@ -503,7 +503,6 @@ namespace MuseumSystem
                 Document d = new Document(pdfDocument, iText.Kernel.Geom.PageSize.LETTER);
                 d.SetFont(arial);
                 d.Add(new Paragraph("Билет").SetTextAlignment(TextAlignment.CENTER).SetFontSize(20));
-                d.Add(new Paragraph($"{Ticket.Number}").SetTextAlignment(TextAlignment.CENTER).SetFontSize(20));
                 d.Add(new Paragraph($"Дата покупки {Ticket.PurchaseDate}").SetTextAlignment(TextAlignment.CENTER).SetFontSize(14));
                 ImageData imageData = ImageDataFactory.Create(Ticket.qrBytes);
                 d.Add(new iText.Layout.Element.Image(imageData).ScaleToFit(300, 300).SetHorizontalAlignment(HorizontalAlignment.CENTER));
